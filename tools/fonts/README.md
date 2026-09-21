@@ -1,6 +1,9 @@
-JetBrains Mono, static Bold (700) and Medium (500), used only by
-`tools/make-social.py` to draw text into the share image and nothing else. The
-website itself loads the variable web font from `assets/fonts/`.
+Static copies of the two faces the site uses, here only so
+`tools/make-social.py` can draw text into the share image. The website itself
+loads variable web fonts from `assets/fonts/`.
 
-Same licence as that one — SIL Open Font License 1.1, text in
-`assets/fonts/OFL-JetBrainsMono.txt`.
+- `JetBrainsMono-Bold.ttf`, `JetBrainsMono-Medium.ttf` — the wordmark face.
+- `Karla-Medium.ttf` — the tagline face.
+
+Both are SIL Open Font License 1.1; the texts are in
+`assets/fonts/OFL-JetBrainsMono.txt` and `assets/fonts/OFL-Karla.txt`.

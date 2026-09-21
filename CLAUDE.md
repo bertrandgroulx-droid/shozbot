@@ -67,7 +67,8 @@ assets/
   favicon.svg .ico, apple-touch-icon.png, icon-192.png, icon-512.png
   icons/                    the three browser-icon candidates as SVG
   apps/                     each app's own icon, copied from its repo
-  fonts/jetbrains-mono-latin.woff2  self-hosted, variable weight 300–700
+  fonts/jetbrains-mono-latin.woff2  the wordmark face, self-hosted, variable
+  fonts/karla-latin.woff2           the tagline face, self-hosted, variable
 kit/                shared studio kit — see below
 preview/            decision pages for Bertrand; noindex, not linked from the site
 tools/make-icons.py  rebuilds the whole favicon set from one candidate SVG
@@ -108,11 +109,20 @@ There is a dark-mode block right below the light tokens — change a colour in
 both places.
 
 Wordmark: **JetBrains Mono Bold, lowercase `shozbot`** — Bertrand's pick
-(option B1). Monospaced letterforms sit further apart than proportional ones,
-so `.wordmark` carries `letter-spacing: -0.055em`; keep that if the size
-changes. Casing is set in exactly one place, `.wordmark { text-transform }` in
-`site.css`. `preview/brand.html` still shows the candidates that were not
-chosen.
+(option B1), tracked at `letter-spacing: -0.02em` (his pick K2). Casing is set
+in exactly one place, `.wordmark { text-transform }` in `site.css`, and the
+tracking sits right beside it. `kit/kit.css` repeats the same tracking for the
+bar at the top of every app — change both together.
+
+A monospaced face gives every pair the same gap, so `zb` gets the room `ot`
+needs. Bertrand knows, and has parked it: a custom wordmark with the pairs
+drawn or hand-kerned properly is a later job, not a bug to fix now.
+
+Tagline: **Karla Medium**, via `--font-tagline`. It is deliberately the one
+line on the site that is not mono — the mono reads as software, the tagline
+should read as a person. Do not fold it back into `--font-display`.
+
+`preview/brand.html` still shows the first-round candidates.
 
 Browser icon: **`assets/icons/studio-robot.svg`** — the drawn robot that used
 to be Statterbrain's favicon. Bertrand moved it to the studio: it is the
@@ -217,6 +227,6 @@ only one with a build step.
   profile or page image — square, opaque, and inset so LinkedIn's circular crop
   takes only flat colour. The writing itself is still to do, and it waits until
   shozbot.com actually resolves.
-- **Typography, reopened.** Bertrand is not happy with the wordmark's kerning,
-  and the tagline set in JetBrains Mono is not working for him. Both are live
-  questions; do not treat the current values as settled.
+- **A custom wordmark, later.** JetBrains Mono at -0.02em is what ships, and
+  Bertrand is happy with it for now, but he wants to come back to a properly
+  kerned or custom-drawn `shozbot` at some point. Raise it, don't act on it.

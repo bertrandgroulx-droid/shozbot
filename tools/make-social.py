@@ -15,7 +15,7 @@ import cairosvg
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
-FONTS = ROOT / "tools" / "fonts"          # JetBrains Mono TTFs, see README there
+FONTS = ROOT / "tools" / "fonts"          # static TTFs, see README there
 
 PAPER = (250, 247, 242)
 INK = (36, 31, 26)
@@ -40,10 +40,11 @@ def share_image():
     h = 470
     robot = robot.resize((round(robot.width * h / robot.height), h), Image.LANCZOS)
 
+    # -0.02em of tracking at 118px, to match .wordmark in site.css
     tracked(d, (92, 196), "shozbot",
-            ImageFont.truetype(str(FONTS / "JetBrainsMono-Bold.ttf"), 118), INK, -6.5)
-    d.text((96, 356), "Handmade apps for curious minds",
-           font=ImageFont.truetype(str(FONTS / "JetBrainsMono-Medium.ttf"), 36), fill=PURPLE)
+            ImageFont.truetype(str(FONTS / "JetBrainsMono-Bold.ttf"), 118), INK, -2.4)
+    d.text((94, 352), "Handmade apps for curious minds",
+           font=ImageFont.truetype(str(FONTS / "Karla-Medium.ttf"), 42), fill=PURPLE)
     d.text((96, 424), "shozbot.com",
            font=ImageFont.truetype(str(FONTS / "JetBrainsMono-Medium.ttf"), 26), fill=MUTED)
 

@@ -12,6 +12,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Karla';
+  src: url('/assets/fonts/karla-latin.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* --- from the robot --- */
   --mohawk:        #6c4fa3;   /* the purple of the mohawk, deepened so text on
@@ -43,6 +51,8 @@
 
   --font-display: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo,
                   Consolas, monospace;
+  --font-tagline: 'Karla', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+                  Roboto, Helvetica, Arial, sans-serif;
   --font-body:    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
                   Helvetica, Arial, sans-serif;
 }
@@ -109,7 +119,7 @@ a { color: var(--mohawk); }
 .wordmark {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.02em;
   text-transform: none;   /* none | capitalize | uppercase */
 }
 
@@ -144,10 +154,9 @@ a { color: var(--mohawk); }
 
 .hero .tagline {
   margin: clamp(14px, 2.5vw, 20px) 0 0;
-  font-family: var(--font-display);
+  font-family: var(--font-tagline);   /* the one line that is not mono */
   font-weight: 500;
-  font-size: clamp(1rem, 3.1vw, 1.38rem);
-  letter-spacing: -0.03em;
+  font-size: clamp(1.12rem, 3.5vw, 1.55rem);
   line-height: 1.25;
   color: var(--mohawk);
 }
