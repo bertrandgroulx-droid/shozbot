@@ -58,14 +58,15 @@ vercel.json         rewrites and redirects for every app
 site.webmanifest    installable-to-home-screen metadata
 sitemap.xml         robots.txt
 assets/
-  robot-original.png        the photo exactly as it came from Statterbrain
-  robot.png / .webp         trimmed of transparent margin, 196×228
-  robot-small.png / .webp   96px wide, for the footer
+  photos/                   the photographs exactly as Bertrand sent them
+  robot.png / .webp         cut out of the photo, 648×760
+  robot-small.png / .webp   140px wide, for the footer
+  robot-three-eyes*         the second robot, cut out and ready, not yet used
   og.png                    1200×630 share preview
   favicon.svg .ico, apple-touch-icon.png, icon-192.png, icon-512.png
   icons/                    the three browser-icon candidates as SVG
   apps/                     each app's own icon, copied from its repo
-  fonts/space-grotesk-latin.woff2   self-hosted, variable weight 300–700
+  fonts/jetbrains-mono-latin.woff2  self-hosted, variable weight 300–700
 kit/                shared studio kit — see below
 preview/            decision pages for Bertrand; noindex, not linked from the site
 tools/make-icons.py rebuilds the whole favicon set from one candidate SVG
@@ -84,16 +85,35 @@ Set in `site.css` under `:root`, sampled from the robot itself:
 | `--resin-orange/yellow/blue/red` | `#f08a18` `#ffd23f` `#2d54cd` `#8b1d1e` | hands, feet, chest stripe |
 | `--paper` / `--ink` | `#faf7f2` / `#241f1a` | page and text |
 
+The mascot photographs live in `assets/photos/`. The cut-outs in `assets/` were
+made from them with `rembg` (the `isnet-general-use` model, alpha matting on),
+which is what kept the mohawk fibres and the wire limbs intact. If a photo is
+ever replaced, cut the new one the same way rather than by hand.
+
+There is a **second robot** — blue-and-white chevron body, teal-and-red mohawk,
+three brass sockets for eyes. It is cut out and sized (`robot-three-eyes.*`)
+and waiting for a use; nothing on the site shows it yet.
+
 Purple, wood and paper carry the design; the resin colours are accents only.
 There is a dark-mode block right below the light tokens — change a colour in
 both places.
 
-Wordmark: **Space Grotesk Bold, lowercase `shozbot`**. Casing is set in exactly
-one place, `.wordmark { text-transform }` in `site.css`. *Not yet confirmed by
-Bertrand* — `preview/brand.html` shows the candidates.
+Wordmark: **JetBrains Mono Bold, lowercase `shozbot`** — Bertrand's pick
+(option B1). Monospaced letterforms sit further apart than proportional ones,
+so `.wordmark` carries `letter-spacing: -0.055em`; keep that if the size
+changes. Casing is set in exactly one place, `.wordmark { text-transform }` in
+`site.css`. `preview/brand.html` still shows the candidates that were not
+chosen.
 
-Browser icon: currently **option 1, the head** (`assets/icons/option-1-head.svg`).
-*Not yet confirmed* — `preview/icons.html` shows all three. To switch:
+Browser icon: **`assets/icons/studio-robot.svg`** — the drawn robot that used
+to be Statterbrain's favicon. Bertrand moved it to the studio: it is the
+Shozbot mark now, and Statterbrain gets a new icon of its own later, built
+around a brain. Until that happens the Statterbrain card on the homepage shows
+this same robot, so the card and the browser tab match each other; that
+resolves itself when the new Statterbrain icon lands.
+
+The three drawn candidates from the first round are still in `assets/icons/`
+in case they are ever wanted. To switch the whole set to any of them:
 
 ```
 python3 tools/make-icons.py option-2-monogram
@@ -177,11 +197,13 @@ only one with a build step.
 
 ## Still open
 
-- Bertrand has not yet picked the wordmark casing/typeface or the browser icon.
-- The only copy of the robot photo is 256×256. The hero would look better with
-  the original camera file — ask for it.
+- **The footer link.** Bertrand wants "Made by Bertrand Groulx" to point at his
+  LinkedIn profile. The exact address has not been supplied yet, so it still
+  points at his GitHub profile — a guessed LinkedIn URL would just be a broken
+  link. Swap it in `index.html` the moment he gives it.
 - Analytics is not installed yet (Phase 1g): a free, cookieless service,
   Bertrand creates the account.
 - `shozbot@shozbot.com` is in the footer; the Squarespace forwarding that makes
   it work has to be confirmed before launch.
-- The "Made by Bertrand Groulx" link currently points at his GitHub profile.
+- A new Statterbrain icon, built around a brain, replacing the robot it lent
+  to the studio.

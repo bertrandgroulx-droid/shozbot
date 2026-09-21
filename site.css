@@ -5,8 +5,8 @@
    ========================================================================== */
 
 @font-face {
-  font-family: 'Space Grotesk';
-  src: url('/assets/fonts/space-grotesk-latin.woff2') format('woff2');
+  font-family: 'JetBrains Mono';
+  src: url('/assets/fonts/jetbrains-mono-latin.woff2') format('woff2');
   font-weight: 300 700;         /* variable font: one file, whole range */
   font-style: normal;
   font-display: swap;
@@ -41,8 +41,8 @@
   --measure:       62ch;
   --gutter:        clamp(20px, 5vw, 48px);
 
-  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system,
-                  'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo,
+                  Consolas, monospace;
   --font-body:    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
                   Helvetica, Arial, sans-serif;
 }
@@ -109,7 +109,7 @@ a { color: var(--mohawk); }
 .wordmark {
   font-family: var(--font-display);
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.055em;
   text-transform: none;   /* none | capitalize | uppercase */
 }
 
@@ -146,7 +146,8 @@ a { color: var(--mohawk); }
   margin: clamp(14px, 2.5vw, 20px) 0 0;
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(1.15rem, 3.6vw, 1.6rem);
+  font-size: clamp(1rem, 3.1vw, 1.38rem);
+  letter-spacing: -0.03em;
   line-height: 1.25;
   color: var(--mohawk);
 }
@@ -159,7 +160,7 @@ a { color: var(--mohawk); }
 
 .robot {
   display: block;
-  width: min(60vw, 250px);
+  width: min(58vw, 300px);
   height: auto;
   justify-self: center;
   transition: transform .35s cubic-bezier(.2, .8, .3, 1);
@@ -249,8 +250,8 @@ a { color: var(--mohawk); }
   margin: 0 0 4px;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.2rem;
-  letter-spacing: -0.01em;
+  font-size: 1.08rem;           /* mono runs wide — a notch down holds the line */
+  letter-spacing: -0.03em;
 }
 
 .card p {
@@ -272,7 +273,7 @@ a { color: var(--mohawk); }
 }
 
 .card--feature img { width: 72px; height: 72px; border-radius: 16px; }
-.card--feature h3 { font-size: 1.6rem; }
+.card--feature h3 { font-size: 1.45rem; }
 .card--feature p { font-size: 1.02rem; max-width: 56ch; }
 
 .badge {
@@ -322,7 +323,7 @@ a { color: var(--mohawk); }
   padding-block: 48px;
 }
 
-.lost img { width: min(50vw, 200px); height: auto; margin-inline: auto; }
+.lost img { width: min(52vw, 230px); height: auto; margin-inline: auto; }
 .lost h1 { font-family: var(--font-display); font-size: 2rem; margin: 16px 0 0; }
 .lost p { margin: 0; color: var(--muted); }
 .lost .home { margin-top: 20px; font-family: var(--font-display); font-weight: 500; }

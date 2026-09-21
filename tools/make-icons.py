@@ -20,7 +20,8 @@ ROOT = Path(__file__).resolve().parent.parent
 ICONS = ROOT / "assets" / "icons"
 OUT = ROOT / "assets"
 
-CHOICES = ["option-1-head", "option-2-monogram", "option-3-silhouette"]
+CHOICES = ["studio-robot", "option-1-head", "option-2-monogram",
+           "option-3-silhouette"]
 
 
 def render(src: Path, size: int) -> Image.Image:
