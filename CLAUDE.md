@@ -151,6 +151,30 @@ Do not move the nameservers, or Bertrand's free email forwarding stops working.
 - Never delete a repo or a Vercel project.
 - Small commits, clear messages.
 
+## What reading the other repos turned up
+
+Notes for Phases 2–4, gathered by reading the code rather than guessing.
+
+**Statterbrain has no URL router.** It is Vite + React 19, and pages are held
+in a `PageId`-keyed `ROUTES` record in `src/routes.tsx` — the address bar never
+changes. So moving it to `/statterbrain/` is a `base` setting in
+`vite.config.ts` (which is currently bare) and nothing more: there are no inner
+URLs to refresh, and no deep links to break. Check the asset paths afterwards
+all the same.
+
+**Better Weather needs no weather key, but it does use a Mapbox one.** The
+forecast comes from Open-Meteo, which takes no key. The radar map uses a
+*public* Mapbox token (`pk.…`, base64-encoded in `index.html` only to keep
+GitHub's secret scanner quiet) and, per the comment beside it, that token is
+**restricted to the site's URL**. Served from shozbot.com the browser's origin
+changes, so the map will stop loading until `shozbot.com` is added to that
+token's allowed URLs in Bertrand's Mapbox account. Nothing is leaking — a
+public token is meant to be visible — but this is a Phase 3 step, and it is
+his account, so he has to do it.
+
+**Every app is dependency-free static HTML** except Statterbrain, which is the
+only one with a build step.
+
 ## Still open
 
 - Bertrand has not yet picked the wordmark casing/typeface or the browser icon.
