@@ -59,9 +59,10 @@ site.webmanifest    installable-to-home-screen metadata
 sitemap.xml         robots.txt
 assets/
   photos/                   the photographs exactly as Bertrand sent them
-  robot.png / .webp         cut out of the photo, 648×760
-  robot-small.png / .webp   140px wide, for the footer
-  robot-three-eyes*         the second robot, cut out and ready, not yet used
+  robot.png / .webp         cut out of the photo, 766×900
+  robot-small.png / .webp   160px wide, for the footer
+  robot-three-eyes*         the second robot — he is the 404 page
+  social/                   square opaque icons for LinkedIn (1200/400/300)
   og.png                    1200×630 share preview
   favicon.svg .ico, apple-touch-icon.png, icon-192.png, icon-512.png
   icons/                    the three browser-icon candidates as SVG
@@ -69,7 +70,9 @@ assets/
   fonts/jetbrains-mono-latin.woff2  self-hosted, variable weight 300–700
 kit/                shared studio kit — see below
 preview/            decision pages for Bertrand; noindex, not linked from the site
-tools/make-icons.py rebuilds the whole favicon set from one candidate SVG
+tools/make-icons.py  rebuilds the whole favicon set from one candidate SVG
+tools/make-social.py rebuilds the share image and the LinkedIn icons
+tools/fonts/         static JetBrains Mono, used only for drawing the share image
 ```
 
 ## Brand
@@ -91,8 +94,14 @@ which is what kept the mohawk fibres and the wire limbs intact. If a photo is
 ever replaced, cut the new one the same way rather than by hand.
 
 There is a **second robot** — blue-and-white chevron body, teal-and-red mohawk,
-three brass sockets for eyes. It is cut out and sized (`robot-three-eyes.*`)
-and waiting for a use; nothing on the site shows it yet.
+three brass sockets for eyes. He is the 404 page: a different robot makes
+"This page wandered off" land better than the mascot does.
+
+One thing to know if his cut-out is ever regenerated: both rembg models leave a
+faint ghost of the white door frame behind his head, above the head's top edge
+and to the right of the mohawk. It is low-alpha, so it reads as a pale smear
+rather than an obvious rectangle, and it is easy to miss. The fix was to clear
+the alpha right of the mohawk's own solid edge for every row above the head.
 
 Purple, wood and paper carry the design; the resin colours are accents only.
 There is a dark-mode block right below the light tokens — change a colour in
@@ -197,13 +206,17 @@ only one with a build step.
 
 ## Still open
 
-- **The footer link.** Bertrand wants "Made by Bertrand Groulx" to point at his
-  LinkedIn profile. The exact address has not been supplied yet, so it still
-  points at his GitHub profile — a guessed LinkedIn URL would just be a broken
-  link. Swap it in `index.html` the moment he gives it.
 - Analytics is not installed yet (Phase 1g): a free, cookieless service,
   Bertrand creates the account.
 - `shozbot@shozbot.com` is in the footer; the Squarespace forwarding that makes
   it work has to be confirmed before launch.
 - A new Statterbrain icon, built around a brain, replacing the robot it lent
   to the studio.
+- **LinkedIn content, once the site is live.** Bertrand wants to post about
+  Shozbot there. `assets/social/shozbot-icon-*.png` is already sized for the
+  profile or page image — square, opaque, and inset so LinkedIn's circular crop
+  takes only flat colour. The writing itself is still to do, and it waits until
+  shozbot.com actually resolves.
+- **Typography, reopened.** Bertrand is not happy with the wordmark's kerning,
+  and the tagline set in JetBrains Mono is not working for him. Both are live
+  questions; do not treat the current values as settled.

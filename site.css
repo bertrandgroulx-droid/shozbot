@@ -323,7 +323,12 @@ a { color: var(--mohawk); }
   padding-block: 48px;
 }
 
-.lost img { width: min(52vw, 230px); height: auto; margin-inline: auto; }
+.lost img {
+  width: auto;
+  max-width: min(60vw, 240px);
+  height: min(46vh, 340px);
+  margin-inline: auto;
+}
 .lost h1 { font-family: var(--font-display); font-size: 2rem; margin: 16px 0 0; }
 .lost p { margin: 0; color: var(--muted); }
 .lost .home { margin-top: 20px; font-family: var(--font-display); font-weight: 500; }
