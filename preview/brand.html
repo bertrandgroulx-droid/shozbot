@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shozbot — wordmark and palette preview</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;700&family=Sora:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mohawk:#6c4fa3; --mohawk-deep:#4a3372; --mohawk-soft:#efe9f7;
+    --wood:#8a7457; --wood-light:#c8a87a;
+    --resin-orange:#f08a18; --resin-yellow:#ffd23f; --resin-blue:#2d54cd;
+    --resin-red:#8b1d1e;
+    --paper:#faf7f2; --card:#fff; --ink:#241f1a; --muted:#6d6358; --line:#e6ded2;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--paper); color:var(--ink); font-size:17px;
+    font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+    line-height:1.6;
+  }
+  .wrap { max-width:1000px; margin-inline:auto; padding:40px clamp(20px,5vw,48px) 80px; }
+  h1 { font-family:'Space Grotesk',sans-serif; font-size:1.6rem; margin:0 0 6px; }
+  .lede { color:var(--muted); margin:0 0 8px; max-width:62ch; }
+  .note { color:var(--muted); font-size:.92rem; margin:0 0 36px; max-width:62ch; }
+  h2 {
+    font-family:'Space Grotesk',sans-serif; font-size:.85rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--muted); margin:40px 0 14px;
+    border-bottom:1px solid var(--line); padding-bottom:8px;
+  }
+  .face { margin-bottom:26px; }
+  .face-name {
+    font-size:.8rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:10px;
+  }
+  .row {
+    display:flex; align-items:center; gap:28px; flex-wrap:wrap;
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:22px 26px; margin-bottom:10px;
+  }
+  .row img { width:110px; height:auto; flex:none; }
+  .marks { display:flex; flex-direction:column; gap:10px; }
+  .mark { font-weight:700; letter-spacing:-0.03em; font-size:clamp(2rem,7vw,3.4rem); line-height:1; }
+  .mark small {
+    display:block; font-size:.68rem; font-weight:500; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--muted); margin-top:4px;
+    font-family:ui-sans-serif,system-ui,sans-serif; letter-spacing:.08em;
+  }
+  .sg  { font-family:'Space Grotesk',sans-serif; }
+  .jb  { font-family:'JetBrains Mono',monospace; }
+  .so  { font-family:'Sora',sans-serif; }
+  .lower { text-transform:none; }
+  .cap   { text-transform:capitalize; }
+  .upper { text-transform:uppercase; letter-spacing:0.02em; }
+  .tagline { font-weight:500; color:var(--mohawk); font-size:1.15rem; margin-top:10px; }
+
+  .swatches { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; }
+  .sw {
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    overflow:hidden;
+  }
+  .sw .chip { height:74px; }
+  .sw .meta { padding:10px 12px; font-size:.82rem; line-height:1.4; }
+  .sw .meta b { display:block; font-weight:600; }
+  .sw .meta code { color:var(--muted); font-size:.78rem; }
+  .pair { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+  .pair span { padding:8px 14px; border-radius:8px; font-size:.9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Wordmark and palette — pick one</h1>
+  <p class="lede">
+    The same name three ways, in three typefaces, beside the robot. The palette
+    underneath is sampled from the robot itself.
+  </p>
+  <p class="note">
+    Tell me the row you want — for example “Space Grotesk, lowercase” — and I’ll
+    set it everywhere. Nothing here is on the live site.
+  </p>
+
+  <h2>Space Grotesk — modern, slightly mechanical</h2>
+  <div class="face">
+    <div class="row">
+      <img src="/assets/robot.png" alt="Shozbot, a handmade robot made of a wood block, wire and resin.">
+      <div class="marks">
+        <div class="mark sg lower">shozbot <small>lowercase</small></div>
+        <div class="mark sg cap">shozbot <small>Capitalised</small></div>
+        <div class="mark sg upper">shozbot <small>UPPERCASE</small></div>
+        <div class="tagline sg">Handmade apps for curious minds</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>JetBrains Mono — terminal, unmistakably geeky</h2>
+  <div class="face">
+    <div class="row">
+      <img src="/assets/robot.png" alt="Shozbot, a handmade robot made of a wood block, wire and resin.">
+      <div class="marks">
+        <div class="mark jb lower">shozbot <small>lowercase</small></div>
+        <div class="mark jb cap">shozbot <small>Capitalised</small></div>
+        <div class="mark jb upper">shozbot <small>UPPERCASE</small></div>
+        <div class="tagline jb">Handmade apps for curious minds</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Sora — clean and geometric, the quietest of the three</h2>
+  <div class="face">
+    <div class="row">
+      <img src="/assets/robot.png" alt="Shozbot, a handmade robot made of a wood block, wire and resin.">
+      <div class="marks">
+        <div class="mark so lower">shozbot <small>lowercase</small></div>
+        <div class="mark so cap">shozbot <small>Capitalised</small></div>
+        <div class="mark so upper">shozbot <small>UPPERCASE</small></div>
+        <div class="tagline so">Handmade apps for curious minds</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Palette, taken from the robot</h2>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#6c4fa3"></div>
+      <div class="meta"><b>Mohawk purple</b><code>#6c4fa3</code></div></div>
+    <div class="sw"><div class="chip" style="background:#4a3372"></div>
+      <div class="meta"><b>Mohawk deep</b><code>#4a3372</code></div></div>
+    <div class="sw"><div class="chip" style="background:#efe9f7"></div>
+      <div class="meta"><b>Mohawk tint</b><code>#efe9f7</code></div></div>
+    <div class="sw"><div class="chip" style="background:#8a7457"></div>
+      <div class="meta"><b>Wood</b><code>#8a7457</code></div></div>
+    <div class="sw"><div class="chip" style="background:#c8a87a"></div>
+      <div class="meta"><b>Wood light</b><code>#c8a87a</code></div></div>
+    <div class="sw"><div class="chip" style="background:#f08a18"></div>
+      <div class="meta"><b>Resin orange — hands</b><code>#f08a18</code></div></div>
+    <div class="sw"><div class="chip" style="background:#ffd23f"></div>
+      <div class="meta"><b>Resin yellow — left foot</b><code>#ffd23f</code></div></div>
+    <div class="sw"><div class="chip" style="background:#2d54cd"></div>
+      <div class="meta"><b>Resin blue — right foot</b><code>#2d54cd</code></div></div>
+    <div class="sw"><div class="chip" style="background:#8b1d1e"></div>
+      <div class="meta"><b>Resin red — chest stripe</b><code>#8b1d1e</code></div></div>
+    <div class="sw"><div class="chip" style="background:#faf7f2;border-bottom:1px solid #e6ded2"></div>
+      <div class="meta"><b>Paper</b><code>#faf7f2</code></div></div>
+    <div class="sw"><div class="chip" style="background:#241f1a"></div>
+      <div class="meta"><b>Ink</b><code>#241f1a</code></div></div>
+  </div>
+
+  <p class="note" style="margin-top:24px">
+    Purple, wood and paper do the work; the resin colours are for small accents
+    only — a badge, a hover, a chart line. The site as built uses the first
+    three plus ink.
+  </p>
+  <div class="pair">
+    <span style="background:#6c4fa3;color:#fff">Purple on white — text passes AA</span>
+    <span style="background:#efe9f7;color:#4a3372">Deep purple on tint — badges</span>
+    <span style="background:#241f1a;color:#faf7f2">Paper on ink — the app bar</span>
+  </div>
+
+</div>
+</body>
+</html>

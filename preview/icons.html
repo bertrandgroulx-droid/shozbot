@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shozbot — browser icon options</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<style>
+  :root {
+    --mohawk:#6c4fa3; --paper:#faf7f2; --card:#fff; --ink:#241f1a;
+    --muted:#6d6358; --line:#e6ded2;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--paper); color:var(--ink); font-size:17px;
+    font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+    line-height:1.6;
+  }
+  .wrap { max-width:1000px; margin-inline:auto; padding:40px clamp(20px,5vw,48px) 80px; }
+  h1 { font-size:1.6rem; margin:0 0 6px; letter-spacing:-0.02em; }
+  .lede { color:var(--muted); margin:0 0 36px; max-width:62ch; }
+  .opt {
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:24px 26px; margin-bottom:22px;
+  }
+  .opt h2 { font-size:1.15rem; margin:0 0 2px; }
+  .opt .desc { color:var(--muted); font-size:.95rem; margin:0 0 20px; }
+  .sizes { display:flex; align-items:flex-end; gap:26px; flex-wrap:wrap; }
+  .size { text-align:center; }
+  .size img { display:block; margin:0 auto 6px; image-rendering:auto; }
+  .size span { font-size:.72rem; color:var(--muted); letter-spacing:.06em; }
+  .onlight, .ondark {
+    display:flex; align-items:center; gap:22px; padding:16px 20px;
+    border-radius:10px; margin-top:16px; flex-wrap:wrap;
+  }
+  .onlight { background:#fff; border:1px solid var(--line); }
+  .ondark  { background:#14121a; }
+  .onlight .label, .ondark .label { font-size:.75rem; letter-spacing:.06em; text-transform:uppercase; }
+  .onlight .label { color:var(--muted); }
+  .ondark .label  { color:#9a9098; }
+
+  /* a mock row of browser tabs */
+  .tabs {
+    margin-top:18px; background:#dee1e6; padding:8px 8px 0; border-radius:10px 10px 0 0;
+    display:flex; gap:2px; align-items:flex-end; overflow:hidden;
+  }
+  .tab {
+    display:flex; align-items:center; gap:7px; background:#f1f3f4; color:#3c4043;
+    padding:8px 14px; border-radius:8px 8px 0 0; font-size:12.5px;
+    white-space:nowrap; max-width:190px; overflow:hidden;
+  }
+  .tab.active { background:#fff; font-weight:600; }
+  .tab img { width:16px; height:16px; flex:none; }
+  .tab .fake { width:16px; height:16px; border-radius:4px; flex:none; }
+  .pick { margin-top:34px; color:var(--muted); font-size:.95rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Browser icon — pick one</h1>
+  <p class="lede">
+    The photograph of the robot turns to mush at 16 pixels, so the browser icon
+    has to be a drawing. Three of them, at the sizes they will actually be used,
+    on light and dark, and sitting in a row of tabs.
+  </p>
+
+  <section class="opt">
+    <h2>Option 1 — the head</h2>
+    <p class="desc">The robot’s head and mohawk, flattened. Reads as a face even at 16 pixels.</p>
+    <div class="sizes">
+      <div class="size"><img src="/assets/icons/option-1-head.svg" width="180" height="180" alt=""><span>180px — phone home screen</span></div>
+      <div class="size"><img src="/assets/icons/option-1-head.svg" width="64" height="64" alt=""><span>64px</span></div>
+      <div class="size"><img src="/assets/icons/option-1-head.svg" width="32" height="32" alt=""><span>32px — tab, retina</span></div>
+      <div class="size"><img src="/assets/icons/option-1-head.svg" width="16" height="16" alt=""><span>16px — tab</span></div>
+    </div>
+    <div class="onlight"><span class="label">On white</span>
+      <img src="/assets/icons/option-1-head.svg" width="32" height="32" alt="">
+      <img src="/assets/icons/option-1-head.svg" width="16" height="16" alt=""></div>
+    <div class="ondark"><span class="label">On dark</span>
+      <img src="/assets/icons/option-1-head.svg" width="32" height="32" alt="">
+      <img src="/assets/icons/option-1-head.svg" width="16" height="16" alt=""></div>
+    <div class="tabs">
+      <div class="tab"><span class="fake" style="background:#e8710a"></span>Inbox (3)</div>
+      <div class="tab active"><img src="/assets/icons/option-1-head.svg" alt="">Shozbot — Handmade apps</div>
+      <div class="tab"><span class="fake" style="background:#1a73e8"></span>Docs</div>
+      <div class="tab"><span class="fake" style="background:#0f9d58"></span>Sheet</div>
+    </div>
+  </section>
+
+  <section class="opt">
+    <h2>Option 2 — the “s” monogram</h2>
+    <p class="desc">A lowercase s in mohawk purple, wearing a small tuft. The most legible of the three at small sizes.</p>
+    <div class="sizes">
+      <div class="size"><img src="/assets/icons/option-2-monogram.svg" width="180" height="180" alt=""><span>180px — phone home screen</span></div>
+      <div class="size"><img src="/assets/icons/option-2-monogram.svg" width="64" height="64" alt=""><span>64px</span></div>
+      <div class="size"><img src="/assets/icons/option-2-monogram.svg" width="32" height="32" alt=""><span>32px — tab, retina</span></div>
+      <div class="size"><img src="/assets/icons/option-2-monogram.svg" width="16" height="16" alt=""><span>16px — tab</span></div>
+    </div>
+    <div class="onlight"><span class="label">On white</span>
+      <img src="/assets/icons/option-2-monogram.svg" width="32" height="32" alt="">
+      <img src="/assets/icons/option-2-monogram.svg" width="16" height="16" alt=""></div>
+    <div class="ondark"><span class="label">On dark</span>
+      <img src="/assets/icons/option-2-monogram.svg" width="32" height="32" alt="">
+      <img src="/assets/icons/option-2-monogram.svg" width="16" height="16" alt=""></div>
+    <div class="tabs">
+      <div class="tab"><span class="fake" style="background:#e8710a"></span>Inbox (3)</div>
+      <div class="tab active"><img src="/assets/icons/option-2-monogram.svg" alt="">Shozbot — Handmade apps</div>
+      <div class="tab"><span class="fake" style="background:#1a73e8"></span>Docs</div>
+      <div class="tab"><span class="fake" style="background:#0f9d58"></span>Sheet</div>
+    </div>
+  </section>
+
+  <section class="opt">
+    <h2>Option 3 — the whole robot</h2>
+    <p class="desc">The full silhouette, stripped down: mohawk, two blocks, wire limbs, resin hands and feet. Charming large, crowded small.</p>
+    <div class="sizes">
+      <div class="size"><img src="/assets/icons/option-3-silhouette.svg" width="180" height="180" alt=""><span>180px — phone home screen</span></div>
+      <div class="size"><img src="/assets/icons/option-3-silhouette.svg" width="64" height="64" alt=""><span>64px</span></div>
+      <div class="size"><img src="/assets/icons/option-3-silhouette.svg" width="32" height="32" alt=""><span>32px — tab, retina</span></div>
+      <div class="size"><img src="/assets/icons/option-3-silhouette.svg" width="16" height="16" alt=""><span>16px — tab</span></div>
+    </div>
+    <div class="onlight"><span class="label">On white</span>
+      <img src="/assets/icons/option-3-silhouette.svg" width="32" height="32" alt="">
+      <img src="/assets/icons/option-3-silhouette.svg" width="16" height="16" alt=""></div>
+    <div class="ondark"><span class="label">On dark</span>
+      <img src="/assets/icons/option-3-silhouette.svg" width="32" height="32" alt="">
+      <img src="/assets/icons/option-3-silhouette.svg" width="16" height="16" alt=""></div>
+    <div class="tabs">
+      <div class="tab"><span class="fake" style="background:#e8710a"></span>Inbox (3)</div>
+      <div class="tab active"><img src="/assets/icons/option-3-silhouette.svg" alt="">Shozbot — Handmade apps</div>
+      <div class="tab"><span class="fake" style="background:#1a73e8"></span>Docs</div>
+      <div class="tab"><span class="fake" style="background:#0f9d58"></span>Sheet</div>
+    </div>
+  </section>
+
+  <p class="pick">
+    Option 1 is wired up at the moment, so the tab you are looking at right now
+    is showing it. Say which one you want and I’ll swap the whole set —
+    tab icon, phone home screen icon, everything.
+  </p>
+</div>
+</body>
+</html>

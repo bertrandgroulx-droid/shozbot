@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Shozbot">
+  <rect width="64" height="64" rx="13" fill="#f7f2e8"/>
+  <path d="M24 13.5 C 24.4 6, 28.2 3, 32 3 C 35.8 3, 39.6 6, 40 13.5 Z" fill="#6c4fa3"/>
+  <path d="M31.2 13 C 31.2 8.4, 31.6 5.6, 32 4.4 C 32.6 6, 32.6 9.4, 32.6 13 Z" fill="#ffffff" opacity=".85"/>
+  <rect x="23.5" y="12.5" width="17" height="13.5" rx="3" fill="#8a7457"/>
+  <path d="M32 26 v4" stroke="#241f1a" stroke-width="2.4" stroke-linecap="round"/>
+  <rect x="22.5" y="29.5" width="19" height="17.5" rx="3" fill="#8a7457"/>
+  <path d="M22.5 34 L 12 30.5" stroke="#241f1a" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M41.5 34 L 52 30.5" stroke="#241f1a" stroke-width="2.8" stroke-linecap="round"/>
+  <rect x="4.5" y="25" width="9" height="6" rx="3" fill="#f08a18" transform="rotate(-16 9 28)"/>
+  <rect x="50.5" y="25" width="9" height="6" rx="3" fill="#f08a18" transform="rotate(16 55 28)"/>
+  <path d="M28 47 v5.5" stroke="#241f1a" stroke-width="2.8" stroke-linecap="round"/>
+  <path d="M36 47 v5.5" stroke="#241f1a" stroke-width="2.8" stroke-linecap="round"/>
+  <rect x="20.5" y="52" width="10" height="6" rx="3" fill="#ffd23f"/>
+  <rect x="33.5" y="52" width="10" height="6" rx="3" fill="#2d54cd"/>
+</svg>

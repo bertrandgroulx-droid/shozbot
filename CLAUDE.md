@@ -1,0 +1,163 @@
+# shozbot.com — the studio site
+
+Read this first. It is the map for every future session in this repo.
+
+## What this is
+
+The **Shozbot** studio homepage, and the front door for every app Bertrand
+makes. Plain HTML and CSS — no framework, no build step. Open `index.html` in
+a browser and what you see is what ships.
+
+Brand tagline: **Handmade apps for curious minds**.
+
+The mascot is a photograph of a real handmade robot — wood-block body, wire
+limbs, resin hands and feet, purple-and-white mohawk. Its physical, slightly
+wonky quality is the whole point of the brand. **Never redraw, filter or
+stylise the photo.** The drawn icons in `assets/icons/` are a separate thing:
+they exist only because the photo turns to mush at 16 pixels.
+
+## Who this is for
+
+Bertrand owns this and is not a programmer. Explain things in plain language,
+one step at a time, and never ask him to edit code or config. When you need
+him, stop and say so in a numbered list.
+
+## URLs
+
+`shozbot.com` is a Vercel project serving this repo. Every app keeps living in
+its own repo with its own deploys; `vercel.json` rewrites map studio URLs onto
+wherever each app actually is.
+
+| Path on shozbot.com | Actually served from | Rewrite in place? |
+|---|---|---|
+| `/` | this repo | — |
+| `/statterbrain/` | `statterbrain.vercel.app` | **no — Phase 2** |
+| `/better-weather/` | `bertrandgroulx-droid.github.io/better-weather` | yes |
+| `/mogo/` | `…github.io/mogo` | yes |
+| `/word-square/` | `…github.io/word-square` | yes |
+| `/word-ninja/` | `…github.io/word-ninja` | yes |
+| `/letter-drop/` | `…github.io/letter_drop` (note the underscore) | yes |
+| `/fauxcabulary/` | `…github.io/fauxcabulary` | yes |
+| `/acronumbskull/` | `…github.io/acronumbskull` | yes |
+
+`/<app>` without the trailing slash redirects to `/<app>/`, so relative links
+inside each app resolve correctly.
+
+The homepage's Statterbrain card points at `https://statterbrain.vercel.app/`
+for now. In Phase 2 — once Statterbrain is built with base path
+`/statterbrain/` — change that href to `/statterbrain/`, add the rewrite to
+`vercel.json`, and add the URL back to `sitemap.xml`.
+
+## Layout of this repo
+
+```
+index.html          the homepage
+404.html            the robot, a dry line, a way home
+site.css            all of the site's styling; design tokens live at the top
+vercel.json         rewrites and redirects for every app
+site.webmanifest    installable-to-home-screen metadata
+sitemap.xml         robots.txt
+assets/
+  robot-original.png        the photo exactly as it came from Statterbrain
+  robot.png / .webp         trimmed of transparent margin, 196×228
+  robot-small.png / .webp   96px wide, for the footer
+  og.png                    1200×630 share preview
+  favicon.svg .ico, apple-touch-icon.png, icon-192.png, icon-512.png
+  icons/                    the three browser-icon candidates as SVG
+  apps/                     each app's own icon, copied from its repo
+  fonts/space-grotesk-latin.woff2   self-hosted, variable weight 300–700
+kit/                shared studio kit — see below
+preview/            decision pages for Bertrand; noindex, not linked from the site
+tools/make-icons.py rebuilds the whole favicon set from one candidate SVG
+```
+
+## Brand
+
+Set in `site.css` under `:root`, sampled from the robot itself:
+
+| Token | Value | Where it came from |
+|---|---|---|
+| `--mohawk` | `#6c4fa3` | the mohawk, deepened so it passes AA on paper |
+| `--mohawk-deep` | `#4a3372` | badge text |
+| `--mohawk-soft` | `#efe9f7` | badge background |
+| `--wood` / `--wood-light` | `#8a7457` / `#c8a87a` | the head and body blocks |
+| `--resin-orange/yellow/blue/red` | `#f08a18` `#ffd23f` `#2d54cd` `#8b1d1e` | hands, feet, chest stripe |
+| `--paper` / `--ink` | `#faf7f2` / `#241f1a` | page and text |
+
+Purple, wood and paper carry the design; the resin colours are accents only.
+There is a dark-mode block right below the light tokens — change a colour in
+both places.
+
+Wordmark: **Space Grotesk Bold, lowercase `shozbot`**. Casing is set in exactly
+one place, `.wordmark { text-transform }` in `site.css`. *Not yet confirmed by
+Bertrand* — `preview/brand.html` shows the candidates.
+
+Browser icon: currently **option 1, the head** (`assets/icons/option-1-head.svg`).
+*Not yet confirmed* — `preview/icons.html` shows all three. To switch:
+
+```
+python3 tools/make-icons.py option-2-monogram
+```
+
+That rewrites `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`,
+`icon-192.png` and `icon-512.png` in one go. It needs `pillow` and `cairosvg`.
+
+## The shared studio kit
+
+`kit/kit.css` and `kit/kit.js` put a slim dark bar at the top of every app with
+`← shozbot` linking home. One line goes into each app:
+
+```html
+<script src="https://shozbot.com/kit/kit.js" defer></script>
+```
+
+Options on the tag: `data-app="Word Ninja"` shows the app's name on the right;
+`data-hide-standalone` hides the bar when the app is running from a phone home
+screen. Everything is namespaced `shozkit-`, the script is safe to include
+twice, and the CSS is fetched from shozbot.com — so changing this one file
+changes every app at once, wherever it is hosted.
+
+## Storage-key prefixes
+
+All apps share the `shozbot.com` origin now, so unprefixed localStorage keys
+would collide between them. The studio site itself stores nothing. Current
+state, found by reading each repo (Phases 3 and 4 fix the unprefixed ones):
+
+| App | Keys today | Target prefix |
+|---|---|---|
+| Better Weather | `bw-recents`, `bw-units` | `betterweather:` |
+| Mogo | `mogoSound`, `mogoVoice` | `mogo:` |
+| Fauxcabulary | `fauxcabulary.bests` | `fauxcabulary:` |
+| Acronumbskull | `acronumbskull.bests` | `acronumbskull:` |
+| Word Square, Word Ninja, Letter Drop | keys are built at runtime — read the code | `wordsquare:` `wordninja:` `letterdrop:` |
+| Statterbrain | none found in `src/` | `statterbrain:` |
+
+Migrate existing keys when prefixing, so nobody loses a high score.
+
+## How it deploys
+
+Push to `main` → Vercel builds the `shozbot-site` project → live on
+shozbot.com. There is no build command; Vercel serves the files as they are.
+
+DNS stays at **Squarespace** — records are added there and point at Vercel.
+Do not move the nameservers, or Bertrand's free email forwarding stops working.
+
+## Ground rules
+
+- Cost ceiling is **$0/month** beyond the domain. If something would cost
+  money, stop and ask.
+- Free, no ads, no payments, no accounts, no tracking that needs a cookie
+  banner.
+- Never delete a repo or a Vercel project.
+- Small commits, clear messages.
+
+## Still open
+
+- Bertrand has not yet picked the wordmark casing/typeface or the browser icon.
+- The only copy of the robot photo is 256×256. The hero would look better with
+  the original camera file — ask for it.
+- Analytics is not installed yet (Phase 1g): a free, cookieless service,
+  Bertrand creates the account.
+- `shozbot@shozbot.com` is in the footer; the Squarespace forwarding that makes
+  it work has to be confirmed before launch.
+- The "Made by Bertrand Groulx" link currently points at his GitHub profile.

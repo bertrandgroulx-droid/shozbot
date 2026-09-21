@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Shozbot">
+  <rect width="64" height="64" rx="13" fill="#241f1a"/>
+  <path d="M17 27 C 17.5 13, 24 7.5, 32 7.5 C 40 7.5, 46.5 13, 47 27 Z" fill="#6c4fa3"/>
+  <path d="M28.6 26 C 28.6 17, 29.8 12, 31.2 9.2 C 32.2 12.4, 32 19, 31.9 26 Z" fill="#ffffff" opacity=".95"/>
+  <path d="M38.8 26.5 C 38.4 19.5, 37.2 14.8, 35.8 11.6 C 38 14.2, 40.2 19.5, 40.8 26.5 Z" fill="#ffffff" opacity=".62"/>
+  <path d="M23.4 26.5 C 23.6 19.5, 24.6 14.8, 26 11.8 C 25 15, 24.6 20, 25.2 26.5 Z" fill="#ffffff" opacity=".5"/>
+  <rect x="14" y="25" width="36" height="29" rx="6.5" fill="#c8a87a"/>
+  <circle cx="25" cy="36.5" r="3.3" fill="#241f1a"/>
+  <circle cx="39" cy="36.5" r="3.3" fill="#241f1a"/>
+  <rect x="24" y="44.5" width="16" height="3.4" rx="1.7" fill="#241f1a"/>
+</svg>

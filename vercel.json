@@ -1,0 +1,118 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/better-weather",
+      "destination": "/better-weather/",
+      "permanent": false
+    },
+    {
+      "source": "/mogo",
+      "destination": "/mogo/",
+      "permanent": false
+    },
+    {
+      "source": "/word-square",
+      "destination": "/word-square/",
+      "permanent": false
+    },
+    {
+      "source": "/word-ninja",
+      "destination": "/word-ninja/",
+      "permanent": false
+    },
+    {
+      "source": "/letter-drop",
+      "destination": "/letter-drop/",
+      "permanent": false
+    },
+    {
+      "source": "/fauxcabulary",
+      "destination": "/fauxcabulary/",
+      "permanent": false
+    },
+    {
+      "source": "/acronumbskull",
+      "destination": "/acronumbskull/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/better-weather/",
+      "destination": "https://bertrandgroulx-droid.github.io/better-weather/"
+    },
+    {
+      "source": "/better-weather/:path*",
+      "destination": "https://bertrandgroulx-droid.github.io/better-weather/:path*"
+    },
+    {
+      "source": "/mogo/",
+      "destination": "https://bertrandgroulx-droid.github.io/mogo/"
+    },
+    {
+      "source": "/mogo/:path*",
+      "destination": "https://bertrandgroulx-droid.github.io/mogo/:path*"
+    },
+    {
+      "source": "/word-square/",
+      "destination": "https://bertrandgroulx-droid.github.io/word-square/"
+    },
+    {
+      "source": "/word-square/:path*",
+      "destination": "https://bertrandgroulx-droid.github.io/word-square/:path*"
+    },
+    {
+      "source": "/word-ninja/",
+      "destination": "https://bertrandgroulx-droid.github.io/word-ninja/"
+    },
+    {
+      "source": "/word-ninja/:path*",
+      "destination": "https://bertrandgroulx-droid.github.io/word-ninja/:path*"
+    },
+    {
+      "source": "/letter-drop/",
+      "destination": "https://bertrandgroulx-droid.github.io/letter_drop/"
+    },
+    {
+      "source": "/letter-drop/:path*",
+      "destination": "https://bertrandgroulx-droid.github.io/letter_drop/:path*"
+    },
+    {
+      "source": "/fauxcabulary/",
+      "destination": "https://bertrandgroulx-droid.github.io/fauxcabulary/"
+    },
+    {
+      "source": "/fauxcabulary/:path*",
+      "destination": "https://bertrandgroulx-droid.github.io/fauxcabulary/:path*"
+    },
+    {
+      "source": "/acronumbskull/",
+      "destination": "https://bertrandgroulx-droid.github.io/acronumbskull/"
+    },
+    {
+      "source": "/acronumbskull/:path*",
+      "destination": "https://bertrandgroulx-droid.github.io/acronumbskull/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    }
+  ]
+}

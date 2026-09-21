@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shozbot — Handmade apps for curious minds</title>
+<meta name="description" content="A small studio making free, handmade apps that run in your browser: Statterbrain for data, Better Weather, Mogo, and a shelf of word games.">
+<link rel="canonical" href="https://shozbot.com/">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#6c4fa3">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shozbot.com/">
+<meta property="og:title" content="Shozbot — Handmade apps for curious minds">
+<meta property="og:description" content="Free, handmade apps that run in your browser. No accounts, no ads.">
+<meta property="og:image" content="https://shozbot.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The word shozbot beside a handmade robot made of a wood block, wire and resin.">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" href="/assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/site.css">
+</head>
+
+<body>
+<a class="skip" href="#apps">Skip to the apps</a>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <h1 class="wordmark">shozbot</h1>
+      <p class="tagline">Handmade apps for curious minds</p>
+      <p class="blurb">
+        A one-person studio. Everything here is free, runs in your browser, and
+        asks you for nothing — no account, no ads, no newsletter.
+      </p>
+    </div>
+    <picture>
+      <source srcset="/assets/robot.webp" type="image/webp">
+      <img class="robot" src="/assets/robot.png" width="196" height="228"
+           alt="Shozbot, a handmade robot made of a wood block, wire and resin."
+           tabindex="0">
+    </picture>
+  </div>
+</header>
+
+<main id="apps">
+
+  <section class="section wrap">
+    <div class="section-head"><h2>Start here</h2></div>
+    <!-- Phase 2: once Statterbrain is built with base path /statterbrain/ and
+         the rewrite is added to vercel.json, change this href to
+         "/statterbrain/". Until then it points at the app's own address so the
+         link works. -->
+    <a class="card card--feature" href="https://statterbrain.vercel.app/">
+      <img src="/assets/apps/statterbrain.png" alt="" width="72" height="72" loading="lazy">
+      <div>
+        <h3>Statterbrain <span class="badge">Best on desktop</span></h3>
+        <p>
+          A statistics workbench for people with a CSV and a question. Probit
+          analysis, multivariate tools, charts you can export — and your data
+          never leaves your browser.
+        </p>
+      </div>
+    </a>
+  </section>
+
+  <section class="section wrap">
+    <div class="section-head"><h2>Everyday</h2></div>
+    <div class="grid">
+
+      <a class="card" href="/better-weather/">
+        <img src="/assets/apps/better-weather.png" alt="" width="56" height="56" loading="lazy">
+        <div>
+          <h3>Better Weather</h3>
+          <p>The whole forecast on one phone screen. Swipe sideways through the
+             hours and days — including the ones that already happened.</p>
+        </div>
+      </a>
+
+      <a class="card" href="/mogo/">
+        <img src="/assets/apps/mogo.png" alt="" width="56" height="56" loading="lazy">
+        <div>
+          <h3>Mogo</h3>
+          <p>Press the button, land in a random country, and get recipes for
+             what people there actually eat.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="section-head"><h2>Word games</h2></div>
+    <div class="grid">
+
+      <a class="card" href="/word-square/">
+        <img src="/assets/apps/word-square.svg" alt="" width="56" height="56" loading="lazy">
+        <div>
+          <h3>Word Square</h3>
+          <p>Fill the grid so every row and every column spells a word. The tray
+             holds exactly the letters you need — no spares.</p>
+        </div>
+      </a>
+
+      <a class="card" href="/word-ninja/">
+        <img src="/assets/apps/word-ninja.svg" alt="" width="56" height="56" loading="lazy">
+        <div>
+          <h3>Word Ninja</h3>
+          <p>Letters fall past you. Drag a finger through them to cut out a word
+             before the clock runs out.</p>
+        </div>
+      </a>
+
+      <a class="card" href="/letter-drop/">
+        <img src="/assets/apps/letter-drop.svg" alt="" width="56" height="56" loading="lazy">
+        <div>
+          <h3>Letter Drop</h3>
+          <p>Start with a five-letter word and drop letters down through shorter
+             and shorter words until one is left.</p>
+        </div>
+      </a>
+
+      <a class="card" href="/fauxcabulary/">
+        <img src="/assets/apps/fauxcabulary.svg" alt="" width="56" height="56" loading="lazy">
+        <div>
+          <h3>Fauxcabulary</h3>
+          <p>Ten obscure words with straight-faced definitions. Some of them are
+             invented. Say which.</p>
+        </div>
+      </a>
+
+      <a class="card" href="/acronumbskull/">
+        <img src="/assets/apps/acronumbskull.svg" alt="" width="56" height="56" loading="lazy">
+        <div>
+          <h3>Acronumbskull</h3>
+          <p>Ten acronyms and what they supposedly stand for. Some are genuine.
+             Recognising the letters will not save you.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <picture>
+      <source srcset="/assets/robot-small.webp" type="image/webp">
+      <img src="/assets/robot-small.png" width="96" height="112"
+           alt="Shozbot, a handmade robot made of a wood block, wire and resin."
+           loading="lazy">
+    </picture>
+    <p>
+      Made by <a href="https://github.com/bertrandgroulx-droid">Bertrand Groulx</a>.
+      Say hello: <a class="mail" data-user="shozbot" data-domain="shozbot.com"
+         href="#">shozbot [at] shozbot.com</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Assemble the address at runtime so the plain string is not sitting in the
+  // HTML for scrapers to harvest.
+  for (const el of document.querySelectorAll('a.mail')) {
+    const addr = el.dataset.user + '@' + el.dataset.domain;
+    el.href = 'mailto:' + addr;
+    el.textContent = addr;
+  }
+</script>
+</body>
+</html>
