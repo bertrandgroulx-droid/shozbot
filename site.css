@@ -115,7 +115,7 @@ a { color: var(--mohawk); }
 
 /* ---------- hero ------------------------------------------------------ */
 .hero {
-  padding-block: clamp(40px, 9vw, 96px) clamp(32px, 6vw, 64px);
+  padding-block: clamp(40px, 9vw, 88px) clamp(20px, 4vw, 40px);
 }
 
 .hero-inner {
@@ -126,7 +126,14 @@ a { color: var(--mohawk); }
 }
 
 @media (min-width: 720px) {
-  .hero-inner { grid-template-columns: minmax(0, 1fr) auto; }
+  /* The text column shrinks to its content so the robot stands next to the
+     wordmark rather than at the far edge — and the wordmark still lines up
+     with the cards below it. */
+  .hero-inner {
+    grid-template-columns: minmax(0, auto) auto;
+    justify-content: start;
+  }
+  .hero-inner > div { max-width: 34rem; }
 }
 
 .hero h1 {
