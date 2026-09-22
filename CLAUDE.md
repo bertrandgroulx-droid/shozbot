@@ -394,6 +394,21 @@ Bertrand's call — the same one he made about Mogo's sound and voice options,
 `SpeechSynthesisUtterance`, the voice list and `onvoiceschanged`, and the
 speech cancel in Start Over. **The app now stores nothing at all.**
 
+**Its manifest was missing and was added the same day.** It was the one app
+the front door carried that could not be installed to a home screen: two
+favicons and an Apple touch icon, but no `manifest.webmanifest`, so Android
+had nothing to install from and no browser had a colour for its own bar.
+`icons/icon-192.png` was resized from the 512 for the same reason.
+
+**Its two colours are sampled from the rendered page, not read off a CSS
+variable** — worth knowing before anyone "corrects" them to match `:root`. The
+background gradient carries two radial overlays, so `--bg1` (`#0b0416`) is far
+darker than anything actually drawn. The top strip, where the browser's bar
+meets the page, measures `#2e1b43`, and the body averages `#21122e`; those are
+the theme and background colours respectively. Orientation is deliberately left
+unset rather than locked to portrait the way Word Square's is — this app is a
+centred column and reads fine either way.
+
 ## Storage-key prefixes
 
 All apps share the `shozbot.com` origin now, so unprefixed localStorage keys
