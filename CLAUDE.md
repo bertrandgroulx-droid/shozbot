@@ -386,10 +386,11 @@ guarded redirect in the app's `<head>`, the kit tag with
 `vercel.json`, a card on the homepage, a line in `sitemap.xml`, and its icon
 copied to `assets/apps/` at 192px to match the other PNGs.
 
-**It has a read-aloud feature with a voice picker**, which is the same kind of
-thing Bertrand had removed from Mogo the same day as "a whim to explore". He
-has not said anything about this one — raise it, don't act on it. Its only
-stored key, `wyr-voice`, belongs to that feature.
+**Its read-aloud feature and voice picker were removed the same day**, on
+Bertrand's call — the same one he made about Mogo's sound and voice options,
+"a whim to explore". Gone with them: the `.icon-btn` rules, `speak()` and its
+`SpeechSynthesisUtterance`, the voice list and `onvoiceschanged`, and the
+speech cancel in Start Over. **The app now stores nothing at all.**
 
 ## Storage-key prefixes
 
@@ -405,15 +406,16 @@ state, found by reading each repo (Phases 3 and 4 fix the unprefixed ones):
 | Acronumbskull | `acronumbskull.bests` | `acronumbskull:` |
 | Word Square, Word Ninja, Letter Drop | keys are built at runtime — read the code | `wordsquare:` `wordninja:` `letterdrop:` |
 | Statterbrain | none found in `src/` | `statterbrain:` |
-| Would You Rather | `wyr-voice` | `wouldyourather:` |
+| Would You Rather | none — see below | `wouldyourather:` |
 
 Migrate existing keys when prefixing, so nobody loses a high score.
 
-Mogo is the exception: it used to store `mogoSound` and `mogoVoice`, and the
-features behind them were removed on 2026-09-22. Anyone who used it before then
-still has those two keys sitting in their browser. **Do not migrate them** —
-they belong to nothing. Deleting them during the Phase 4 pass would be a tidy
-way to see the back of them.
+Mogo and Would You Rather are the exceptions, for the same reason. Mogo used to
+store `mogoSound` and `mogoVoice`; Would You Rather stored `wyr-voice`. The
+read-aloud features behind all three were removed on 2026-09-22, so anyone who
+used them before then still has a dead key sitting in their browser. **Do not
+migrate any of them** — they belong to nothing. Deleting them during the Phase
+4 pass would be a tidy way to see the back of them.
 
 ## How it deploys
 
