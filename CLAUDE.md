@@ -218,9 +218,10 @@ Bertrand clicked through all of it. The homepage, the 404, and every one of the
 seven rewritten apps load *and work* — not merely load. `/mogo` without the
 trailing slash redirects correctly. The phone layout is fine.
 
-The one failure was the expected one: **Better Weather's radar map is blank**,
-because the Mapbox token is restricted to the address the app used to live at.
-That is now confirmed rather than predicted. The forecast itself is unaffected.
+The one failure was the expected one — Better Weather's radar map came up blank,
+because the Mapbox token is restricted by URL. **Fixed the same day**: Bertrand
+added shozbot.com to the allowed URLs on the "github for better weather" token,
+and the basemap now draws behind the radar at shozbot.com. No code changed.
 
 ## Ground rules
 
@@ -283,7 +284,19 @@ only one with a build step.
 ## Still open
 
 - Analytics is not installed yet (Phase 1g): a free, cookieless service,
-  Bertrand creates the account.
+  Bertrand creates the account. Worth having before the alumni email, since
+  that is the one day the numbers are interesting.
+- **The share preview has never been tested for real.** `assets/og.png` exists
+  and the meta tags are right, but nobody has pasted shozbot.com into a message
+  and looked at the card. Thirty seconds, and worth doing before the link is
+  sent to four thousand people.
+- **A payment card is attached to the Mapbox account.** Usage is at zero and a
+  phone weather app will not come near the free allowance, so this is a small
+  risk — but it is a real one, because with a card on file an overage bills
+  silently rather than the service stopping. Either set a usage alert in the
+  Mapbox account, or take the card off and let the free limit enforce itself
+  (the map would break rather than bill; `MAPBOX_TOKEN = ""` is the escape
+  hatch either way). Bertrand knows; not yet decided.
 - **`shozbot@shozbot.com` is a real Titan mailbox** ($4/month). The footer
   address stands as written. The dangerous `v=spf1 -all` is gone — Titan's setup
   replaced it with `v=spf1 include:spf.titan.email ~all` and a permissive
