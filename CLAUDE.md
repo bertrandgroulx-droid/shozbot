@@ -275,8 +275,19 @@ plain OSM is light and busy underneath an overlay.
 RainViewer and the forecast from Open-Meteo, both free and neither touching
 Mapbox.
 
-It calls two Mapbox endpoints: `api.mapbox.com/search/geocode/v6/forward` for
-the search and `api.mapbox.com/styles/v1/` for the basemap.
+It calls two Mapbox endpoints, and **which billing metric each lands on matters
+if anyone sets a usage alert**:
+
+- `api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/{z}/{x}/{y}` — the basemap.
+  `radar.js` draws it with **Leaflet's `L.tileLayer`, not Mapbox GL JS**, so
+  these are raster tile requests and they meter as *static / raster tiles*.
+  They do **not** count as "Map Loads for Web", which is a GL JS metric. An
+  alert set only on map loads would sit at zero for ever and prove nothing.
+- `api.mapbox.com/search/geocode/v6/forward` — the city search, metering as
+  *geocoding* requests.
+
+Mapbox renames these categories from time to time, so match on what they cover
+rather than on the exact wording.
 
 **Every app is dependency-free static HTML** except Statterbrain, which is the
 only one with a build step.
