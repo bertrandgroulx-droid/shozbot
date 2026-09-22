@@ -43,6 +43,31 @@ wherever each app actually is.
 `/<app>` without the trailing slash redirects to `/<app>/`, so relative links
 inside each app resolve correctly.
 
+**A rewrite is a shop window, not a copy.** Vercel fetches each app from
+GitHub Pages on every request and serves it under shozbot.com. Two consequences
+people get wrong:
+
+- **The old `github.io` addresses still work and still matter.** They are not
+  legacy links kept alive out of politeness — they are where the files
+  actually are. If Pages stopped serving one, `shozbot.com/<app>/` would break
+  with it.
+- **Nothing redirects the old address to the new one**, and none of the apps
+  carries a canonical tag (checked, 2026-09-22). Anyone holding a `github.io`
+  bookmark stays there indefinitely.
+
+**If a redirect is ever added, it must test the hostname first.** The file
+served at `shozbot.com/<app>/` *is* the github.io file, so an unconditional
+`location.replace('https://shozbot.com/<app>/')` fires at shozbot.com too and
+loops the browser for ever. It has to be guarded, e.g.
+`if (location.hostname === 'bertrandgroulx-droid.github.io') …`.
+
+**The split that will actually bite: saved data is per-address.** Scores,
+streaks and recent cities live in the browser against whichever address they
+were made on. Somebody who has played on github.io and later arrives via
+shozbot.com starts from nothing, and using both means two separate sets of
+progress. Phase 4b adds streaks, which makes converging on one address more
+urgent, not less.
+
 The homepage's Statterbrain card points at `https://statterbrain.vercel.app/`
 for now. In Phase 2 — once Statterbrain is built with base path
 `/statterbrain/` — change that href to `/statterbrain/`, add the rewrite to
