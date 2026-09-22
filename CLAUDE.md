@@ -246,15 +246,26 @@ URLs to refresh, and no deep links to break. Check the asset paths afterwards
 all the same.
 
 **Better Weather needs no weather key, but it does use a Mapbox one.**
-*Confirmed broken off-origin on 2026-09-22 — see the deploy notes above.* The
-forecast comes from Open-Meteo, which takes no key. The radar map uses a
-*public* Mapbox token (`pk.…`, base64-encoded in `index.html` only to keep
-GitHub's secret scanner quiet) and, per the comment beside it, that token is
-**restricted to the site's URL**. Served from shozbot.com the browser's origin
-changes, so the map will stop loading until `shozbot.com` is added to that
-token's allowed URLs in Bertrand's Mapbox account. Nothing is leaking — a
-public token is meant to be visible — but this is a Phase 3 step, and it is
-his account, so he has to do it.
+*Confirmed broken off-origin on 2026-09-22.* The forecast comes from Open-Meteo,
+which takes no key. The radar map uses a *public* Mapbox token (`pk.…`,
+base64-encoded in `index.html` only to keep GitHub's secret scanner quiet) and
+that token is **restricted by URL**, so the map goes blank anywhere but the
+address it was set up for. Nothing is leaking — a public token is meant to be
+visible.
+
+The token belongs to Mapbox account **bertrandgroulx**, token id
+`cmtlzfbq601pr34pyumqbofm4`; that id is how to pick it out of a list. The fix is
+adding `shozbot.com` to its allowed URLs — Bertrand's account, so his to do. No
+code change and no deploy: the token in the page stays exactly as it is.
+
+**There is a fallback nobody mentioned.** The comment beside the token says
+blank means OpenStreetMap tiles instead. So setting `MAPBOX_TOKEN` to `""`
+drops Mapbox entirely — a plainer basemap, but no account, no URL restrictions
+to maintain, and no metered service to watch. Worth remembering if Mapbox ever
+becomes a nuisance or a cost.
+
+It calls two Mapbox endpoints: `api.mapbox.com/search/geocode/v6/forward` for
+the city search and `api.mapbox.com/styles/v1/` for the basemap.
 
 **Every app is dependency-free static HTML** except Statterbrain, which is the
 only one with a build step.
