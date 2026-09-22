@@ -31,7 +31,7 @@ wherever each app actually is.
 | Path on shozbot.com | Actually served from | Rewrite in place? |
 |---|---|---|
 | `/` | this repo | — |
-| `/statterbrain/` | `statterbrain.vercel.app` | **no — Phase 2** |
+| `/statterbrain/` | `statterbrain.vercel.app` | yes |
 | `/better-weather/` | `bertrandgroulx-droid.github.io/better-weather` | yes |
 | `/mogo/` | `…github.io/mogo` | yes |
 | `/word-square/` | `…github.io/word-square` | yes |
@@ -78,10 +78,21 @@ Letter Drop's 51 tests all pass with the change in. Word Ninja failed once on
 a timing assertion (`remaining <= 90.01`) and passed on re-run both with and
 without the change, so that is a flaky test rather than a regression.
 
-The homepage's Statterbrain card points at `https://statterbrain.vercel.app/`
-for now. In Phase 2 — once Statterbrain is built with base path
-`/statterbrain/` — change that href to `/statterbrain/`, add the rewrite to
-`vercel.json`, and add the URL back to `sitemap.xml`.
+**Statterbrain moved on 2026-09-22 and is the one rewrite that works
+differently.** The seven github.io apps are served from a folder named after
+the app, so their rewrites keep the prefix: `/mogo/x` → `…github.io/mogo/x`.
+Statterbrain has a Vercel project all of its own, serving the app from the root
+of that deployment, so its rewrite **strips** the prefix: `/statterbrain/x` →
+`statterbrain.vercel.app/x`. What puts the prefix back into the page is Vite's
+`base` (below), not the rewrite.
+
+Because of that `base`, the built `index.html` asks for
+`/statterbrain/assets/…`, which does not exist at the root of Statterbrain's own
+deployment. Two things keep the old `statterbrain.vercel.app` link alive
+anyway: the same canonical-plus-guarded-redirect pair the other apps carry
+(hostname `statterbrain.vercel.app` this time), and a `vercel.json` in the
+Statterbrain repo rewriting `/statterbrain/:path*` back to `/:path*`, which
+makes the app resolve there for anyone whose browser does not run the script.
 
 ## Layout of this repo
 
@@ -185,8 +196,9 @@ That rewrites `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`,
 <script src="https://shozbot.com/kit/kit.js" defer></script>
 ```
 
-**All seven apps load it** (2026-09-22). It does two jobs: the bar, and
-GoatCounter. Both therefore change in one file rather than seven.
+**All eight apps load it** (2026-09-22) — the seven github.io ones and
+Statterbrain. It does two jobs: the bar, and GoatCounter. Both therefore change
+in one file rather than eight.
 
 Options on the tag: `data-app="Word Ninja"` names the app on the right of the
 bar; `data-hide-standalone` hides the bar when running from a phone home
@@ -207,16 +219,19 @@ against all seven, so don't undo them:
   of app background above it. `insert()` measures the body's padding and pulls
   the bar back out with negative margins.
 
-**`--shozkit-height` is the contract for pinned controls.** The bar is in the
-normal flow, so it pushes ordinary content down — but anything an app has
-positioned `fixed` or `absolute` stays put and ends up underneath. Such a rule
-should read `top: calc(10px + var(--shozkit-height, 0px))`; the `0px` fallback
-keeps it correct when the kit is absent. Mogo's sound toggle was the first and
-so far only user, and it was deleted hours later — so nothing uses this today,
-but the next pinned control will need it. **It is declared in `kit.css`, not
-measured in JavaScript** — the
-stylesheet loads async, so measuring the bar on insert reads its unstyled
-height and publishes roughly half the real number.
+**`--shozkit-height` is the contract for anything that sizes itself to the
+viewport.** The bar is in the normal flow, so it pushes ordinary content down —
+but two kinds of rule ignore it and end up wrong: anything positioned `fixed`
+or `absolute` stays put and sits underneath, and anything measured in `vh`
+claims the whole viewport and overflows by the height of the bar. Both read the
+variable, with a `0px` fallback that keeps them correct when the kit is absent:
+`top: calc(10px + var(--shozkit-height, 0px))` for a pinned control,
+`height: calc(100% - var(--shozkit-height, 0px))` for a full-height shell.
+Statterbrain's `#root` is the live user — its `.app` shell was `height: 100vh`
+and would have overflowed. Mogo's sound toggle was the first user and was
+deleted hours later. **It is declared in `kit.css`, not measured in
+JavaScript** — the stylesheet loads async, so measuring the bar on insert reads
+its unstyled height and publishes roughly half the real number.
 
 Word Square's help modal backdrop sits under the bar rather than over it. That
 is deliberate: the way back out stays reachable.
@@ -312,10 +327,19 @@ Notes for Phases 2–4, gathered by reading the code rather than guessing.
 
 **Statterbrain has no URL router.** It is Vite + React 19, and pages are held
 in a `PageId`-keyed `ROUTES` record in `src/routes.tsx` — the address bar never
-changes. So moving it to `/statterbrain/` is a `base` setting in
-`vite.config.ts` (which is currently bare) and nothing more: there are no inner
-URLs to refresh, and no deep links to break. Check the asset paths afterwards
-all the same.
+changes. So there were no inner URLs to refresh and no deep links to break, and
+`base: '/statterbrain/'` in `vite.config.ts` did most of the move. **What it
+did not do is the part to remember**: Vite rewrites only the asset URLs it can
+see for itself — `index.html`, CSS `url()`, and anything reached through an
+`import`. A path built as a string at runtime it cannot see, and there were
+twelve of those (`fetch('/probit-example.csv')`, `src="/brand/…"`, and so on).
+They now go through `asset()` in `src/lib/asset.ts`, which prepends
+`import.meta.env.BASE_URL`. **Any new reference to a file in `public/` has to
+use it** — a bare `/…` path will work in `npm run dev` and 404 in production.
+
+`public/manifest.webmanifest` is a third case: Vite copies `public/` byte for
+byte, so its `start_url`, `scope` and icon paths carry `/statterbrain/`
+hard-coded. If the base path ever changes, that file changes by hand.
 
 **Better Weather needs no weather key, but it does use a Mapbox one.**
 *Confirmed broken off-origin on 2026-09-22.* The forecast comes from Open-Meteo,
@@ -380,7 +404,7 @@ only one with a build step.
   supplied was making its protocol-relative `//gc.zgo.at/...` an explicit
   `https://`.
 
-  **The seven apps are counted too**, through `kit/kit.js` rather than a
+  **All eight apps are counted too**, through `kit/kit.js` rather than a
   snippet pasted into each. Paths separate them automatically, so
   `/mogo/` and `/word-ninja/` show up as distinct pages.
 - **The share preview has never been tested for real.** `assets/og.png` exists

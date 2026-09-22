@@ -2,6 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/statterbrain",
+      "destination": "/statterbrain/",
+      "permanent": false
+    },
+    {
       "source": "/better-weather",
       "destination": "/better-weather/",
       "permanent": false
@@ -38,6 +43,14 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/statterbrain/",
+      "destination": "https://statterbrain.vercel.app/"
+    },
+    {
+      "source": "/statterbrain/:path*",
+      "destination": "https://statterbrain.vercel.app/:path*"
+    },
     {
       "source": "/better-weather/",
       "destination": "https://bertrandgroulx-droid.github.io/better-weather/"

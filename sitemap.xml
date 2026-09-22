@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- /statterbrain/ joins this list in Phase 2, once its rewrite exists. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://shozbot.com/</loc></url>
+  <url><loc>https://shozbot.com/statterbrain/</loc></url>
   <url><loc>https://shozbot.com/better-weather/</loc></url>
   <url><loc>https://shozbot.com/mogo/</loc></url>
   <url><loc>https://shozbot.com/word-square/</loc></url>
