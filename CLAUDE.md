@@ -409,6 +409,23 @@ the theme and background colours respectively. Orientation is deliberately left
 unset rather than locked to portrait the way Word Square's is — this app is a
 centred column and reads fine either way.
 
+### Everyday and Games say "phone-first"
+
+Added 2026-09-22. The section headings carry a quiet `.section-note` beside
+them, the mirror of Statterbrain's "Best on desktop" badge.
+
+**The wording matters and was chosen against Bertrand's first suggestion.** He
+proposed "Everyday (phone apps)"; the note says **phone-first** instead, because
+every one of those apps works perfectly well on a laptop — rendered at 1440px
+all seven fit with nothing clipped and no sideways scroll — they are simply
+designed for a phone, sitting small and centred in a lot of empty space.
+"Phone apps" would read as *only* works on a phone and cost clicks from the
+desktop visitors a shared link mostly reaches. Bertrand confirmed the framing.
+
+The note is deliberately not in the `h2`'s uppercase and tracking: it should
+read as an aside rather than part of the label. It sits before the heading's
+`::after`, which is the rule that fills the rest of the row.
+
 ### The Statterbrain card carries two links, and is not an `<a>`
 
 Added 2026-09-22 at Bertrand's request: the card credits the course Statterbrain

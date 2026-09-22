@@ -207,6 +207,16 @@ a { color: var(--mohawk); }
   margin: 0;
 }
 
+/* A quiet qualifier beside a section heading — deliberately not in the h2's
+   uppercase and tracking, so it reads as an aside rather than part of the
+   label. It sits before the ::after rule, so the rule still fills the row. */
+.section-note {
+  font-size: .82rem;
+  color: var(--muted);
+  opacity: .8;
+  white-space: nowrap;
+}
+
 .section-head::after {
   content: "";
   flex: 1;
