@@ -175,11 +175,26 @@ Migrate existing keys when prefixing, so nobody loses a high score.
 
 ## How it deploys
 
-Push to `main` → Vercel builds the `shozbot-site` project → live on
-shozbot.com. There is no build command; Vercel serves the files as they are.
+**Live since 2026-09-22 at <https://shozbot-chi.vercel.app>.**
 
-DNS stays at **Squarespace** — records are added there and point at Vercel.
-Do not move the nameservers, or Bertrand's free email forwarding stops working.
+The Vercel project is called **shozbot** and is linked to this repo. Its
+production branch is `claude/festive-wozniak-mu5wnh`, which is also this repo's
+default branch — there is no `main`. Push to that branch and Vercel redeploys
+within a minute. There is no build command; Vercel serves the files as they are.
+
+shozbot.com is not pointed at it yet. DNS stays at **Squarespace** — records
+are added there and point at Vercel. **Do not move the nameservers to Vercel**,
+or Bertrand's free email forwarding stops working.
+
+### Verified on the live deployment, 2026-09-22
+
+Bertrand clicked through all of it. The homepage, the 404, and every one of the
+seven rewritten apps load *and work* — not merely load. `/mogo` without the
+trailing slash redirects correctly. The phone layout is fine.
+
+The one failure was the expected one: **Better Weather's radar map is blank**,
+because the Mapbox token is restricted to the address the app used to live at.
+That is now confirmed rather than predicted. The forecast itself is unaffected.
 
 ## Ground rules
 
@@ -201,7 +216,8 @@ changes. So moving it to `/statterbrain/` is a `base` setting in
 URLs to refresh, and no deep links to break. Check the asset paths afterwards
 all the same.
 
-**Better Weather needs no weather key, but it does use a Mapbox one.** The
+**Better Weather needs no weather key, but it does use a Mapbox one.**
+*Confirmed broken off-origin on 2026-09-22 — see the deploy notes above.* The
 forecast comes from Open-Meteo, which takes no key. The radar map uses a
 *public* Mapbox token (`pk.…`, base64-encoded in `index.html` only to keep
 GitHub's secret scanner quiet) and, per the comment beside it, that token is
