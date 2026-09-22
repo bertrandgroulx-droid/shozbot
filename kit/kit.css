@@ -103,3 +103,66 @@
 }
 
 @media print { .shozkit-bar { display: none; } }
+
+/* ==========================================================================
+   The byline — the quiet alternative to the bar, turned on with data-by.
+   It borrows a line the app already draws rather than adding one of its own,
+   so it costs nothing vertically wherever it can run on after a name.
+   ========================================================================== */
+.shozkit-by {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo,
+               Consolas, monospace;
+  font-size: 0.72em;          /* relative, so it stays quiet next to any size */
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+
+.shozkit-by--block {
+  display: block;
+  margin: 2px 0 0;
+}
+
+.shozkit-by-link {
+  color: inherit;             /* the app's own text colour, whatever it is */
+  opacity: .55;
+  /* A real underline rather than a bottom border: the border would be drawn
+     across the padding below, so it came out 6px wider than the words. */
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  -webkit-tap-highlight-color: transparent;
+
+  /* The words are about 16px tall, which is a small thing to hit with a thumb.
+     The padding makes the touchable area roughly twice that while the matching
+     negative margin keeps the layout exactly where it was — vertical padding
+     on an inline box is not added to the line height, so nothing moves. Safe
+     only where nothing sits within 10px above or below, which is why the
+     block form below gives the space back instead. */
+  padding: 9px 6px 10px;
+  margin: -9px -6px -10px;
+}
+
+/* On its own line the credit usually sits just above something big and
+   tappable — Mogo's "Surprise me with a country" button is 8px under it — and
+   a hit area reaching past its own line would swallow taps meant for that. So
+   here the row takes the height it actually needs. It costs about 31px, on a
+   page that already scrolls. */
+.shozkit-by--block .shozkit-by-link {
+  display: inline-block;
+  padding: 8px 6px;
+  margin: 0;
+}
+
+.shozkit-by-link:hover,
+.shozkit-by-link:focus-visible { opacity: 1; }
+
+.shozkit-by-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media print { .shozkit-by { display: none; } }

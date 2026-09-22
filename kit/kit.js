@@ -9,6 +9,11 @@
    tag itself:
 
      data-app="Word Ninja"     show the app's name on the right of the bar
+     data-by=".brand .name"    no bar at all: put the words "by shozbot" just
+                               after whatever that selector matches, usually
+                               the app's own name or tagline
+     data-by-block             with data-by, put the credit on its own line
+                               rather than running on after the name
      data-hide-standalone      hide the bar when the app has been installed to
                                a phone home screen and is running full-screen
      data-no-bar               count the visit but add no bar, for an app whose
@@ -34,16 +39,48 @@
     (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
     window.navigator.standalone === true;
 
-  function insert() {
+  function loadCss() {
+    if (document.querySelector('link[data-shozkit]')) return;
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = ORIGIN + '/kit/kit.css';
+    css.setAttribute('data-shozkit', '');
+    document.head.appendChild(css);
+  }
+
+  // ---- the byline -------------------------------------------------------
+  // The quiet alternative to the bar: the words "by shozbot", clickable,
+  // sitting beside or under the app's own name. A credit rather than a
+  // navigation bar — it says who made this and happens to be the way to the
+  // rest. `data-by` is a CSS selector for the app's own title or tagline and
+  // the credit goes directly after it, which is why it costs the app almost
+  // nothing: it borrows a line the app already draws.
+  function insertBy() {
     if (document.getElementById(ID)) return;
 
-    if (!document.querySelector('link[data-shozkit]')) {
-      var css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = ORIGIN + '/kit/kit.css';
-      css.setAttribute('data-shozkit', '');
-      document.head.appendChild(css);
-    }
+    var host = document.querySelector(opts.by);
+    if (!host) return;   // the app moved its title: say nothing rather than
+                         // dropping a stray credit somewhere unintended
+    loadCss();
+
+    var block = 'byBlock' in opts;
+    var wrap = document.createElement(block ? 'div' : 'span');
+    wrap.id = ID;
+    wrap.className = 'shozkit-by' + (block ? ' shozkit-by--block' : '');
+
+    var a = document.createElement('a');
+    a.className = 'shozkit-by-link';
+    a.href = ORIGIN + '/';
+    a.textContent = 'by shozbot';
+    a.title = 'More handmade apps at shozbot.com';
+    wrap.appendChild(a);
+
+    host.parentNode.insertBefore(wrap, host.nextSibling);
+  }
+
+  function insert() {
+    if (document.getElementById(ID)) return;
+    loadCss();
 
     var bar = document.createElement('div');
     bar.id = ID;
@@ -122,7 +159,10 @@
     // out of the whole script, which quietly stopped the visit being counted
     // too — so an app used mostly from a home screen would have looked unused.
     var hidden = ('noBar' in opts) || ('hideStandalone' in opts && standalone);
-    if (!hidden) insert();
+    // data-by replaces the bar outright, and is never hidden when installed:
+    // a credit line costs nothing worth hiding.
+    if ('by' in opts) insertBy();
+    else if (!hidden) insert();
     count();
   }
 
