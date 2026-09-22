@@ -13,8 +13,17 @@
   font-display: swap;
 }
 
-.shozkit-bar {
+/* The bar's height, published so an app can shift its own pinned controls
+   clear of it:  top: calc(10px + var(--shozkit-height, 0px))
+   Declared here rather than measured in JavaScript, because this stylesheet
+   loads asynchronously — anything measuring the bar on insert reads its
+   unstyled height and publishes a number that is wrong by half. */
+:root {
   --shozkit-h: 38px;
+  --shozkit-height: calc(var(--shozkit-h) + env(safe-area-inset-top, 0px));
+}
+
+.shozkit-bar {
   position: sticky;
   top: 0;
   left: 0;
@@ -22,10 +31,25 @@
   z-index: 2147483000;          /* above app chrome, below nothing much */
   display: flex;
   align-items: center;
-  height: calc(var(--shozkit-h) + env(safe-area-inset-top, 0px));
+  height: var(--shozkit-height);
   padding: env(safe-area-inset-top, 0px) 14px 0
            max(14px, env(safe-area-inset-left, 0px));
   box-sizing: border-box;
+
+  /* Every app so far lays its <body> out as a column flex container, and
+     several of them centre their items. Left alone, that shrink-wraps this bar
+     to the width of its own text and floats it in the middle of the screen —
+     which is exactly how it first came out. These three lines are what make it
+     a bar rather than a pill:
+
+       align-self  beats an `align-items: center` on the body
+       flex        stops a height-constrained column squashing it thinner
+       grid-column does the same job if a future app uses grid instead        */
+  align-self: stretch;
+  flex: 0 0 auto;
+  grid-column: 1 / -1;
+  width: 100%;
+
   background: #241f1a;
   color: #faf7f2;
   font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo,
