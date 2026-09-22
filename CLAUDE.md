@@ -198,8 +198,11 @@ Three preset blocks, no custom records:
 - **Squarespace Domain Connect** — one CNAME, `_domainconnect`. Harmless, left.
 - **Email Security** — `v=spf1 -all`, a strict DMARC `p=reject`, and an empty
   DKIM key. These say "this domain sends no mail", which is an anti-spoofing
-  default. Left alone. Note that if Bertrand ever wants to *send* from the
-  domain rather than only receive, `v=spf1 -all` has to change first.
+  default. **Superseded**: a real mailbox was set up later the same day, so
+  these records now contradict reality — see the note in Still Open.
+
+Read before the mailbox existed, so **the page will have gained a block since**.
+Whatever the mail provider added is not in this list and must not be deleted.
 
 The records to add, read off Vercel on the same day: `A @ 216.198.79.1` and
 `CNAME www 5972798cadb59f73.vercel-dns-017.com.` — the CNAME is unique to this
@@ -253,13 +256,23 @@ only one with a build step.
 
 - Analytics is not installed yet (Phase 1g): a free, cookieless service,
   Bertrand creates the account.
-- **`shozbot@shozbot.com` does not work, and is already on the site.** Reading
-  the Squarespace DNS on 2026-09-22 settled it: the domain has **no MX records
-  at all**, so nothing can be delivered to it and anything sent there bounces.
-  The footer already prints the address. Before the alumni email goes out,
-  either the free forwarding gets switched on — which is what adds the MX
-  records — or the address comes off `index.html`. Do not assume it works
-  because it is written down.
+- **`shozbot@shozbot.com` is now a real mailbox**, set up by Bertrand on
+  2026-09-22 after the DNS read below showed the domain had no MX records at
+  all. The footer address stands; nothing on the site needed changing.
+
+  **But the Email Security block is now a live hazard.** It was written for a
+  domain that sends no mail: `v=spf1 -all` means "no server may send as this
+  domain", DMARC is `p=reject` with strict alignment, and the DKIM key is
+  empty. A domain that now *does* send mail, from a real mailbox, is publishing
+  a instruction to reject its own outgoing messages. Left as is, mail from
+  shozbot@shozbot.com gets rejected or filed as spam — which would be found out
+  the hard way, on the email to four thousand alumni.
+
+  The mail provider's own setup normally replaces those records. Whether it
+  did, or whether the old preset is still sitting there fighting it, has to be
+  checked on the DNS page rather than assumed. Do not treat this as resolved
+  until a test message from that address has actually landed in an inbox
+  somewhere else — ideally Gmail, which is strict about it.
 - A new Statterbrain icon, built around a brain, replacing the robot it lent
   to the studio.
 - **LinkedIn content, once the site is live.** Bertrand wants to post about
