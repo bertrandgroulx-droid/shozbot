@@ -183,8 +183,27 @@ default branch — there is no `main`. Push to that branch and Vercel redeploys
 within a minute. There is no build command; Vercel serves the files as they are.
 
 shozbot.com is not pointed at it yet. DNS stays at **Squarespace** — records
-are added there and point at Vercel. **Do not move the nameservers to Vercel**,
-or Bertrand's free email forwarding stops working.
+are added there and point at Vercel. **Do not move the nameservers to Vercel**:
+the domain's TXT records live in that entry and would not come along.
+
+### What is actually in the Squarespace DNS (read 2026-09-22)
+
+Three preset blocks, no custom records:
+
+- **Squarespace Defaults** — four A records for `@` on Squarespace's own IPs, a
+  CNAME for `www` to `ext-sq.squarespace.com`, and an HTTPS record naming those
+  same IPs. All of it conflicts with pointing the domain at Vercel, so the whole
+  block is deleted rather than added to. Five answers to "where does
+  shozbot.com live" would make the site work about one time in five.
+- **Squarespace Domain Connect** — one CNAME, `_domainconnect`. Harmless, left.
+- **Email Security** — `v=spf1 -all`, a strict DMARC `p=reject`, and an empty
+  DKIM key. These say "this domain sends no mail", which is an anti-spoofing
+  default. Left alone. Note that if Bertrand ever wants to *send* from the
+  domain rather than only receive, `v=spf1 -all` has to change first.
+
+The records to add, read off Vercel on the same day: `A @ 216.198.79.1` and
+`CNAME www 5972798cadb59f73.vercel-dns-017.com.` — the CNAME is unique to this
+domain, so it will not match anything documented elsewhere.
 
 ### Verified on the live deployment, 2026-09-22
 
@@ -234,8 +253,13 @@ only one with a build step.
 
 - Analytics is not installed yet (Phase 1g): a free, cookieless service,
   Bertrand creates the account.
-- `shozbot@shozbot.com` is in the footer; the Squarespace forwarding that makes
-  it work has to be confirmed before launch.
+- **`shozbot@shozbot.com` does not work, and is already on the site.** Reading
+  the Squarespace DNS on 2026-09-22 settled it: the domain has **no MX records
+  at all**, so nothing can be delivered to it and anything sent there bounces.
+  The footer already prints the address. Before the alumni email goes out,
+  either the free forwarding gets switched on — which is what adds the MX
+  records — or the address comes off `index.html`. Do not assume it works
+  because it is written down.
 - A new Statterbrain icon, built around a brain, replacing the robot it lent
   to the studio.
 - **LinkedIn content, once the site is live.** Bertrand wants to post about
