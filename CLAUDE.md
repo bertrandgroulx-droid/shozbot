@@ -182,31 +182,35 @@ production branch is `claude/festive-wozniak-mu5wnh`, which is also this repo's
 default branch — there is no `main`. Push to that branch and Vercel redeploys
 within a minute. There is no build command; Vercel serves the files as they are.
 
-shozbot.com is not pointed at it yet. DNS stays at **Squarespace** — records
-are added there and point at Vercel. **Do not move the nameservers to Vercel**:
-the domain's TXT records live in that entry and would not come along.
+**shozbot.com now points at it.** DNS stays at **Squarespace**. **Do not move
+the nameservers to Vercel**: the mail records live in that entry and would not
+come along.
 
-### What is actually in the Squarespace DNS (read 2026-09-22)
+### The Squarespace DNS as it now stands (2026-09-22, done)
 
-Three preset blocks, no custom records:
+**Custom records** — the two that point the domain at Vercel:
 
-- **Squarespace Defaults** — four A records for `@` on Squarespace's own IPs, a
-  CNAME for `www` to `ext-sq.squarespace.com`, and an HTTPS record naming those
-  same IPs. All of it conflicts with pointing the domain at Vercel, so the whole
-  block is deleted rather than added to. Five answers to "where does
-  shozbot.com live" would make the site work about one time in five.
-- **Squarespace Domain Connect** — one CNAME, `_domainconnect`. Harmless, left.
-- **Email Security** — `v=spf1 -all`, a strict DMARC `p=reject`, and an empty
-  DKIM key. These say "this domain sends no mail", which is an anti-spoofing
-  default. **Superseded**: a real mailbox was set up later the same day, so
-  these records now contradict reality — see the note in Still Open.
+| Type | Name | Data |
+|---|---|---|
+| A | `@` | `216.198.79.1` |
+| CNAME | `www` | `5972798cadb59f73.vercel-dns-017.com` |
 
-Read before the mailbox existed, so **the page will have gained a block since**.
-Whatever the mail provider added is not in this list and must not be deleted.
+That CNAME is unique to this domain and will not match anything documented
+elsewhere. Squarespace dropped the trailing dot Vercel showed; that is fine.
 
-The records to add, read off Vercel on the same day: `A @ 216.198.79.1` and
-`CNAME www 5972798cadb59f73.vercel-dns-017.com.` — the CNAME is unique to this
-domain, so it will not match anything documented elsewhere.
+**Preset blocks** — `Squarespace Domain Connect` (one harmless `_domainconnect`
+CNAME) and `Titan Email` (two MX, an SPF TXT, a DMARC TXT).
+
+**Two blocks were removed and should not come back.** `Squarespace Defaults`
+held four A records for `@` on Squarespace's own IPs plus a `www` CNAME and an
+HTTPS record — five competing answers to "where does shozbot.com live", which
+would have made the site work about one time in five. And the old
+`Email Security` block declared `v=spf1 -all` with DMARC `p=reject`, meaning
+"no server may send as this domain"; Titan's setup replaced it. If either
+reappears, something has re-run a Squarespace preset and it needs removing again.
+
+Verified by resolver on 2026-09-22: `shozbot.com` → `216.198.79.1`, and
+`www.shozbot.com` resolves to Vercel addresses.
 
 ### Verified on the live deployment, 2026-09-22
 
@@ -220,7 +224,10 @@ That is now confirmed rather than predicted. The forecast itself is unaffected.
 
 ## Ground rules
 
-- Cost ceiling is **$0/month** beyond the domain. If something would cost
+- Cost ceiling **was** $0/month beyond the domain. Bertrand revised it on
+  2026-09-22: Titan Email at **$4/month**, his words, "an acceptable small fee
+  for a professional impression". That is the only ongoing cost and it is a
+  deliberate exception, not the new normal — anything else that would cost
   money, stop and ask.
 - Free, no ads, no payments, no accounts, no tracking that needs a cookie
   banner.
@@ -256,23 +263,17 @@ only one with a build step.
 
 - Analytics is not installed yet (Phase 1g): a free, cookieless service,
   Bertrand creates the account.
-- **`shozbot@shozbot.com` is now a real mailbox**, set up by Bertrand on
-  2026-09-22 after the DNS read below showed the domain had no MX records at
-  all. The footer address stands; nothing on the site needed changing.
+- **`shozbot@shozbot.com` is a real Titan mailbox** ($4/month). The footer
+  address stands as written. The dangerous `v=spf1 -all` is gone — Titan's setup
+  replaced it with `v=spf1 include:spf.titan.email ~all` and a permissive
+  DMARC (`p=none`), which is correct for a domain that now sends mail.
 
-  **But the Email Security block is now a live hazard.** It was written for a
-  domain that sends no mail: `v=spf1 -all` means "no server may send as this
-  domain", DMARC is `p=reject` with strict alignment, and the DKIM key is
-  empty. A domain that now *does* send mail, from a real mailbox, is publishing
-  a instruction to reject its own outgoing messages. Left as is, mail from
-  shozbot@shozbot.com gets rejected or filed as spam — which would be found out
-  the hard way, on the email to four thousand alumni.
-
-  The mail provider's own setup normally replaces those records. Whether it
-  did, or whether the old preset is still sitting there fighting it, has to be
-  checked on the DNS page rather than assumed. Do not treat this as resolved
-  until a test message from that address has actually landed in an inbox
-  somewhere else — ideally Gmail, which is strict about it.
+  Two things left on it: **no DKIM record is visible** in the DNS, so it is
+  worth checking Titan's own dashboard for one — without it, outgoing mail is
+  trusted less, though the permissive DMARC means nothing is rejected. And
+  **send a test from that address to a Gmail account** and confirm it reaches
+  the inbox rather than spam, before the alumni email goes out. Gmail is strict,
+  which makes it the test worth passing.
 - A new Statterbrain icon, built around a brain, replacing the robot it lent
   to the studio.
 - **LinkedIn content, once the site is live.** Bertrand wants to post about
