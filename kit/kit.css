@@ -23,6 +23,16 @@
   --shozkit-height: calc(var(--shozkit-h) + env(safe-area-inset-top, 0px));
 }
 
+/* Phones have no height to spare, and several apps are built to fill exactly
+   one screen with nothing left over. A shorter bar there gives 8px back, which
+   on an iPhone 14 is most of what Better Weather needed. The desktop size is
+   untouched — that is where the bar has room to be comfortable. */
+@media (max-width: 640px) {
+  :root { --shozkit-h: 30px; }
+  .shozkit-bar { font-size: 13px; }
+  .shozkit-app { font-size: 12px; }
+}
+
 .shozkit-bar {
   position: sticky;
   top: 0;

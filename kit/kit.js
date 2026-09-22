@@ -81,6 +81,22 @@
       bar.style.marginLeft = '-' + pad.paddingLeft;
       bar.style.marginRight = '-' + pad.paddingRight;
     }
+
+    // The bar should cost an app its own height and not a pixel more. A column
+    // flex or grid <body> puts its gap between every pair of children, so the
+    // bar arrives carrying one — Better Weather's 18px gap turned a 38px bar
+    // into 56px, which is what pushed its tab strip off an iPhone 14. Cancel it
+    // with a matching negative margin, so the bar sits flush against the app.
+    //
+    // Only for a column: a row flex container's gap between items is the column
+    // gap, and cancelling its row gap would take space the bar never took. And
+    // only when something follows the bar, or the margin would eat the body's
+    // own bottom padding instead.
+    var disp = pad.display;
+    var column = disp.indexOf('grid') >= 0 ||
+                 (disp.indexOf('flex') >= 0 && pad.flexDirection === 'column');
+    var gap = column ? parseFloat(pad.rowGap) : 0;
+    if (gap && bar.nextElementSibling) bar.style.marginBottom = '-' + gap + 'px';
   }
 
   // ---- visitor counting -------------------------------------------------

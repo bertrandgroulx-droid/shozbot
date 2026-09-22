@@ -208,8 +208,8 @@ the CSS is fetched from shozbot.com.
 
 ### What the kit had to learn about the apps
 
-Two things that were wrong in the first cut and only showed up by rendering it
-against all seven, so don't undo them:
+Three things that were wrong in the first cut and only showed up by rendering it
+against real apps, so don't undo them:
 
 - **Every app's `<body>` is a column flex container, and four of them centre
   their items.** That shrink-wrapped the bar to the width of its own text and
@@ -218,6 +218,19 @@ against all seven, so don't undo them:
 - **Apps pad their own body**, so the bar sat inside that padding with a strip
   of app background above it. `insert()` measures the body's padding and pulls
   the bar back out with negative margins.
+- **A column flex body puts its gap between every pair of children, and the bar
+  arrived carrying one.** Better Weather's 18px gap made a 38px bar cost 56, and
+  that is what pushed its tab strip half off an iPhone 14. `insert()` now
+  cancels the row gap with a matching negative bottom margin, so **the bar costs
+  an app its own height and nothing more**. Only for a column — a row flex
+  container's gap between items is the *column* gap, and cancelling its row gap
+  would take back space the bar never took.
+
+**The bar is 30px on screens up to 640px wide and 38px above that** (the media
+query in `kit.css`). Several apps are built to fill exactly one phone screen
+with nothing spare, so those 8px matter there; on a desktop the bar has room to
+be comfortable. It does make the back link a slightly smaller tap target on a
+phone, which is the accepted trade.
 
 **`--shozkit-height` is the contract for anything that sizes itself to the
 viewport.** The bar is in the normal flow, so it pushes ordinary content down —
@@ -235,6 +248,34 @@ its unstyled height and publishes roughly half the real number.
 
 Word Square's help modal backdrop sits under the bar rather than over it. That
 is deliberate: the way back out stays reachable.
+
+### What the bar costs each app (measured 2026-09-22, phone widths)
+
+Rendered at iPhone SE, iPhone 14 and Pixel 7 sizes, in each app's actual playing
+state rather than its opening screen — several of them sit behind a first-visit
+overlay that has to be dismissed first or the measurement is of the overlay.
+
+**Only Better Weather was hurt.** It is the one app with a fixed-height element
+that cannot give way (`#hourly` 172px and `#daily` 196px), so the bar pushed its
+Weather/Map tab strip off the bottom: 27px over on an iPhone 14 where it used to
+fit exactly. Fixed by the gap cancellation and the 30px phone bar above, plus
+two changes in the app — its own `body { gap }` went 18px → 12px (four gaps down
+the page, so every pixel there counts four times), and its kit tag gained
+`data-hide-standalone`. Dropping the always-on Alerts line from the summary card
+the same day gave back another 24px. Every size from an iPhone 13 mini up now
+fits with the bar in and the tabs whole.
+
+**Mogo, Word Square, Word Ninja, Letter Drop, Fauxcabulary and Acronumbskull all
+take the bar with zero overflow** at every size tested, because their layouts
+flex rather than fix. Word Ninja is worth remembering as the one with
+`overflow: hidden` on its body — it cannot scroll, so anything that overflowed
+there would be silently clipped rather than reachable. It isn't, but that is the
+app to re-check first after any kit change.
+
+**Better Weather still does not fit an iPhone SE**, and never did: 120px over
+with no bar at all, against 142px with it. That is the app's own layout, not the
+bar, and fixing it means making the two forecast strips shrink on short screens.
+Not done; Bertrand knows.
 
 ## Storage-key prefixes
 
