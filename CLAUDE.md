@@ -206,6 +206,18 @@ screen; `data-no-bar` counts without a bar; `data-no-count` is the reverse.
 Everything is namespaced `shozkit-`, the script is safe to include twice, and
 the CSS is fetched from shozbot.com.
 
+**Four apps carry `data-hide-standalone`** (2026-09-22) — Better Weather, Word
+Square, Word Ninja and Letter Drop, the four built to fill exactly one phone
+screen. Installed to a home screen there is no browser to go back to, so the
+bar is 30px of lost playing area and nothing else.
+
+**Every option hides the bar and only the bar.** `data-hide-standalone` used to
+`return` out of the whole script, which quietly stopped the visit being counted
+as well — an app used mostly from a home screen would have looked unused.
+Caught by a test that fakes `display-mode: standalone` and asserts the bar is
+gone *and* the GoatCounter tag is still there. Keep that shape: decide about the
+bar, then count regardless.
+
 ### What the kit had to learn about the apps
 
 Three things that were wrong in the first cut and only showed up by rendering it

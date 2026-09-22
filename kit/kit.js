@@ -34,8 +34,6 @@
     (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
     window.navigator.standalone === true;
 
-  if ('hideStandalone' in opts && standalone) return;
-
   function insert() {
     if (document.getElementById(ID)) return;
 
@@ -120,7 +118,11 @@
   }
 
   function start() {
-    if (!('noBar' in opts)) insert();
+    // data-hide-standalone drops the bar, and only the bar. It used to return
+    // out of the whole script, which quietly stopped the visit being counted
+    // too — so an app used mostly from a home screen would have looked unused.
+    var hidden = ('noBar' in opts) || ('hideStandalone' in opts && standalone);
+    if (!hidden) insert();
     count();
   }
 
