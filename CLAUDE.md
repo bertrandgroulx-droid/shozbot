@@ -258,14 +258,24 @@ The token belongs to Mapbox account **bertrandgroulx**, token id
 adding `shozbot.com` to its allowed URLs — Bertrand's account, so his to do. No
 code change and no deploy: the token in the page stays exactly as it is.
 
-**There is a fallback nobody mentioned.** The comment beside the token says
-blank means OpenStreetMap tiles instead. So setting `MAPBOX_TOKEN` to `""`
-drops Mapbox entirely — a plainer basemap, but no account, no URL restrictions
-to maintain, and no metered service to watch. Worth remembering if Mapbox ever
-becomes a nuisance or a cost.
+**Dropping Mapbox is a one-line change, and both fallbacks are already
+written.** Setting `MAPBOX_TOKEN` to `""` makes `radar.js` serve OpenStreetMap
+tiles instead of `mapbox/dark-v11` (`addBasemap`), and makes `forwardGeocode`
+call Open-Meteo instead of Mapbox.
+
+**What that actually costs is the search, not the map.** Mapbox geocoding finds
+street addresses, shops and landmarks; Open-Meteo's finds **cities only** — the
+code comment says as much. Someone searching their suburb or a landmark would
+stop getting results. The basemap change is milder but not nothing: the Mapbox
+style is dark, chosen so the coloured radar reads clearly on top of it, and
+plain OSM is light and busy underneath an overlay.
+
+**What is not at stake either way:** the radar imagery itself comes from
+RainViewer and the forecast from Open-Meteo, both free and neither touching
+Mapbox.
 
 It calls two Mapbox endpoints: `api.mapbox.com/search/geocode/v6/forward` for
-the city search and `api.mapbox.com/styles/v1/` for the basemap.
+the search and `api.mapbox.com/styles/v1/` for the basemap.
 
 **Every app is dependency-free static HTML** except Statterbrain, which is the
 only one with a build step.
