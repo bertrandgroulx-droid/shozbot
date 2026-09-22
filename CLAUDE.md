@@ -426,6 +426,27 @@ The note is deliberately not in the `h2`'s uppercase and tracking: it should
 read as an aside rather than part of the label. It sits before the heading's
 `::after`, which is the rule that fills the rest of the row.
 
+### The add-to-home-screen note
+
+Added 2026-09-22, Bertrand's idea, sitting above **Everyday**: a `<details>`
+that opens to three-step instructions for iPhone and for Android.
+
+**The instructions are written on the page rather than linked out to Apple's
+and Google's own help pages.** Those URLs move and get renamed, the steps are
+shorter than the click-through would be, and it keeps the page self-contained
+like everything else here. If outbound links are ever wanted instead, check the
+URLs first — they cannot be verified from this container.
+
+**It only says what is true because every app supports it**: all nine declare
+`display: standalone` with icons in their manifests, checked before the note
+was written. If a future app skips its manifest, this note starts lying about
+it — which is a second reason the manifest belongs on the checklist for the
+tenth app.
+
+`<details>` rather than JavaScript, so it costs a line when closed and the page
+keeps working with scripts off. The default disclosure triangle is replaced
+with a `+` / `−` in the mohawk colour.
+
 ### The Statterbrain card carries two links, and is not an `<a>`
 
 Added 2026-09-22 at Bertrand's request: the card credits the course Statterbrain

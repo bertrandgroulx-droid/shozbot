@@ -207,6 +207,64 @@ a { color: var(--mohawk); }
   margin: 0;
 }
 
+/* ---------- add-to-home-screen note ----------------------------------- */
+.install {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--mohawk) 5%, var(--card));
+  padding: 14px 18px;
+}
+
+.install summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: .95rem;
+  color: var(--ink);
+  list-style: none;                 /* the default triangle, replaced below */
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.install summary::-webkit-details-marker { display: none; }
+
+.install summary::before {
+  content: "+";
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--mohawk);
+  line-height: 1;
+}
+
+.install[open] summary::before { content: "\2212"; }   /* a real minus sign */
+
+.install summary:focus-visible {
+  outline: 2px solid var(--mohawk);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.install-body {
+  margin-top: 12px;
+  padding-left: 22px;               /* lines up under the summary's text */
+  max-width: 62ch;
+}
+
+.install-body p {
+  margin: 0 0 10px;
+  font-size: .95rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.install-body p:last-child { margin-bottom: 0; }
+.install-body b { color: var(--ink); font-weight: 600; }
+
+.install-why {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
 /* A quiet qualifier beside a section heading — deliberately not in the h2's
    uppercase and tracking, so it reads as an aside rather than part of the
    label. It sits before the ::after rule, so the rule still fills the row. */
