@@ -39,6 +39,7 @@ wherever each app actually is.
 | `/letter-drop/` | `…github.io/letter_drop` (note the underscore) | yes |
 | `/fauxcabulary/` | `…github.io/fauxcabulary` | yes |
 | `/acronumbskull/` | `…github.io/acronumbskull` | yes |
+| `/would-you-rather/` | `…github.io/would-you-rather` | yes |
 
 `/<app>` without the trailing slash redirects to `/<app>/`, so relative links
 inside each app resolve correctly.
@@ -196,7 +197,7 @@ That rewrites `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`,
 <script src="https://shozbot.com/kit/kit.js" defer></script>
 ```
 
-**All eight apps load it** (2026-09-22) — the seven github.io ones and
+**All nine apps load it** (2026-09-22) — the eight github.io ones and
 Statterbrain. It does two jobs: the link home, and GoatCounter. Both therefore
 change in one file rather than eight. Since the byline replaced the bar, seven
 apps take their credit from `data-by` and Statterbrain loads the kit purely to
@@ -227,7 +228,7 @@ draws, so where it runs on after a name it costs no height at all;
 | Word Ninja | `.brand .name`, centred under the app name |
 | Letter Drop | `.bar h1`, centred under the title |
 | Word Square | `.meta .puz` — **not** under its name; see below |
-| Mogo, Fauxcabulary, Acronumbskull | `data-by-block` under the tagline |
+| Mogo, Fauxcabulary, Acronumbskull, Would You Rather | `data-by-block` under the tagline |
 | Statterbrain | written into the app, not injected; see below |
 
 **Better Weather and Word Ninja show their names again.** Both hid them below
@@ -368,6 +369,28 @@ with no bar at all, against 142px with it. That is the app's own layout, not the
 bar, and fixing it means making the two forecast strips shrink on short screens.
 Not done; Bertrand knows.
 
+### Would You Rather, added 2026-09-22
+
+The ninth app, and the first added after the studio existed, so it is the
+worked example of what joining takes. It is a single self-contained
+`index.html` with no build step, deployed to GitHub Pages by its own
+`.github/workflows/pages.yml`, and its card sits on the **Games** shelf.
+
+That shelf used to be called **Word games**, and it was renamed because Would
+You Rather is not about words at all. Five of the six still are; if that ever
+reads wrong, the heading is one line in `index.html`.
+
+What it took, which is the checklist for the tenth: the canonical link and the
+guarded redirect in the app's `<head>`, the kit tag with
+`data-by="header .tagline" data-by-block`, a redirect and two rewrites in
+`vercel.json`, a card on the homepage, a line in `sitemap.xml`, and its icon
+copied to `assets/apps/` at 192px to match the other PNGs.
+
+**It has a read-aloud feature with a voice picker**, which is the same kind of
+thing Bertrand had removed from Mogo the same day as "a whim to explore". He
+has not said anything about this one — raise it, don't act on it. Its only
+stored key, `wyr-voice`, belongs to that feature.
+
 ## Storage-key prefixes
 
 All apps share the `shozbot.com` origin now, so unprefixed localStorage keys
@@ -382,6 +405,7 @@ state, found by reading each repo (Phases 3 and 4 fix the unprefixed ones):
 | Acronumbskull | `acronumbskull.bests` | `acronumbskull:` |
 | Word Square, Word Ninja, Letter Drop | keys are built at runtime — read the code | `wordsquare:` `wordninja:` `letterdrop:` |
 | Statterbrain | none found in `src/` | `statterbrain:` |
+| Would You Rather | `wyr-voice` | `wouldyourather:` |
 
 Migrate existing keys when prefixing, so nobody loses a high score.
 
@@ -536,7 +560,7 @@ only one with a build step.
   supplied was making its protocol-relative `//gc.zgo.at/...` an explicit
   `https://`.
 
-  **All eight apps are counted too**, through `kit/kit.js` rather than a
+  **All nine apps are counted too**, through `kit/kit.js` rather than a
   snippet pasted into each. Paths separate them automatically, so
   `/mogo/` and `/word-ninja/` show up as distinct pages.
 - **The share preview has never been tested for real.** `assets/og.png` exists

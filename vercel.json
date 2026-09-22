@@ -40,6 +40,11 @@
       "source": "/acronumbskull",
       "destination": "/acronumbskull/",
       "permanent": false
+    },
+    {
+      "source": "/would-you-rather",
+      "destination": "/would-you-rather/",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -106,6 +111,14 @@
     {
       "source": "/acronumbskull/:path*",
       "destination": "https://bertrandgroulx-droid.github.io/acronumbskull/:path*"
+    },
+    {
+      "source": "/would-you-rather/",
+      "destination": "https://bertrandgroulx-droid.github.io/would-you-rather/"
+    },
+    {
+      "source": "/would-you-rather/:path*",
+      "destination": "https://bertrandgroulx-droid.github.io/would-you-rather/:path*"
     }
   ],
   "headers": [
