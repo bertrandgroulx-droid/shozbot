@@ -333,9 +333,22 @@ only one with a build step.
 
 ## Still open
 
-- Analytics is not installed yet (Phase 1g): a free, cookieless service,
-  Bertrand creates the account. Worth having before the alumni email, since
-  that is the one day the numbers are interesting.
+- **Analytics is on the studio pages only, not the apps.** GoatCounter, added
+  2026-09-22 to `index.html` and `404.html`; numbers at
+  <https://shozbot.goatcounter.com>. Cookieless and identifies nobody, which is
+  what keeps the homepage's "asks you for nothing" line honest — do not swap in
+  anything heavier without changing that copy too.
+
+  The snippet loads `async`, so the page renders fine with the counter
+  unreachable; verified with it blocked. The one edit to what GoatCounter
+  supplied was making its protocol-relative `//gc.zgo.at/...` an explicit
+  `https://`.
+
+  **Still to decide:** whether the seven apps get it too. That answers the more
+  interesting question — which apps people come back to — and the tidy way is
+  through `kit/kit.js`, so it lives in one file rather than seven. But the kit
+  also puts the "← shozbot" bar at the top of every app, which is a visible
+  change Bertrand has not yet approved. Ask before doing it.
 - **The share preview has never been tested for real.** `assets/og.png` exists
   and the meta tags are right, but nobody has pasted shozbot.com into a message
   and looked at the card. Thirty seconds, and worth doing before the link is
