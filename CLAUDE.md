@@ -206,10 +206,49 @@ screen; `data-no-bar` counts without a bar; `data-no-count` is the reverse.
 Everything is namespaced `shozkit-`, the script is safe to include twice, and
 the CSS is fetched from shozbot.com.
 
-**Four apps carry `data-hide-standalone`** (2026-09-22) — Better Weather, Word
-Square, Word Ninja and Letter Drop, the four built to fill exactly one phone
-screen. Installed to a home screen there is no browser to go back to, so the
-bar is 30px of lost playing area and nothing else.
+**Three apps carry `data-hide-standalone`** (2026-09-22) — Word Square, Word
+Ninja and Letter Drop, built to fill exactly one phone screen. Installed to a
+home screen there is no browser to go back to, so the bar is 30px of lost
+playing area and nothing else. Better Weather had it too until it moved to the
+byline below.
+
+### The byline — `data-by`, the quiet alternative to the bar
+
+**Better Weather is the first user** (2026-09-22) and the rest may follow;
+Bertrand asked to try it there before deciding. Instead of a full-width strip,
+the words **by shozbot** sit just after whatever `data-by`'s selector matches —
+the app's own name or tagline — clickable, going to the studio. It borrows a
+line the app already draws, so where it runs on after a name it costs no height
+at all; `data-by-block` puts it on its own line, which costs about 31px.
+
+Measured on Better Weather at five phone sizes: the top row is 36px with the
+credit and 36px without. Its own name is shown at every width now rather than
+hiding below 420px, in a two-column grid with the sun beside a stacked
+name-over-credit. Keeping the sun costs the search box 33px on a small iPhone;
+dropping `.brand .logo` gets it back, if that ever matters more.
+
+Three things about it not to undo:
+
+- **It is never hidden when installed.** The bar was, because it was lost
+  playing area. A credit line has nothing worth hiding, so `data-by` ignores
+  `data-hide-standalone` entirely.
+- **The hit area is twice the height of the words.** They are about 16px tall,
+  small for a thumb, so the link carries padding with a matching negative
+  margin — vertical padding on an inline box is not added to the line height,
+  so the layout does not move. That only holds where nothing sits within 10px
+  above or below, which is why the **block** form gives the space back
+  honestly: Mogo's "Surprise me with a country" button sits 8px under its
+  tagline and the padded link reached into it and would have swallowed taps.
+- **A real underline, not a bottom border.** The border was drawn across the
+  padding as well and came out 6px wider than the words.
+
+If the selector matches nothing the kit says nothing, rather than dropping a
+stray credit somewhere unintended — so an app that renames its title element
+loses its credit quietly instead of putting it in the wrong place.
+
+**The trade, stated plainly.** The bar said "← shozbot" and nobody had to work
+out what it was. A small grey credit is quieter and someone has to notice it.
+That is the cost of the 30px; Bertrand knows and chose it.
 
 **Every option hides the bar and only the bar.** `data-hide-standalone` used to
 `return` out of the whole script, which quietly stopped the visit being counted
@@ -274,8 +313,12 @@ fit exactly. Fixed by the gap cancellation and the 30px phone bar above, plus
 two changes in the app — its own `body { gap }` went 18px → 12px (four gaps down
 the page, so every pixel there counts four times), and its kit tag gained
 `data-hide-standalone`. Dropping the always-on Alerts line from the summary card
-the same day gave back another 24px. Every size from an iPhone 13 mini up now
-fits with the bar in and the tabs whole.
+the same day gave back another 24px. Every size from an iPhone 13 mini up then
+fit with the bar in and the tabs whole.
+
+**It has since moved to the byline and has no bar at all.** `body { gap }` is
+left at 12px even so: the trim was made for the bar, and putting 18px back
+changes nothing anywhere except making an iPhone SE 12px worse.
 
 **Mogo, Word Square, Word Ninja, Letter Drop, Fauxcabulary and Acronumbskull all
 take the bar with zero overflow** at every size tested, because their layouts
