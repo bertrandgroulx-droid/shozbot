@@ -109,7 +109,8 @@ assets/
   robot.png / .webp         cut out of the photo, 766×900
   robot-small.png / .webp   160px wide, for the footer
   robot-three-eyes*         the second robot — he is the 404 page
-  social/                   square opaque icons for LinkedIn (1200/400/300)
+  social/                   square opaque icons for LinkedIn (1200/400/300),
+                            plus the two LinkedIn banners
   og.png                    1200×630 share preview
   favicon.svg .ico, apple-touch-icon.png, icon-192.png, icon-512.png
   icons/                    the three browser-icon candidates as SVG
@@ -120,6 +121,7 @@ kit/                shared studio kit — see below
 preview/            decision pages for Bertrand; noindex, not linked from the site
 tools/make-icons.py  rebuilds the whole favicon set from one candidate SVG
 tools/make-social.py rebuilds the share image and the LinkedIn icons
+tools/make-banner.py rebuilds the two LinkedIn banners
 tools/fonts/         static JetBrains Mono, used only for drawing the share image
 ```
 
@@ -592,8 +594,20 @@ only one with a build step.
 - **LinkedIn content, once the site is live.** Bertrand wants to post about
   Shozbot there. `assets/social/shozbot-icon-*.png` is already sized for the
   profile or page image — square, opaque, and inset so LinkedIn's circular crop
-  takes only flat colour. The writing itself is still to do, and it waits until
-  shozbot.com actually resolves.
+  takes only flat colour. **The banners are done too** (2026-09-22):
+  `linkedin-banner-1584x396.png` for a personal profile and
+  `linkedin-cover-1128x191.png` for a company page, both from
+  `tools/make-banner.py`.
+
+  **Both leave the bottom-left corner deliberately empty.** LinkedIn drops the
+  profile picture or the page logo over that corner, so anything there is
+  hidden. Checked by compositing the photo circle onto the banner at the size
+  and offset LinkedIn uses. The robot also sits further in from the right edge
+  than looks natural in isolation, because a phone crops the sides — at a 66%
+  centre crop the wordmark, the tagline and the robot all still survive, and at
+  the original spacing the robot lost an arm.
+
+  The writing itself is still to do.
 - **A custom wordmark, later.** JetBrains Mono at -0.02em is what ships, and
   Bertrand is happy with it for now, but he wants to come back to a properly
   kerned or custom-drawn `shozbot` at some point. Raise it, don't act on it.
