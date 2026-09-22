@@ -8,12 +8,17 @@ differently:
 
   assets/social/linkedin-banner-1584x396.png   a personal profile's background
   assets/social/linkedin-cover-1128x191.png    a company page's cover
+  assets/social/shozbot-banner-1536x768.png    a 2:1 image, asked for by size
 
-Both leave the bottom-left corner empty on purpose. LinkedIn drops the profile
+The two LinkedIn ones leave the bottom-left corner empty on purpose. LinkedIn drops the profile
 picture (or the page logo) over that corner, so anything put there is hidden
 behind it — and the crop is tighter again on a phone, which is where most
 people will see it. Everything that has to be readable therefore sits right of
 the overlap and inside a margin.
+
+The 1536x768 one is not laid out around that overlap, because it is not a
+profile slot: it is a standalone 2:1 image, so it is composed centred and the
+robot is given the room the taller shape allows.
 
 Needs pillow, and the static TTFs in tools/fonts/.
 """
@@ -87,6 +92,14 @@ def main():
            rule=5, robot_h=152, robot_pad=78, robot_bottom=14, text_x=250,
            mark_px=52, tag_px=20, url_px=14,
            wordmark_y=50, tag_y=120, url_y=150)
+
+    # A 2:1 image at the size Bertrand asked for. Nothing overlaps it, so it is
+    # balanced for its own sake: type left, robot right, both given the room the
+    # taller shape allows.
+    banner(out / "shozbot-banner-1536x768.png", (1536, 768),
+           rule=12, robot_h=600, robot_pad=110, robot_bottom=44, text_x=120,
+           mark_px=150, tag_px=50, url_px=30,
+           wordmark_y=250, tag_y=452, url_y=540)
 
 
 if __name__ == "__main__":

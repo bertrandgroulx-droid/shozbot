@@ -610,9 +610,10 @@ only one with a build step.
   Shozbot there. `assets/social/shozbot-icon-*.png` is already sized for the
   profile or page image — square, opaque, and inset so LinkedIn's circular crop
   takes only flat colour. **The banners are done too** (2026-09-22):
-  `linkedin-banner-1584x396.png` for a personal profile and
-  `linkedin-cover-1128x191.png` for a company page, both from
-  `tools/make-banner.py`.
+  `linkedin-banner-1584x396.png` for a personal profile,
+  `linkedin-cover-1128x191.png` for a company page, and
+  `shozbot-banner-1536x768.png`, a 2:1 image Bertrand asked for by size —
+  all three from `tools/make-banner.py`.
 
   **Both leave the bottom-left corner deliberately empty.** LinkedIn drops the
   profile picture or the page logo over that corner, so anything there is
@@ -621,6 +622,11 @@ only one with a build step.
   than looks natural in isolation, because a phone crops the sides — at a 66%
   centre crop the wordmark, the tagline and the robot all still survive, and at
   the original spacing the robot lost an arm.
+
+  The 1536x768 one is **not** laid out around that overlap, because 1536x768 is
+  not a LinkedIn banner slot — it is composed as a standalone image, centred,
+  with the robot given the room the taller shape allows. If it turns out to be
+  for a profile after all, it needs the bottom-left kept clear like the others.
 
   The writing itself is still to do.
 - **A custom wordmark, later.** JetBrains Mono at -0.02em is what ships, and
