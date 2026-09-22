@@ -211,8 +211,10 @@ against all seven, so don't undo them:
 normal flow, so it pushes ordinary content down — but anything an app has
 positioned `fixed` or `absolute` stays put and ends up underneath. Such a rule
 should read `top: calc(10px + var(--shozkit-height, 0px))`; the `0px` fallback
-keeps it correct when the kit is absent. Mogo's `.sound-toggle` is the first
-user. **It is declared in `kit.css`, not measured in JavaScript** — the
+keeps it correct when the kit is absent. Mogo's sound toggle was the first and
+so far only user, and it was deleted hours later — so nothing uses this today,
+but the next pinned control will need it. **It is declared in `kit.css`, not
+measured in JavaScript** — the
 stylesheet loads async, so measuring the bar on insert reads its unstyled
 height and publishes roughly half the real number.
 
@@ -228,13 +230,19 @@ state, found by reading each repo (Phases 3 and 4 fix the unprefixed ones):
 | App | Keys today | Target prefix |
 |---|---|---|
 | Better Weather | `bw-recents`, `bw-units` | `betterweather:` |
-| Mogo | `mogoSound`, `mogoVoice` | `mogo:` |
+| Mogo | none — see below | `mogo:` |
 | Fauxcabulary | `fauxcabulary.bests` | `fauxcabulary:` |
 | Acronumbskull | `acronumbskull.bests` | `acronumbskull:` |
 | Word Square, Word Ninja, Letter Drop | keys are built at runtime — read the code | `wordsquare:` `wordninja:` `letterdrop:` |
 | Statterbrain | none found in `src/` | `statterbrain:` |
 
 Migrate existing keys when prefixing, so nobody loses a high score.
+
+Mogo is the exception: it used to store `mogoSound` and `mogoVoice`, and the
+features behind them were removed on 2026-09-22. Anyone who used it before then
+still has those two keys sitting in their browser. **Do not migrate them** —
+they belong to nothing. Deleting them during the Phase 4 pass would be a tidy
+way to see the back of them.
 
 ## How it deploys
 
