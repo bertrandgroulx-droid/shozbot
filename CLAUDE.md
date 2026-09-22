@@ -185,11 +185,39 @@ That rewrites `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`,
 <script src="https://shozbot.com/kit/kit.js" defer></script>
 ```
 
-Options on the tag: `data-app="Word Ninja"` shows the app's name on the right;
-`data-hide-standalone` hides the bar when the app is running from a phone home
-screen. Everything is namespaced `shozkit-`, the script is safe to include
-twice, and the CSS is fetched from shozbot.com — so changing this one file
-changes every app at once, wherever it is hosted.
+**All seven apps load it** (2026-09-22). It does two jobs: the bar, and
+GoatCounter. Both therefore change in one file rather than seven.
+
+Options on the tag: `data-app="Word Ninja"` names the app on the right of the
+bar; `data-hide-standalone` hides the bar when running from a phone home
+screen; `data-no-bar` counts without a bar; `data-no-count` is the reverse.
+Everything is namespaced `shozkit-`, the script is safe to include twice, and
+the CSS is fetched from shozbot.com.
+
+### What the kit had to learn about the apps
+
+Two things that were wrong in the first cut and only showed up by rendering it
+against all seven, so don't undo them:
+
+- **Every app's `<body>` is a column flex container, and four of them centre
+  their items.** That shrink-wrapped the bar to the width of its own text and
+  floated it mid-screen. `align-self: stretch`, `flex: 0 0 auto` and
+  `grid-column: 1 / -1` on `.shozkit-bar` are what make it a bar.
+- **Apps pad their own body**, so the bar sat inside that padding with a strip
+  of app background above it. `insert()` measures the body's padding and pulls
+  the bar back out with negative margins.
+
+**`--shozkit-height` is the contract for pinned controls.** The bar is in the
+normal flow, so it pushes ordinary content down — but anything an app has
+positioned `fixed` or `absolute` stays put and ends up underneath. Such a rule
+should read `top: calc(10px + var(--shozkit-height, 0px))`; the `0px` fallback
+keeps it correct when the kit is absent. Mogo's `.sound-toggle` is the first
+user. **It is declared in `kit.css`, not measured in JavaScript** — the
+stylesheet loads async, so measuring the bar on insert reads its unstyled
+height and publishes roughly half the real number.
+
+Word Square's help modal backdrop sits under the bar rather than over it. That
+is deliberate: the way back out stays reachable.
 
 ## Storage-key prefixes
 
@@ -344,11 +372,9 @@ only one with a build step.
   supplied was making its protocol-relative `//gc.zgo.at/...` an explicit
   `https://`.
 
-  **Still to decide:** whether the seven apps get it too. That answers the more
-  interesting question — which apps people come back to — and the tidy way is
-  through `kit/kit.js`, so it lives in one file rather than seven. But the kit
-  also puts the "← shozbot" bar at the top of every app, which is a visible
-  change Bertrand has not yet approved. Ask before doing it.
+  **The seven apps are counted too**, through `kit/kit.js` rather than a
+  snippet pasted into each. Paths separate them automatically, so
+  `/mogo/` and `/word-ninja/` show up as distinct pages.
 - **The share preview has never been tested for real.** `assets/og.png` exists
   and the meta tags are right, but nobody has pasted shozbot.com into a message
   and looked at the card. Thirty seconds, and worth doing before the link is
