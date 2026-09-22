@@ -250,6 +250,11 @@ loses its credit quietly instead of putting it in the wrong place.
 out what it was. A small grey credit is quieter and someone has to notice it.
 That is the cost of the 30px; Bertrand knows and chose it.
 
+**Statterbrain is allowed to be louder.** Bertrand's instruction, 2026-09-22:
+it is a desktop app, so its credit "can be more brazen in its size and
+positioning". Don't shrink it to match the phone apps when its turn comes.
+The phone apps' restraint is a phone constraint, not a house style.
+
 **Every option hides the bar and only the bar.** `data-hide-standalone` used to
 `return` out of the whole script, which quietly stopped the visit being counted
 as well — an app used mostly from a home screen would have looked unused.
