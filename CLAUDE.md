@@ -612,8 +612,8 @@ only one with a build step.
   takes only flat colour. **The banners are done too** (2026-09-22):
   `linkedin-banner-1584x396.png` for a personal profile,
   `linkedin-cover-1128x191.png` for a company page, and
-  `shozbot-banner-1536x768.png`, a 2:1 image Bertrand asked for by size —
-  all three from `tools/make-banner.py`.
+  `shozbot-banner-1536x768.png` (2:1) and `shozbot-banner-1512x256.png` (5.9:1),
+  both asked for by size — all four from `tools/make-banner.py`.
 
   **Both leave the bottom-left corner deliberately empty.** LinkedIn drops the
   profile picture or the page logo over that corner, so anything there is
@@ -627,6 +627,12 @@ only one with a build step.
   not a LinkedIn banner slot — it is composed as a standalone image, centred,
   with the robot given the room the taller shape allows. If it turns out to be
   for a profile after all, it needs the bottom-left kept clear like the others.
+
+  The 1512x256 one **is** laid out around the overlap, because it is exactly
+  the company cover's 5.9:1 shape at a larger size, which suggests it sits
+  under a logo — and an empty corner costs nothing if it turns out not to. It
+  is drawn at that size rather than enlarged from the 1128px cover, which would
+  soften the type and the photograph.
 
   The writing itself is still to do.
 - **A custom wordmark, later.** JetBrains Mono at -0.02em is what ships, and

@@ -9,6 +9,7 @@ differently:
   assets/social/linkedin-banner-1584x396.png   a personal profile's background
   assets/social/linkedin-cover-1128x191.png    a company page's cover
   assets/social/shozbot-banner-1536x768.png    a 2:1 image, asked for by size
+  assets/social/shozbot-banner-1512x256.png    a 5.9:1 strip, asked for by size
 
 The two LinkedIn ones leave the bottom-left corner empty on purpose. LinkedIn drops the profile
 picture (or the page logo) over that corner, so anything put there is hidden
@@ -92,6 +93,17 @@ def main():
            rule=5, robot_h=152, robot_pad=78, robot_bottom=14, text_x=250,
            mark_px=52, tag_px=20, url_px=14,
            wordmark_y=50, tag_y=120, url_y=150)
+
+    # 1512x256, asked for by size. It is the same 5.9:1 shape as the company
+    # cover above, so it is drawn at those proportions scaled up rather than by
+    # enlarging that PNG, which would soften the type and the photograph. The
+    # bottom-left is kept clear on the same reasoning as the cover: the shape
+    # says this is likely to sit under a logo, and the empty corner costs
+    # nothing if it turns out not to.
+    banner(out / "shozbot-banner-1512x256.png", (1512, 256),
+           rule=7, robot_h=228, robot_pad=112, robot_bottom=12, text_x=310,
+           mark_px=70, tag_px=27, url_px=18,
+           wordmark_y=66, tag_y=160, url_y=200)
 
     # A 2:1 image at the size Bertrand asked for. Nothing overlaps it, so it is
     # balanced for its own sake: type left, robot right, both given the room the
