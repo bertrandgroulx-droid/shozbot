@@ -110,7 +110,7 @@ assets/
   robot-small.png / .webp   160px wide, for the footer
   robot-three-eyes*         the second robot — he is the 404 page
   social/                   square opaque icons for LinkedIn (1200/400/300),
-                            plus the two LinkedIn banners
+                            plus the five banners
   og.png                    1200×630 share preview
   favicon.svg .ico, apple-touch-icon.png, icon-192.png, icon-512.png
   icons/                    the three browser-icon candidates as SVG
@@ -121,7 +121,7 @@ kit/                shared studio kit — see below
 preview/            decision pages for Bertrand; noindex, not linked from the site
 tools/make-icons.py  rebuilds the whole favicon set from one candidate SVG
 tools/make-social.py rebuilds the share image and the LinkedIn icons
-tools/make-banner.py rebuilds the two LinkedIn banners
+tools/make-banner.py rebuilds all five banners
 tools/fonts/         static JetBrains Mono, used only for drawing the share image
 ```
 
@@ -612,8 +612,9 @@ only one with a build step.
   takes only flat colour. **The banners are done too** (2026-09-22):
   `linkedin-banner-1584x396.png` for a personal profile,
   `linkedin-cover-1128x191.png` for a company page, and
-  `shozbot-banner-1536x768.png` (2:1) and `shozbot-banner-1512x256.png` (5.9:1),
-  both asked for by size — all four from `tools/make-banner.py`.
+  `shozbot-banner-1536x768.png` (2:1), `shozbot-banner-1512x256.png` (5.9:1) and
+  `shozbot-banner-4200x700.png` (6:1), the last three asked for by size — all
+  five from `tools/make-banner.py`.
 
   **Both leave the bottom-left corner deliberately empty.** LinkedIn drops the
   profile picture or the page logo over that corner, so anything there is
@@ -633,6 +634,18 @@ only one with a build step.
   under a logo — and an empty corner costs nothing if it turns out not to. It
   is drawn at that size rather than enlarged from the 1128px cover, which would
   soften the type and the photograph.
+
+  The 4200x700 one follows the 1536x768's reasoning rather than the cover's: it
+  is not a LinkedIn slot either, so it is composed for itself and the type sits
+  nearer the left edge than the cover's does.
+
+  **`make-banner.py` now refuses to upscale the robot.** The cut-out is 766x900,
+  and a banner asking for more than 900px of robot would stretch a photograph
+  past its own resolution — the mohawk fibres and the wire limbs are the first
+  things to go to mush. The script raises rather than quietly shipping a soft
+  one, and says to re-cut a larger `robot.png` from `assets/photos/` instead.
+  Worth knowing before adding a sixth size: at 700px tall the robot is already
+  at 616px, so a much taller banner will hit it.
 
   The writing itself is still to do.
 - **A custom wordmark, later.** JetBrains Mono at -0.02em is what ships, and

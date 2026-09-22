@@ -10,6 +10,7 @@ differently:
   assets/social/linkedin-cover-1128x191.png    a company page's cover
   assets/social/shozbot-banner-1536x768.png    a 2:1 image, asked for by size
   assets/social/shozbot-banner-1512x256.png    a 5.9:1 strip, asked for by size
+  assets/social/shozbot-banner-4200x700.png    a 6:1 strip, asked for by size
 
 The two LinkedIn ones leave the bottom-left corner empty on purpose. LinkedIn drops the profile
 picture (or the page logo) over that corner, so anything put there is hidden
@@ -58,6 +59,14 @@ def banner(path, size, *, rule, robot_h, robot_pad, robot_bottom, text_x,
     d.rectangle([0, 0, w, rule], fill=PURPLE)
 
     robot = Image.open(ROOT / "assets/robot.png").convert("RGBA")
+    # The cut-out is 766x900. Asking for more than that stretches a photograph
+    # past its own resolution, and the mohawk fibres and wire limbs are exactly
+    # what goes to mush first — so refuse rather than quietly ship a soft one.
+    if robot_h > robot.height:
+        raise SystemExit(
+            f"{path.name}: robot_h={robot_h} exceeds the photo's {robot.height}px. "
+            "Re-cut a larger robot.png from assets/photos/ rather than upscaling."
+        )
     robot = robot.resize(
         (round(robot.width * robot_h / robot.height), robot_h), Image.LANCZOS
     )
@@ -104,6 +113,16 @@ def main():
            rule=7, robot_h=228, robot_pad=112, robot_bottom=12, text_x=310,
            mark_px=70, tag_px=27, url_px=18,
            wordmark_y=66, tag_y=160, url_y=200)
+
+    # 4200x700, asked for by size. Near enough the 1512x256's shape, but not a
+    # LinkedIn slot either, so it follows the 1536x768 above and is composed for
+    # itself rather than around a logo — the type starts nearer the left edge
+    # than the cover's does. The robot lands at 633px tall against a 900px
+    # original, so it is still being scaled down and stays sharp.
+    banner(out / "shozbot-banner-4200x700.png", (4200, 700),
+           rule=18, robot_h=616, robot_pad=300, robot_bottom=34, text_x=380,
+           mark_px=180, tag_px=60, url_px=38,
+           wordmark_y=175, tag_y=405, url_y=495)
 
     # A 2:1 image at the size Bertrand asked for. Nothing overlaps it, so it is
     # balanced for its own sake: type left, robot right, both given the room the
