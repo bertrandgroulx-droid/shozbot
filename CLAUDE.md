@@ -437,6 +437,12 @@ shorter than the click-through would be, and it keeps the page self-contained
 like everything else here. If outbound links are ever wanted instead, check the
 URLs first — they cannot be verified from this container.
 
+**Statterbrain is deliberately outside it.** The note sits between **Start
+here** and **Everyday**, and says "the apps *below*" rather than "these", so it
+covers the two phone-first sections and not the one desktop app. Bertrand's
+call, and the reason the placement is not arbitrary — moving this note above
+Start here would quietly start recommending Statterbrain for a phone.
+
 **It only says what is true because every app supports it**: all nine declare
 `display: standalone` with icons in their manifests, checked before the note
 was written. If a future app skips its manifest, this note starts lying about
