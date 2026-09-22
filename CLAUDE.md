@@ -197,8 +197,10 @@ That rewrites `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`,
 ```
 
 **All eight apps load it** (2026-09-22) — the seven github.io ones and
-Statterbrain. It does two jobs: the bar, and GoatCounter. Both therefore change
-in one file rather than eight.
+Statterbrain. It does two jobs: the link home, and GoatCounter. Both therefore
+change in one file rather than eight. Since the byline replaced the bar, seven
+apps take their credit from `data-by` and Statterbrain loads the kit purely to
+be counted (`data-no-bar`).
 
 Options on the tag: `data-app="Word Ninja"` names the app on the right of the
 bar; `data-hide-standalone` hides the bar when running from a phone home
@@ -206,26 +208,55 @@ screen; `data-no-bar` counts without a bar; `data-no-count` is the reverse.
 Everything is namespaced `shozkit-`, the script is safe to include twice, and
 the CSS is fetched from shozbot.com.
 
-**Three apps carry `data-hide-standalone`** (2026-09-22) — Word Square, Word
-Ninja and Letter Drop, built to fill exactly one phone screen. Installed to a
-home screen there is no browser to go back to, so the bar is 30px of lost
-playing area and nothing else. Better Weather had it too until it moved to the
-byline below.
+**Nothing carries `data-hide-standalone` any more** (2026-09-22). It existed
+because the bar cost 30px of a phone screen; every app has since moved to the
+byline, which has nothing worth hiding. The option is still in `kit.js` for a
+future app that wants a bar.
 
-### The byline — `data-by`, the quiet alternative to the bar
+### The byline — `data-by`, which replaced the bar everywhere
 
-**Better Weather is the first user** (2026-09-22) and the rest may follow;
-Bertrand asked to try it there before deciding. Instead of a full-width strip,
-the words **by shozbot** sit just after whatever `data-by`'s selector matches —
-the app's own name or tagline — clickable, going to the studio. It borrows a
-line the app already draws, so where it runs on after a name it costs no height
-at all; `data-by-block` puts it on its own line, which costs about 31px.
+**No app has the bar now** (2026-09-22). Instead the words **by shozbot** sit
+just after whatever `data-by`'s selector matches — the app's own name or
+tagline — clickable, going to the studio. It borrows a line the app already
+draws, so where it runs on after a name it costs no height at all;
+`data-by-block` puts it on its own line, which costs about 30px.
 
-Measured on Better Weather at five phone sizes: the top row is 36px with the
-credit and 36px without. Its own name is shown at every width now rather than
-hiding below 420px, in a two-column grid with the sun beside a stacked
-name-over-credit. Keeping the sun costs the search box 33px on a small iPhone;
-dropping `.brand .logo` gets it back, if that ever matters more.
+| App | Where its credit hangs |
+|---|---|
+| Better Weather | `.brand .name`, centred under the app name |
+| Word Ninja | `.brand .name`, centred under the app name |
+| Letter Drop | `.bar h1`, centred under the title |
+| Word Square | `.meta .puz` — **not** under its name; see below |
+| Mogo, Fauxcabulary, Acronumbskull | `data-by-block` under the tagline |
+| Statterbrain | written into the app, not injected; see below |
+
+**Better Weather and Word Ninja show their names again.** Both hid them below
+420px and 400px to make room. A two-column grid puts the app's emoji beside a
+stacked name-over-credit, and neither top row got any taller: their heights
+were already set by the search box and the buttons, so two small lines dropped
+into space that was always there. Keeping Better Weather's sun costs its search
+box 33px on a small iPhone — dropping `.brand .logo` gets that back if it ever
+matters more.
+
+**Word Square is deliberately different.** Its own stylesheet says "Two
+segmented controls need the room; the wordmark is the first to go", and on a
+phone the wordmark is already gone. Bringing it back pushed the `?` off a
+375px screen. So its credit rides the `.meta` row beside the puzzle date
+instead, with `margin-right: auto` on it to keep the timer at the far end.
+
+**Statterbrain writes its own, and loads the kit with `data-no-bar`.** Its
+sidebar unmounts whole when collapsed, so a node the kit had inserted would go
+with it and never come back. The credit is JSX in `src/components/Sidebar.tsx`
+with `.studio-credit` in `src/index.css`, at the foot of the sidebar so it is
+on every page. Per Bertrand: a desktop app may be **more brazen in size and
+positioning**, so it is 12px and plainly legible rather than the phone apps'
+whisper. The kit still counts the visit.
+
+Measured across all eight at iPhone SE, iPhone 14 and Pixel 7 sizes: every one
+shows the credit, none shows a bar, nothing is clipped, nothing scrolls
+sideways, and a tap reaches shozbot.com. Height cost is zero everywhere except
+Fauxcabulary and Acronumbskull, which gain about 30px on pages that already
+scroll.
 
 Three things about it not to undo:
 
@@ -252,8 +283,8 @@ That is the cost of the 30px; Bertrand knows and chose it.
 
 **Statterbrain is allowed to be louder.** Bertrand's instruction, 2026-09-22:
 it is a desktop app, so its credit "can be more brazen in its size and
-positioning". Don't shrink it to match the phone apps when its turn comes.
-The phone apps' restraint is a phone constraint, not a house style.
+positioning". Don't shrink it to match the phone apps. The phone apps'
+restraint is a phone constraint, not a house style.
 
 **Every option hides the bar and only the bar.** `data-hide-standalone` used to
 `return` out of the whole script, which quietly stopped the visit being counted
