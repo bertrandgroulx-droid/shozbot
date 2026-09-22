@@ -409,6 +409,44 @@ the theme and background colours respectively. Orientation is deliberately left
 unset rather than locked to portrait the way Word Square's is — this app is a
 centred column and reads fine either way.
 
+### The Statterbrain card carries two links, and is not an `<a>`
+
+Added 2026-09-22 at Bertrand's request: the card credits the course Statterbrain
+supports — **Type-Well Curve Fundamentals at SAGA Wisdom** — linking to
+`https://sagawisdom.com/courses/type-well-curve-fundamentals/`. That URL and the
+course's name are not typed from memory: they are `COURSE` in Statterbrain's own
+`src/lib/links.ts`, which is where to check them if either ever changes.
+
+**The card is a `<div>`, not an `<a>`, and must stay that way.** HTML does not
+allow one link inside another, and this card now needs two. The whole card is
+still clickable: `.card-title-link::after` is stretched over it with
+`position: absolute; inset: 0`, and the card is `position: relative` so that
+lands on the card rather than the page.
+
+Three things about it that are easy to break:
+
+- **Only the course link is lifted above the overlay, not the whole credit
+  line.** `position: relative` on `.card-aside a` alone. Put it on `.card-aside`
+  and the space around the words becomes a dead patch in the middle of a card
+  that is meant to be clickable everywhere.
+- **The credit's rules are qualified `.card--feature .card-aside`.** Unqualified,
+  `.card--feature p` wins on specificity and hands the credit its 56ch
+  max-width, so it refuses to wrap in its own column and squeezes the
+  description hard enough to push the badge onto a line of its own.
+- **`.nowrap` holds "Type-Well" together.** In a narrow column, line breaking
+  treats the existing hyphen as a break opportunity and splits it as
+  "Type-" / "Well", which reads as a typo. No `hyphens` value prevents that.
+
+The card also lost its own `:focus-visible` when it stopped being a link, so
+`.card--feature:has(.card-title-link:focus-visible)` puts the lift back.
+
+Verified by clicking by coordinate at 1280px and 390px: the card body, the icon
+and the space beside the credit all go to `/statterbrain/`, and the course words
+go to SAGA Wisdom. Note that a locator click will *fail* on the card's inner
+elements — Playwright refuses to click something covered, and names
+`.card-title-link` as the interceptor. That is the stretched link working, not a
+bug.
+
 ## Storage-key prefixes
 
 All apps share the `shozbot.com` origin now, so unprefixed localStorage keys

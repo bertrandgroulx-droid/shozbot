@@ -285,6 +285,79 @@ a { color: var(--mohawk); }
 .card--feature h3 { font-size: 1.45rem; }
 .card--feature p { font-size: 1.02rem; max-width: 56ch; }
 
+/* The featured card carries a second link — the course it supports — so it is
+   a <div> with the title's link stretched over the whole thing rather than an
+   <a> wrapping everything. Two links cannot nest. */
+.card--feature { position: relative; }
+
+.card-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* This is what makes the whole card clickable. */
+.card-title-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.card-title-link:focus-visible {
+  outline: 2px solid var(--mohawk);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* …and this restores the lift the other cards get on keyboard focus, which the
+   card itself no longer receives now that the link inside it does. */
+.card--feature:has(.card-title-link:focus-visible) {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+  border-color: color-mix(in srgb, var(--mohawk) 45%, var(--line));
+}
+
+/* The course credit. Under the description on a narrow screen; beside it, in a
+   third column, once there is room. */
+/* Qualified with .card--feature so these beat `.card--feature p`, which sets a
+   font-size and a 56ch max-width. Left unqualified, the credit inherits that
+   56ch, refuses to wrap in its own column, and squeezes the description hard
+   enough to push the badge onto a line of its own. */
+.card--feature .card-aside {
+  grid-column: 2;
+  margin: 14px 0 0;
+  max-width: 44ch;
+  font-size: .85rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* Only the words themselves are lifted above the stretched link, not the whole
+   line — otherwise the space around them becomes a dead patch in the middle of
+   a card that is supposed to be clickable everywhere. */
+.card-aside a {
+  position: relative;
+  color: inherit;
+  text-decoration-color: var(--mohawk);
+}
+.card-aside a:hover { color: var(--mohawk); }
+
+/* In its narrow column the credit broke "Type-Well" at the hyphen, which reads
+   as a typo. Line breaking treats an existing hyphen as a break opportunity,
+   and no hyphens property changes that — the fragment has to be held together. */
+.nowrap { white-space: nowrap; }
+
+@media (min-width: 900px) {
+  .card--feature { grid-template-columns: 72px 1fr auto; }
+  .card--feature .card-aside {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: center;
+    margin: 0 0 0 36px;
+    max-width: 17ch;
+    text-align: right;
+  }
+}
+
 .badge {
   display: inline-block;
   margin-left: 10px;

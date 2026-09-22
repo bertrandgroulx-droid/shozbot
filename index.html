@@ -54,17 +54,27 @@
 
   <section class="section wrap">
     <div class="section-head"><h2>Start here</h2></div>
-    <a class="card card--feature" href="/statterbrain/">
+    <!-- This card is a <div>, not an <a>, because it holds two different links
+         and HTML does not allow one inside another. The whole card is still
+         clickable: .card-title-link's ::after is stretched over it. The course
+         credit sits above that with its own z-index, so it gets its own taps. -->
+    <div class="card card--feature">
       <img src="/assets/apps/statterbrain.png" alt="" width="72" height="72" loading="lazy">
       <div>
-        <h3>Statterbrain <span class="badge">Best on desktop</span></h3>
+        <h3><a class="card-title-link" href="/statterbrain/">Statterbrain</a>
+            <span class="badge">Best on desktop</span></h3>
         <p>
           A statistics workbench for people with a CSV and a question. Probit
           analysis, multivariate tools, charts you can export — and your data
           never leaves your browser.
         </p>
       </div>
-    </a>
+      <p class="card-aside">
+        Supports the
+        <a href="https://sagawisdom.com/courses/type-well-curve-fundamentals/"><span
+        class="nowrap">Type-Well</span> Curve Fundamentals</a> course at SAGA Wisdom
+      </p>
+    </div>
   </section>
 
   <section class="section wrap">
