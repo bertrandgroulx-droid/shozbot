@@ -409,6 +409,13 @@ the theme and background colours respectively. Orientation is deliberately left
 unset rather than locked to portrait the way Word Square's is — this app is a
 centred column and reads fine either way.
 
+### The three shelves, and why Technical is not called "Start here"
+
+Renamed 2026-09-25 at Bertrand's request. The first shelf names **what it
+holds** rather than where to begin, so more technical apps can join Statterbrain
+on it. It is also the only shelf that is not phone-first, which is why it alone
+carries no `.section-note` and why the add-to-home-screen note sits below it.
+
 ### Everyday and Games say "phone-first"
 
 Added 2026-09-22. The section headings carry a quiet `.section-note` beside
@@ -437,11 +444,12 @@ shorter than the click-through would be, and it keeps the page self-contained
 like everything else here. If outbound links are ever wanted instead, check the
 URLs first — they cannot be verified from this container.
 
-**Statterbrain is deliberately outside it.** The note sits between **Start
-here** and **Everyday**, and says "the apps *below*" rather than "these", so it
-covers the two phone-first sections and not the one desktop app. Bertrand's
-call, and the reason the placement is not arbitrary — moving this note above
-Start here would quietly start recommending Statterbrain for a phone.
+**Statterbrain is deliberately outside it.** The note sits between
+**Technical** and **Everyday**, and says "the apps *below*" rather than
+"these", so it covers the two phone-first sections and not the one desktop app.
+Bertrand's call, and the reason the placement is not arbitrary — moving this
+note above Technical would quietly start recommending Statterbrain for a
+phone.
 
 **It only says what is true because every app supports it**: all nine declare
 `display: standalone` with icons in their manifests, checked before the note
