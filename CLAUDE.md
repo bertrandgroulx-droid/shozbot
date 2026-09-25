@@ -409,12 +409,39 @@ the theme and background colours respectively. Orientation is deliberately left
 unset rather than locked to portrait the way Word Square's is — this app is a
 centred column and reads fine either way.
 
-### The three shelves, and why Technical is not called "Start here"
+### The three shelves, their taglines, and why Technical is not "Start here"
 
 Renamed 2026-09-25 at Bertrand's request. The first shelf names **what it
 holds** rather than where to begin, so more technical apps can join Statterbrain
-on it. It is also the only shelf that is not phone-first, which is why it alone
-carries no `.section-note` and why the add-to-home-screen note sits below it.
+on it. It is still the only shelf that is not phone-first, which is why the
+add-to-home-screen note sits below it.
+
+**All three now carry a tagline** (2026-09-25), which is where the studio's
+range lives on the page:
+
+| Shelf | `.section-note` |
+|---|---|
+| Technical | deep practice, made usable |
+| Everyday | small efficiencies · phone-first |
+| Games | a puzzle is exercise · phone-first |
+
+Bertrand wanted the range stated and the games framed as exercise rather than
+only fun. This is where that went, rather than a paragraph in the hero: the
+homepage's job is to get someone into an app, and prose explaining the page
+above the page works against it. The games line in particular has to sit beside
+the games — in an About section it is a claim, above the six cards it is a
+frame.
+
+**`white-space: nowrap` came off `.section-note` when they grew.** As the word
+"phone-first" it fitted anywhere; as a phrase it ran off the edge of a small
+phone. Measured at 1280, 430, 390, 375 and 320px: nothing overflows and nothing
+scrolls sideways, and at 320px the note wraps to a second line, which is the
+graceful failure rather than a bug.
+
+**The claim is deliberately soft.** "A puzzle that makes you work is exercise"
+is unarguable; "improves cognitive function" is a claim that would have to be
+defended, and brain-training companies have been fined over exactly that. Keep
+it as invitation, not promise.
 
 ### Everyday and Games say "phone-first"
 

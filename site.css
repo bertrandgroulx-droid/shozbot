@@ -272,7 +272,10 @@ a { color: var(--mohawk); }
   font-size: .82rem;
   color: var(--muted);
   opacity: .8;
-  white-space: nowrap;
+  /* No nowrap: these grew from "phone-first" to a phrase, and held on one line
+     they run past the edge of a small phone. Wrapping is the graceful failure;
+     the rule after them takes whatever room is left. */
+  min-width: 0;
 }
 
 .section-head::after {
