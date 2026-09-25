@@ -471,6 +471,12 @@ shorter than the click-through would be, and it keeps the page self-contained
 like everything else here. If outbound links are ever wanted instead, check the
 URLs first — they cannot be verified from this container.
 
+**The iPhone step names the button, not the browser** (2026-09-25). It used to
+say Safari. Since iOS 16.4, Chrome, Edge and Firefox can all add a web app to
+the home screen, and every one of them puts it behind the same Share button —
+so naming the button is shorter *and* true of more phones than naming Safari
+was. Android still names Chrome, because its menu differs by browser.
+
 **Statterbrain is deliberately outside it.** The note sits between
 **Technical** and **Everyday**, and says "the apps *below*" rather than
 "these", so it covers the two phone-first sections and not the one desktop app.
@@ -489,6 +495,11 @@ keeps working with scripts off. The default disclosure triangle is replaced
 with a `+` / `−` in the mohawk colour.
 
 ### The Statterbrain card carries two links, and is not an `<a>`
+
+The card's description names **type-well curve work** as what the app is for,
+rather than describing it generically (2026-09-25, Bertrand's call). That is the
+phrase his audience would recognise and search for, and it matches how
+Statterbrain describes itself on its own welcome screen.
 
 Added 2026-09-22 at Bertrand's request: the card credits the course Statterbrain
 supports — **Type-Well Curve Fundamentals at SAGA Wisdom** — linking to
