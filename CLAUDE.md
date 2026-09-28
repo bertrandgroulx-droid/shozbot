@@ -575,7 +575,7 @@ within a minute. There is no build command; Vercel serves the files as they are.
 the nameservers to Vercel**: the mail records live in that entry and would not
 come along.
 
-### The Squarespace DNS as it now stands (2026-09-22, done)
+### The Squarespace DNS as it now stands (2026-09-28, done)
 
 **Custom records** — the two that point the domain at Vercel:
 
@@ -600,6 +600,17 @@ reappears, something has re-run a Squarespace preset and it needs removing again
 
 Verified by resolver on 2026-09-22: `shozbot.com` → `216.198.79.1`, and
 `www.shozbot.com` resolves to Vercel addresses.
+
+**Mail is fully set up as of 2026-09-28.** `shozbot@shozbot.com` is a real Titan
+mailbox ($4/month) and the footer address stands as written. The dangerous
+`v=spf1 -all` is gone — Titan's setup replaced it with
+`v=spf1 include:spf.titan.email ~all` and a permissive DMARC (`p=none`), which is
+correct for a domain that now sends mail. **DKIM was added on 2026-09-28** and
+Titan has verified it: one further custom record, a TXT on the `_domainkey`
+selector Titan generated, holding the key it issued. Without it Gmail trusts the
+mail less; with it, a test message from that address reached a Gmail inbox, which
+is the check worth passing because Gmail is the strict one. The key is Titan's —
+if it is ever regenerated, that record's value has to be replaced by hand.
 
 ### Verified on the live deployment, 2026-09-22
 
@@ -721,17 +732,6 @@ only one with a build step.
   Mapbox account, or take the card off and let the free limit enforce itself
   (the map would break rather than bill; `MAPBOX_TOKEN = ""` is the escape
   hatch either way). Bertrand knows; not yet decided.
-- **`shozbot@shozbot.com` is a real Titan mailbox** ($4/month). The footer
-  address stands as written. The dangerous `v=spf1 -all` is gone — Titan's setup
-  replaced it with `v=spf1 include:spf.titan.email ~all` and a permissive
-  DMARC (`p=none`), which is correct for a domain that now sends mail.
-
-  Two things left on it: **no DKIM record is visible** in the DNS, so it is
-  worth checking Titan's own dashboard for one — without it, outgoing mail is
-  trusted less, though the permissive DMARC means nothing is rejected. And
-  **send a test from that address to a Gmail account** and confirm it reaches
-  the inbox rather than spam, before the alumni email goes out. Gmail is strict,
-  which makes it the test worth passing.
 - A new Statterbrain icon, built around a brain, replacing the robot it lent
   to the studio.
 - **LinkedIn content, once the site is live.** Bertrand wants to post about
