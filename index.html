@@ -53,73 +53,6 @@
 <main id="apps">
 
   <section class="section wrap">
-    <!-- "Technical", not "Start here": it names what the section holds rather
-         than where to begin, so more technical apps can join Statterbrain here
-         later. It is also the one section that is not phone-first, which is why
-         it carries no note and sits above the add-to-home-screen one. -->
-    <div class="section-head"><h2>Technical</h2><span class="section-note">deep practice, made usable</span></div>
-    <!-- This card is a <div>, not an <a>, because it holds two different links
-         and HTML does not allow one inside another. The whole card is still
-         clickable: .card-title-link's ::after is stretched over it. The course
-         credit sits above that with its own z-index, so it gets its own taps. -->
-    <div class="card card--feature">
-      <img src="/assets/apps/statterbrain.png" alt="" width="72" height="72" loading="lazy">
-      <div>
-        <h3><a class="card-title-link" href="/statterbrain/">Statterbrain</a>
-            <span class="badge">Best on desktop</span></h3>
-        <p>
-          A statistics workbench for type-well curve work: probit analysis,
-          multivariate tools, sequential accumulation, charts you can export.
-          Bring a CSV and a question — and your data never leaves your browser.
-        </p>
-      </div>
-      <p class="card-aside">
-        Supports the
-        <a href="https://sagawisdom.com/courses/type-well-curve-fundamentals/"><span
-        class="nowrap">Type-Well</span> Curve Fundamentals</a> course at SAGA Wisdom
-      </p>
-    </div>
-  </section>
-
-  <!-- Written here rather than linked out to Apple's and Google's own help
-       pages: those move and get renamed, and the instructions are three steps
-       each — shorter than the click-through. A <details>, so it costs nothing
-       when closed and needs no JavaScript.
-
-       Every one of the nine apps declares display:standalone with icons, so
-       this actually works rather than being a nice idea. -->
-  <section class="section wrap">
-    <details class="install">
-      <!-- "the apps below", not "these": this note sits between Technical and
-           Everyday precisely so it excludes Statterbrain, which is a desktop
-           app and the one thing on the page you would not want on a phone. -->
-      <summary>Add any of the apps below to your home screen — they open like an app</summary>
-      <div class="install-body">
-        <!-- Deliberately does not name the browser. Since iOS 16.4, Chrome,
-             Edge and Firefox can all add a web app to the home screen, not
-             just Safari — and all of them put it behind the same Share button.
-             Naming the button rather than the browser is both shorter and
-             true of more phones than naming Safari would be. -->
-        <p>
-          <b>iPhone or iPad.</b> Tap the Share button — the square with an arrow
-          coming out of it — then choose <b>Add to Home Screen</b>. Any browser
-          will do.
-        </p>
-        <p>
-          <b>Android.</b> Open the app in Chrome, tap the <b>⋮</b> menu, then
-          choose <b>Install app</b>. Older versions call it
-          <b>Add to home screen</b>.
-        </p>
-        <p class="install-why">
-          It is still just the website — nothing is downloaded, and no app store
-          is involved. You get the icon on your home screen, and the app opens
-          full screen without the address bar.
-        </p>
-      </div>
-    </details>
-  </section>
-
-  <section class="section wrap">
     <!-- "phone-first", not "phone apps": these all work on a laptop, and saying
          otherwise would put off someone clicking from one. They are just
          plainly designed for a phone. The mirror of Statterbrain's badge. -->
@@ -147,9 +80,92 @@
     </div>
   </section>
 
+  <!-- Written here rather than linked out to Apple's and Google's own help
+       pages: those move and get renamed, and the instructions are three steps
+       each — shorter than the click-through. A <details>, so it costs nothing
+       when closed and needs no JavaScript.
+
+       Every one of the nine apps declares display:standalone with icons, so
+       this actually works rather than being a nice idea. -->
+  <section class="section wrap">
+    <details class="install">
+      <!-- Names the two shelves rather than saying "the apps below". It used to
+           sit between Technical and Everyday, where "below" neatly excluded
+           Statterbrain — a desktop app and the one thing here you would not
+           want on a phone. With Everyday moved to the top and Technical second,
+           "below" would start recommending it for one. Naming them is
+           placement-proof. -->
+      <summary>Add the Everyday and Games apps to your home screen — they open like an app</summary>
+      <div class="install-body">
+        <!-- Deliberately does not name the browser. Since iOS 16.4, Chrome,
+             Edge and Firefox can all add a web app to the home screen, not
+             just Safari — and all of them put it behind the same Share button.
+             Naming the button rather than the browser is both shorter and
+             true of more phones than naming Safari would be. -->
+        <p>
+          <b>iPhone or iPad.</b> Tap the Share button — the square with an arrow
+          coming out of it — then choose <b>Add to Home Screen</b>. Any browser
+          will do.
+        </p>
+        <p>
+          <b>Android.</b> Open the app in Chrome, tap the <b>⋮</b> menu, then
+          choose <b>Install app</b>. Older versions call it
+          <b>Add to home screen</b>.
+        </p>
+        <p class="install-why">
+          It is still just the website — nothing is downloaded, and no app store
+          is involved. You get the icon on your home screen, and the app opens
+          full screen without the address bar.
+        </p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section wrap">
+    <!-- "Technical", not "Start here": it names what the section holds rather
+         than where to begin, so more technical apps can join Statterbrain here
+         later. It sits second rather than first because Better Weather leads
+         the launch and belongs at the top of the page; it is still the one
+         section that is not phone-first, which is why the add-to-home-screen
+         note above it names its shelves rather than saying "below". -->
+    <div class="section-head"><h2>Technical</h2><span class="section-note">deep practice, made usable</span></div>
+    <!-- This card is a <div>, not an <a>, because it holds two different links
+         and HTML does not allow one inside another. The whole card is still
+         clickable: .card-title-link's ::after is stretched over it. The course
+         credit sits above that with its own z-index, so it gets its own taps. -->
+    <div class="card card--feature">
+      <img src="/assets/apps/statterbrain.png" alt="" width="72" height="72" loading="lazy">
+      <div>
+        <h3><a class="card-title-link" href="/statterbrain/">Statterbrain</a>
+            <span class="badge">Best on desktop</span></h3>
+        <p>
+          A statistics workbench for type-well curve work: probit analysis,
+          multivariate tools, sequential accumulation, charts you can export.
+          Bring a CSV and a question — and your data never leaves your browser.
+        </p>
+      </div>
+      <p class="card-aside">
+        Supports the
+        <a href="https://sagawisdom.com/courses/type-well-curve-fundamentals/"><span
+        class="nowrap">Type-Well</span> Curve Fundamentals</a> course at SAGA Wisdom
+      </p>
+    </div>
+  </section>
+
   <section class="section wrap">
     <!-- "Games", not "Word games": five of the six still are, but Would You
-         Rather is not about words at all. -->
+         Rather is not about words at all.
+
+         Each card carries a skills line under its description: what the game
+         asks of you, never what it improves. "Quick recall" is unarguable;
+         "improves recall" is the claim brain-training companies have been
+         fined over. It is the section note's line, held six more times.
+
+         They also have to differ. Six cards all reading "Vocabulary · Pattern
+         spotting · Focus" would be noise, so the second and third tag carry
+         the distinction: Word Square deduces, Letter Drop sequences, Word
+         Ninja is the only one with a clock and a moving target. Would You
+         Rather takes two rather than three — the cap is three, not a quota. -->
     <div class="section-head"><h2>Games</h2><span class="section-note">a puzzle is exercise · phone-first</span></div>
     <div class="grid">
 
@@ -159,6 +175,7 @@
           <h3>Word Square</h3>
           <p>Fill the grid so every row and every column spells a word. The tray
              holds exactly the letters you need — no spares.</p>
+          <p class="card-skills">Vocabulary · Deduction · Spatial reasoning</p>
         </div>
       </a>
 
@@ -168,6 +185,7 @@
           <h3>Word Ninja</h3>
           <p>Letters fall past you. Drag a finger through them to cut out a word
              before the clock runs out.</p>
+          <p class="card-skills">Vocabulary · Quick recall · Hand-eye timing</p>
         </div>
       </a>
 
@@ -177,6 +195,7 @@
           <h3>Letter Drop</h3>
           <p>Start with a five-letter word and drop letters down through shorter
              and shorter words until one is left.</p>
+          <p class="card-skills">Vocabulary · Spotting patterns · Planning ahead</p>
         </div>
       </a>
 
@@ -186,6 +205,7 @@
           <h3>Fauxcabulary</h3>
           <p>Ten obscure words with straight-faced definitions. Some of them are
              invented. Say which.</p>
+          <p class="card-skills">Vocabulary · Word roots · Judging plausibility</p>
         </div>
       </a>
 
@@ -195,6 +215,7 @@
           <h3>Acronumbskull</h3>
           <p>Ten acronyms and what they supposedly stand for. Some are genuine.
              Recognising the letters will not save you.</p>
+          <p class="card-skills">General knowledge · Judging plausibility · Resisting the obvious</p>
         </div>
       </a>
 
@@ -204,6 +225,7 @@
           <h3>Would You Rather</h3>
           <p>Press the button and get stuck between two impossible options.
              Neither of them is the sensible one.</p>
+          <p class="card-skills">Weighing trade-offs · Knowing your own mind</p>
         </div>
       </a>
 

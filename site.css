@@ -341,6 +341,36 @@ a { color: var(--mohawk); }
   color: var(--muted);
 }
 
+/* What a game asks of you, under its description. Quieter than the line it
+   follows: the description sells the game, this is metadata somebody reads
+   only when weighing one game against another — so it is smaller again than
+   .section-note and carries the same muted colour at lower opacity.
+
+   Deliberately not a badge row. Six cards each wearing three pills would
+   shout louder than the descriptions they sit under, and the point of the
+   line is that it waits to be noticed. */
+/* What a game asks of you, under its description. The hairline is what makes
+   it read as a different kind of information rather than another sentence of
+   the paragraph above — tried on its own, a gap and a smaller size were not
+   enough, because the description's own line spacing swallows them.
+
+   Deliberately not a badge row. Six cards each wearing three pills would
+   shout louder than the descriptions they sit under, and the point of the
+   line is that it waits to be noticed. */
+.card-skills {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: .76rem;
+  line-height: 1.45;
+  /* Mohawk rather than --muted. In --muted it was the same colour as the
+     description right above it and read as a continuation of it; colour is
+     what says "different kind of information" where size alone did not. Full
+     strength, not faded: --mohawk is the value that was deepened to pass AA on
+     paper, and an opacity on top of it gives that back. */
+  color: var(--mohawk);
+}
+
 /* The featured card sits on its own and runs full width. */
 .card--feature {
   grid-template-columns: 72px 1fr;

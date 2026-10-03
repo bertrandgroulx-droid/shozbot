@@ -411,10 +411,18 @@ centred column and reads fine either way.
 
 ### The three shelves, their taglines, and why Technical is not "Start here"
 
-Renamed 2026-09-25 at Bertrand's request. The first shelf names **what it
-holds** rather than where to begin, so more technical apps can join Statterbrain
-on it. It is still the only shelf that is not phone-first, which is why the
-add-to-home-screen note sits below it.
+Renamed 2026-09-25 at Bertrand's request. The shelf names **what it holds**
+rather than where to begin, so more technical apps can join Statterbrain on it.
+It is still the only shelf that is not phone-first.
+
+**The order is Everyday, Technical, Games** (2026-10-03, Bertrand's call).
+Technical used to be first. It moved because Better Weather is the app the
+launch post leads with, and the app a shared link lands people on should be the
+first thing they see — a reader who has to scroll past a desktop statistics
+workbench to reach it has already been given a reason to leave. Technical stays
+second rather than last: Statterbrain is the credibility piece for the oil and
+gas audience and the SAGA relationship, and burying it would cost more than the
+scroll saves.
 
 **All three now carry a tagline** (2026-09-25), which is where the studio's
 range lives on the page:
@@ -442,6 +450,59 @@ graceful failure rather than a bug.
 is unarguable; "improves cognitive function" is a claim that would have to be
 defended, and brain-training companies have been fined over exactly that. Keep
 it as invitation, not promise.
+
+### The skills line under each game card
+
+Added 2026-10-03. Each of the six Games cards carries a quiet line under its
+description naming what the game asks of you:
+
+| Game | Skills line |
+|---|---|
+| Word Square | Vocabulary · Deduction · Spatial reasoning |
+| Word Ninja | Vocabulary · Quick recall · Hand-eye timing |
+| Letter Drop | Vocabulary · Spotting patterns · Planning ahead |
+| Fauxcabulary | Vocabulary · Word roots · Judging plausibility |
+| Acronumbskull | General knowledge · Judging plausibility · Resisting the obvious |
+| Would You Rather | Weighing trade-offs · Knowing your own mind |
+
+It is what turns the Games shelf's "a puzzle is exercise" from a claim the
+heading makes into something the cards show.
+
+**The wording is what you use, never what it improves.** "Quick recall" is
+unarguable; "improves recall" is the claim brain-training companies have been
+fined over. Same line the shelf note draws, held six more times — and the one
+thing here not to soften.
+
+**Plain English, not the clinical vocabulary.** "Quick recall", not "lexical
+retrieval"; "Spotting patterns", not "pattern recognition under load". The
+clinical register is more precise and reads as a lab, which fights a brand whose
+mascot is a photograph of a wood block.
+
+**They have to differ, or they are noise.** Six cards all reading "Vocabulary ·
+Pattern spotting · Focus" would be skipped by everyone. Vocabulary appears four
+times because four are word games and that is honest; the second and third tags
+carry the distinction. Would You Rather takes two rather than three, which is
+deliberate — the cap is three, not a quota, and a game that genuinely asks two
+things should say two. It is also the card that proves the vocabulary has range,
+and the reason the shelf is called Games rather than Word games.
+
+**`.card-skills` is separated by a hairline, not by space.** A gap and a smaller
+size were both tried and both failed: the description's own line spacing
+swallows them and the tags read as another sentence of the paragraph. A
+`border-top` in `--line` is what makes it a different kind of information. The
+colour is `--mohawk` at full strength rather than `--muted` — in `--muted` it was
+the same colour as the text directly above it, and `--mohawk` is the value that
+was deepened to pass AA on paper, so an opacity on top of it would give that
+back.
+
+**Not a badge row.** Six cards each wearing three pills would shout louder than
+the descriptions they sit under. The point of the line is that it waits to be
+noticed by someone weighing one game against another.
+
+Pushing the line to the foot of each card so all six align on one baseline was
+tried (`align-self: stretch` plus `margin-top: auto` under a `:has()` rule) and
+removed — it fought the card's own grid for a gain the hairline already
+delivers, and left the cards with uneven trailing space anyway.
 
 ### Everyday and Games say "phone-first"
 
@@ -477,12 +538,16 @@ the home screen, and every one of them puts it behind the same Share button —
 so naming the button is shorter *and* true of more phones than naming Safari
 was. Android still names Chrome, because its menu differs by browser.
 
-**Statterbrain is deliberately outside it.** The note sits between
-**Technical** and **Everyday**, and says "the apps *below*" rather than
-"these", so it covers the two phone-first sections and not the one desktop app.
-Bertrand's call, and the reason the placement is not arbitrary — moving this
-note above Technical would quietly start recommending Statterbrain for a
-phone.
+**Statterbrain is deliberately outside it**, and the note now says so by
+name rather than by position. It used to sit between **Technical** and
+**Everyday** saying "the apps *below*", which excluded the one desktop app
+precisely because of where it sat. The 2026-10-03 reorder broke that: with
+Everyday first and Technical second, "below" would have started recommending
+Statterbrain for a phone. It reads **"Add the Everyday and Games apps to your
+home screen"** instead, which is placement-proof — it can be moved again
+without quietly changing what it claims. It now sits between Everyday and
+Technical, which keeps it near the phone apps without pushing Better Weather
+down the page.
 
 **It only says what is true because every app supports it**: all nine declare
 `display: standalone` with icons in their manifests, checked before the note
