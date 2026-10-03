@@ -458,11 +458,11 @@ description naming what the game asks of you:
 
 | Game | Skills line |
 |---|---|
-| Word Square | Vocabulary · Deduction · Spatial reasoning |
-| Word Ninja | Vocabulary · Quick recall · Hand-eye timing |
-| Letter Drop | Vocabulary · Spotting patterns · Planning ahead |
-| Fauxcabulary | Vocabulary · Word roots · Judging plausibility |
-| Acronumbskull | General knowledge · Judging plausibility · Resisting the obvious |
+| Word Square | Deduction · Spatial reasoning |
+| Word Ninja | Quick recall · Hand-eye timing |
+| Letter Drop | Spotting patterns · Planning ahead |
+| Fauxcabulary | Word roots · Judging plausibility |
+| Acronumbskull | General knowledge · Resisting the obvious |
 | Would You Rather | Weighing trade-offs · Knowing your own mind |
 
 It is what turns the Games shelf's "a puzzle is exercise" from a claim the
@@ -478,13 +478,21 @@ retrieval"; "Spotting patterns", not "pattern recognition under load". The
 clinical register is more precise and reads as a lab, which fights a brand whose
 mascot is a photograph of a wood block.
 
-**They have to differ, or they are noise.** Six cards all reading "Vocabulary ·
-Pattern spotting · Focus" would be skipped by everyone. Vocabulary appears four
-times because four are word games and that is honest; the second and third tags
-carry the distinction. Would You Rather takes two rather than three, which is
-deliberate — the cap is three, not a quota, and a game that genuinely asks two
-things should say two. It is also the card that proves the vocabulary has range,
-and the reason the shelf is called Games rather than Word games.
+**Two each, and never Vocabulary.** The first cut gave four of them three tags
+led by Vocabulary; Bertrand cut it on 2026-10-03 and was right. Four of these
+are word games, so "Vocabulary" was true on all four and told a reader nothing
+the title had not — it was spending the most prominent slot on the least
+informative word, and crowding the pair that actually separates one game from
+the next. Acronumbskull lost "Judging plausibility" in the same pass rather
+than Vocabulary, which it never had: Fauxcabulary keeps that one, so the two
+sibling guess-which-is-real games now read differently instead of echoing.
+
+**They have to differ, or they are noise.** Six cards reading the same two
+words would be skipped by everyone. Word Square deduces, Letter Drop sequences,
+Word Ninja is the only one with a clock and a moving target, and Would You
+Rather is about preference rather than knowledge — which is the card that
+proves the vocabulary has range, and the reason the shelf is called Games
+rather than Word games.
 
 **`.card-skills` is separated by a hairline, not by space.** A gap and a smaller
 size were both tried and both failed: the description's own line spacing
