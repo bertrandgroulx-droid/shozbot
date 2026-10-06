@@ -10,6 +10,19 @@ a browser and what you see is what ships.
 
 Brand tagline: **Handmade apps for curious minds**.
 
+**Second line, for the slots the tagline does not fit: "Made out of curiosity."**
+(2026-10-06.) A sign-off, a comment reply, a sticker — never a replacement. The
+tagline stays the tagline: it is on the site, the banners and the LinkedIn page,
+and a tagline's strength is repetition.
+
+It earns its place by being a pun that is true both ways — the apps were made
+because Bertrand was curious, and they were made for curious people.
+**"Be Curious" was the first candidate and was dropped**: it is a corporate
+value at a dozen large companies and the slogan of half the science museums in
+the world, and it *instructs* the reader where the tagline *flatters* them.
+"For curious minds" tells someone they already are one; "be curious" implies
+they are not yet. Any future second line has to clear that bar.
+
 The mascot is a photograph of a real handmade robot — wood-block body, wire
 limbs, resin hands and feet, purple-and-white mohawk. Its physical, slightly
 wonky quality is the whole point of the brand. **Never redraw, filter or
