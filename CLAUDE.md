@@ -135,6 +135,7 @@ preview/            decision pages for Bertrand; noindex, not linked from the si
 tools/make-icons.py  rebuilds the whole favicon set from one candidate SVG
 tools/make-social.py rebuilds the share image and the LinkedIn icons
 tools/make-banner.py rebuilds all five banners
+tools/make-carousel.py builds a LinkedIn carousel PDF for one app from phone screenshots
 tools/fonts/         static JetBrains Mono, used only for drawing the share image
 ```
 
