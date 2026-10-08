@@ -189,7 +189,7 @@ DECKS = {
         "slides": [
             {"kind": "cover", "file": "main.png",
              "title": "The whole forecast on one screen.",
-             "sub": "Summary, hourly and daily, with no scrolling down \u2014 everything scrolls sideways. Tap any hour or day for a chart, or the info icon for all the details.",
+             "sub": "Summary, hourly and daily, with no scrolling down \u2014 everything scrolls sideways. Tap any hour or day for a chart, or drill into a summary line.",
              "shot": "the main screen, straight after it loads"},
             {"file": "conditions.png", "keep": 0.735,
              "title": "Tap an hour or a day.",
