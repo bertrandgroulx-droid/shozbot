@@ -157,17 +157,17 @@ def slide_close(n, total, spec, deck):
     im = Image.new("RGB", (W, H), PAPER)
     d = ImageDraw.Draw(im)
 
-    # The text column is capped at 640 so every line clears the robot, who
-    # stands bottom-right; the sub runs to two paragraphs at a size that
-    # fills the slide rather than leaving a field between title and footer.
-    f_sub = font("Karla-Medium.ttf", 42)
-    y = text_block(d, (MARGIN, 100), spec["title"], font("Karla-Medium.ttf", 80), INK, W - 2 * MARGIN, 90)
+    # The text runs the full width: the robot stands bottom-right and the
+    # two paragraphs finish well above him, so nothing has to clear him.
+    width = W - 2 * MARGIN
+    f_sub = font("Karla-Medium.ttf", 46)
+    y = text_block(d, (MARGIN, 100), spec["title"], font("Karla-Medium.ttf", 80), INK, width, 90)
     for para in spec["sub"]:
-        y = text_block(d, (MARGIN, y + 26), para, f_sub, MUTED, 640, 54)
-    tracked(d, (MARGIN, y + 48), deck["url"], font("JetBrainsMono-Bold.ttf", 40), INK, -40 * 0.02)
+        y = text_block(d, (MARGIN, y + 28), para, f_sub, MUTED, width, 60)
+    tracked(d, (MARGIN, y + 52), deck["url"], font("JetBrainsMono-Bold.ttf", 40), INK, -40 * 0.02)
 
     robot = Image.open(ROOT / "assets/robot.png").convert("RGBA")
-    rh = 440
+    rh = 500
     robot = robot.resize((round(robot.width * rh / robot.height), rh), Image.LANCZOS)
     im.paste(robot, (W - MARGIN - robot.width + 40, H - FOOT - 20 - rh), robot)
 
