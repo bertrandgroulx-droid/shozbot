@@ -8,8 +8,9 @@ a swipeable slide. 1080x1350 (4:5 portrait) is used because every slide here
 is built around a phone screenshot, and portrait gives the shot room while
 taking the most feed height a post can.
 
-SHOTS_DIR holds the screenshots as 1.png, 2.png ... matching the slide numbers
-in the spec below. Any portrait phone shot works — it is fitted by height and
+SHOTS_DIR holds the screenshots, named by what they show (main.png, moon.png,
+radar.png ...) and referenced by that name in the spec below — so reordering
+the deck never means renumbering files. Any portrait phone shot works — it is fitted by height and
 keeps its own aspect — so an iPhone and an Android shot both land correctly.
 A missing shot draws a clearly labelled placeholder saying what to capture, so
 the deck can be previewed before a single screenshot exists.
@@ -145,7 +146,7 @@ def slide_feature(n, total, spec, shots, deck, cover=False):
 
     # The screenshot takes every pixel between the text and the footer.
     top = y + 26
-    ph = phone(shots / f"{n}.png", H - FOOT - 16 - top, spec["shot"], deck["trim"], spec.get("keep", 1.0))
+    ph = phone(shots / spec["file"], H - FOOT - 16 - top, spec["shot"], deck["trim"], spec.get("keep", 1.0))
     im.paste(ph, ((W - ph.width) // 2, top), ph)
 
     footer(d, n, total, deck["url"])
@@ -156,15 +157,17 @@ def slide_close(n, total, spec, deck):
     im = Image.new("RGB", (W, H), PAPER)
     d = ImageDraw.Draw(im)
 
-    # Everything that has to be read sits above y=700 or left of x=500; the
-    # robot stands bottom-right below and right of both, so nothing can collide
-    # with him whatever the text wraps to.
-    y = text_block(d, (MARGIN, 110), spec["title"], font("Karla-Medium.ttf", 80), INK, W - 2 * MARGIN, 90)
-    y = text_block(d, (MARGIN, y + 24), spec["sub"], font("Karla-Medium.ttf", 38), MUTED, 620, 50)
-    tracked(d, (MARGIN, y + 56), deck["url"], font("JetBrainsMono-Bold.ttf", 40), INK, -40 * 0.02)
+    # The text column is capped at 640 so every line clears the robot, who
+    # stands bottom-right; the sub runs to two paragraphs at a size that
+    # fills the slide rather than leaving a field between title and footer.
+    f_sub = font("Karla-Medium.ttf", 42)
+    y = text_block(d, (MARGIN, 100), spec["title"], font("Karla-Medium.ttf", 80), INK, W - 2 * MARGIN, 90)
+    for para in spec["sub"]:
+        y = text_block(d, (MARGIN, y + 26), para, f_sub, MUTED, 640, 54)
+    tracked(d, (MARGIN, y + 48), deck["url"], font("JetBrainsMono-Bold.ttf", 40), INK, -40 * 0.02)
 
     robot = Image.open(ROOT / "assets/robot.png").convert("RGBA")
-    rh = 480
+    rh = 440
     robot = robot.resize((round(robot.width * rh / robot.height), rh), Image.LANCZOS)
     im.paste(robot, (W - MARGIN - robot.width + 40, H - FOOT - 20 - rh), robot)
 
@@ -184,31 +187,38 @@ DECKS = {
         # height the panel reaches, measured off the screenshot. Below it the
         # screen is dimmed app, which the slide is better off without.
         "slides": [
-            {"kind": "cover",
+            {"kind": "cover", "file": "main.png",
              "title": "The whole forecast on one screen.",
-             "sub": "Now, the next few hours, the week ahead, and the rain on its way \u2014 without scrolling. Then the rabbit holes.",
+             "sub": "Summary, hourly and daily, with no scrolling down \u2014 everything scrolls sideways. Tap any hour or day for a chart, or drill into a summary line.",
              "shot": "the main screen, straight after it loads"},
-            {"title": "Tap the moon.",
-             "sub": "The real lunar surface, lit as it is right now. Scrub it hour by hour \u2014 then tap Find the Moon and the phone points you at it.",
+            {"file": "conditions.png", "keep": 0.735,
+             "title": "Tap an hour or a day.",
+             "sub": "That day\u2019s temperature and feels-like, a cursor that reads the exact hour, and the rain underneath.",
+             "shot": "the Conditions chart"},
+            {"file": "moon.png",
+             "title": "Tap the moon.",
+             "sub": "The real lunar surface, lit and tilted for any hour you scrub to \u2014 here, three days back. Then tap Find the Moon and the phone points you at it.",
              "shot": "the Moon panel, open"},
-            {"title": "Daylight through the year.",
+            {"file": "daylight.png",
+             "title": "Daylight through the year.",
              "sub": "A full year on one screen. The brighter band is the vitamin D window. On October 8th at 51\u00b0N it already reads \u201cnone today\u201d.",
              "shot": "the Daylight panel, with the Earth-tilt card"},
-            {"title": "Tap an hour or a day.",
-             "sub": "That day\u2019s temperature and feels-like, a cursor that reads the exact hour, and the rain underneath.",
-             "shot": "the Conditions chart", "keep": 0.735},
-            {"title": "Wind and gusts, hour by hour.",
+            {"file": "wind.png", "keep": 0.52,
+             "title": "Wind and gusts, hour by hour.",
              "sub": "Light to severe, arrows pointing the way it blows, and a readout for any hour you drag to.",
-             "shot": "the Wind & gusts chart", "keep": 0.52},
-            {"title": "Air quality, explained.",
+             "shot": "the Wind & gusts chart"},
+            {"file": "air.png", "keep": 0.555,
+             "title": "Air quality, explained.",
              "sub": "Canada\u2019s AQHI here, the US AQI elsewhere \u2014 where your reading sits on the scale, and the pollutants behind it.",
-             "shot": "the Air quality panel", "keep": 0.555},
-            {"title": "Live radar you can rewind.",
-             "sub": "Animated precipitation over a real map. Drag back through the last few hours, or forward into what\u2019s coming.",
-             "shot": "the radar map, mid-scrub"},
+             "shot": "the Air quality panel"},
+            {"file": "radar.png",
+             "title": "Live radar you can rewind.",
+             "sub": "Drag back through the last few hours, or forward into what\u2019s coming. Tap anywhere on the map to forecast that exact spot.",
+             "shot": "the radar map, with a tapped forecast spot"},
             {"kind": "close",
              "title": "Free. No ads. No account.",
-             "sub": "Add it to your home screen and it runs like an app \u2014 full screen, and it works offline from the last forecast."},
+             "sub": ["Add it to your home screen and it runs like an app: full screen, no address bar, and it works offline from the last forecast.",
+                     "Forecast by Open-Meteo, radar by RainViewer. No keys, no tracking, no sign-in \u2014 and nothing to buy, ever."]},
         ],
     },
 }
