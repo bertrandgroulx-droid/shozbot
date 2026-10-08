@@ -124,6 +124,8 @@ assets/
   robot-three-eyes*         the second robot — he is the 404 page
   social/                   square opaque icons for LinkedIn (1200/400/300),
                             plus the five banners
+  social/carousels/         one PDF per app for the weekly LinkedIn posts, and
+                            under <app>/ the phone screenshots each was built from
   og.png                    1200×630 share preview
   favicon.svg .ico, apple-touch-icon.png, icon-192.png, icon-512.png
   icons/                    the three browser-icon candidates as SVG
@@ -863,6 +865,33 @@ only one with a build step.
   at 616px, so a much taller banner will hit it.
 
   The writing itself is still to do.
+
+  **The launch post went out 2026-10-06 and reached little**, which is normal
+  for a first post on a new topic and is why the plan moved to a weekly
+  series: one app per Tuesday, a carousel of that app's own screens.
+  `tools/make-carousel.py` builds each one; Better Weather's is done
+  (`assets/social/carousels/`, 2026-10-08).
+
+  **Three rules Bertrand set on the first cut, which hold for every deck.**
+  The screen is the slide: title and one short line above, the screenshot
+  taking everything else. No purple anywhere on a slide — "that looks ugly",
+  his words, and he is right that it fights the app's own dark palette. The
+  robot appears on the close only, where there is no screenshot for him to
+  compete with.
+
+  **The screenshots are his, from his phone, never captured here.** Every
+  weather API is blocked from this container, and a forecast built from
+  fixture data would be a fabrication on a brand whose claim is honesty. The
+  phone also has the compass, which is the only way to shoot Find the Moon.
+  A deck previews with labelled placeholders before any shot exists.
+
+  **Panels get cropped to the panel.** A modal that opens over the app leaves
+  the bottom half of the screen dimmed and empty; `keep` in the slide spec
+  cuts the shot at the panel's foot, measured off the screenshot, and the
+  chart then fills the slide's width instead of sitting height-bound at 43%.
+  Full-screen shots (the main screen, the Moon and Daylight panels that run
+  to the bottom, the radar) stay whole. The status bar and home-indicator
+  strip are trimmed off every shot — they are the phone, not the app.
 - **A custom wordmark, later.** JetBrains Mono at -0.02em is what ships, and
   Bertrand is happy with it for now, but he wants to come back to a properly
   kerned or custom-drawn `shozbot` at some point. Raise it, don't act on it.

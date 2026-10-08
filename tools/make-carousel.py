@@ -14,6 +14,12 @@ keeps its own aspect — so an iPhone and an Android shot both land correctly.
 A missing shot draws a clearly labelled placeholder saying what to capture, so
 the deck can be previewed before a single screenshot exists.
 
+The screen is the slide. Title and a short line above, the screenshot taking
+everything else, and nothing decorative: no purple rule, no robot — he appears
+on the close only, where there is no screenshot to compete with. Bertrand's
+call on the first cut (2026-10-08), and right: on a feature slide anything
+that is not the app is in the way.
+
 Needs pillow and the static TTFs in tools/fonts/.
 """
 import sys
@@ -27,13 +33,12 @@ FONTS = ROOT / "tools" / "fonts"
 W, H = 1080, 1350
 PAPER = (250, 247, 242)
 INK = (36, 31, 26)
-PURPLE = (108, 79, 163)
 MUTED = (109, 99, 88)
 LINE = (230, 222, 210)
 PLACEHOLDER = (236, 232, 224)
 
-MARGIN = 80
-RULE = 12
+MARGIN = 72
+FOOT = 96   # the footer band at the bottom of every slide
 
 
 def font(name, px):
@@ -80,17 +85,28 @@ def rounded(im, radius):
     return out
 
 
-def phone(shot_path, height, label):
+def phone(shot_path, height, label, trim, keep=1.0, max_width=W - 2 * MARGIN):
     """A screenshot fitted to `height`, corners rounded, hairline border.
+
+    `trim` = (top, bottom) pixels cut from the raw shot: the status bar with
+    its clock and battery, and the home-indicator strip. Both are the phone,
+    not the app, and the app paints its own background behind them, so the
+    cut costs nothing and the screen reads as the app rather than a device.
 
     No drawn bezel: a fake device frame is exactly the kind of stylising the
     brand avoids, and the rounded corners plus hairline already say "a phone".
     """
     if shot_path and shot_path.exists():
         im = Image.open(shot_path).convert("RGB")
-        im = im.resize((round(im.width * height / im.height), height), Image.LANCZOS)
+        # `keep` < 1 cuts the shot off at that fraction of its height: a panel
+        # that opens over the app leaves the bottom half of the screen dimmed
+        # and empty, and cropping to the panel lets the chart fill the slide.
+        bottom = round(im.height * keep) if keep < 1 else im.height - trim[1]
+        im = im.crop((0, trim[0], im.width, bottom))
+        scale = min(height / im.height, max_width / im.width)
+        im = im.resize((round(im.width * scale), round(im.height * scale)), Image.LANCZOS)
     else:
-        im = Image.new("RGB", (round(height * 390 / 844), height), PLACEHOLDER)
+        im = Image.new("RGB", (round(height * 1290 / 2517), height), PLACEHOLDER)
         d = ImageDraw.Draw(im)
         f = font("JetBrainsMono-Medium.ttf", 26)
         lines = ["screenshot", "goes here", ""] + wrap(d, label, f, im.width - 60)
@@ -98,80 +114,62 @@ def phone(shot_path, height, label):
         for ln in lines:
             d.text(((im.width - d.textlength(ln, font=f)) / 2, y), ln, font=f, fill=MUTED)
             y += 40
-    r = round(height * 0.055)
+    r = round(height * 0.045)
     im = rounded(im, r)
     ImageDraw.Draw(im).rounded_rectangle([0, 0, im.width - 1, im.height - 1], r, outline=LINE, width=3)
     return im
 
 
 def footer(d, n, total, url):
-    y = H - 62
-    f_mark = font("JetBrainsMono-Bold.ttf", 30)
-    x = tracked(d, (MARGIN, y), "shozbot", f_mark, INK, -30 * 0.02)
-    d.text((x + 22, y + 5), url, font=font("JetBrainsMono-Medium.ttf", 22), fill=MUTED)
+    y = H - FOOT + 30
+    f_mark = font("JetBrainsMono-Bold.ttf", 28)
+    x = tracked(d, (MARGIN, y), "shozbot", f_mark, INK, -28 * 0.02)
+    d.text((x + 20, y + 5), url, font=font("JetBrainsMono-Medium.ttf", 21), fill=MUTED)
     counter = f"{n} / {total}"
-    f_num = font("JetBrainsMono-Medium.ttf", 22)
+    f_num = font("JetBrainsMono-Medium.ttf", 21)
     d.text((W - MARGIN - d.textlength(counter, font=f_num), y + 5), counter, font=f_num, fill=MUTED)
 
 
-def slide_feature(n, total, spec, shots, url):
+def slide_feature(n, total, spec, shots, deck, cover=False):
     im = Image.new("RGB", (W, H), PAPER)
     d = ImageDraw.Draw(im)
-    d.rectangle([0, 0, W, RULE], fill=PURPLE)
+    width = W - 2 * MARGIN
 
-    y = text_block(d, (MARGIN, 76), spec["title"], font("Karla-Medium.ttf", 68), INK, W - 2 * MARGIN, 78)
-    text_block(d, (MARGIN, y + 10), spec["sub"], font("Karla-Medium.ttf", 36), PURPLE, W - 2 * MARGIN, 46)
+    if cover:
+        d.text((MARGIN, 56), deck["app"], font=font("JetBrainsMono-Medium.ttf", 26), fill=MUTED)
+        y = text_block(d, (MARGIN, 96), spec["title"], font("Karla-Medium.ttf", 76), INK, width, 84)
+        y = text_block(d, (MARGIN, y + 8), spec["sub"], font("Karla-Medium.ttf", 36), MUTED, width, 46)
+    else:
+        y = text_block(d, (MARGIN, 60), spec["title"], font("Karla-Medium.ttf", 62), INK, width, 70)
+        y = text_block(d, (MARGIN, y + 6), spec["sub"], font("Karla-Medium.ttf", 35), MUTED, width, 45)
 
-    ph = phone(shots / f"{n}.png", 840, spec["shot"])
-    im.paste(ph, ((W - ph.width) // 2, H - 110 - ph.height), ph)
+    # The screenshot takes every pixel between the text and the footer.
+    top = y + 26
+    ph = phone(shots / f"{n}.png", H - FOOT - 16 - top, spec["shot"], deck["trim"], spec.get("keep", 1.0))
+    im.paste(ph, ((W - ph.width) // 2, top), ph)
 
-    footer(d, n, total, url)
+    footer(d, n, total, deck["url"])
     return im
 
 
-def slide_cover(n, total, spec, shots, url, app):
+def slide_close(n, total, spec, deck):
     im = Image.new("RGB", (W, H), PAPER)
     d = ImageDraw.Draw(im)
-    d.rectangle([0, 0, W, RULE], fill=PURPLE)
-
-    d.text((MARGIN, 70), app, font=font("JetBrainsMono-Medium.ttf", 30), fill=MUTED)
-    y = text_block(d, (MARGIN, 120), spec["title"], font("Karla-Medium.ttf", 92), INK, W - 2 * MARGIN, 102)
-    text_block(d, (MARGIN, y + 12), spec["sub"], font("Karla-Medium.ttf", 38), PURPLE, W - 2 * MARGIN, 48)
-
-    ph = phone(shots / f"{n}.png", 780, spec["shot"])
-    im.paste(ph, ((W - ph.width) // 2 - 60, H - 110 - ph.height), ph)
-
-    # The robot keeps the cover company and is otherwise left off the feature
-    # slides, where he would compete with the screenshot.
-    robot = Image.open(ROOT / "assets/robot.png").convert("RGBA")
-    rh = 300
-    robot = robot.resize((round(robot.width * rh / robot.height), rh), Image.LANCZOS)
-    im.paste(robot, (W - MARGIN - robot.width + 20, H - 130 - rh), robot)
-
-    footer(d, n, total, url)
-    return im
-
-
-def slide_close(n, total, spec, url, path):
-    im = Image.new("RGB", (W, H), PAPER)
-    d = ImageDraw.Draw(im)
-    d.rectangle([0, 0, W, RULE], fill=PURPLE)
 
     # Everything that has to be read sits above y=700 or left of x=500; the
     # robot stands bottom-right below and right of both, so nothing can collide
     # with him whatever the text wraps to.
     y = text_block(d, (MARGIN, 110), spec["title"], font("Karla-Medium.ttf", 80), INK, W - 2 * MARGIN, 90)
     y = text_block(d, (MARGIN, y + 24), spec["sub"], font("Karla-Medium.ttf", 38), MUTED, 620, 50)
-
-    tracked(d, (MARGIN, y + 56), path, font("JetBrainsMono-Bold.ttf", 40), PURPLE, -40 * 0.02)
+    tracked(d, (MARGIN, y + 56), deck["url"], font("JetBrainsMono-Bold.ttf", 40), INK, -40 * 0.02)
 
     robot = Image.open(ROOT / "assets/robot.png").convert("RGBA")
     rh = 480
     robot = robot.resize((round(robot.width * rh / robot.height), rh), Image.LANCZOS)
-    im.paste(robot, (W - MARGIN - robot.width + 40, H - 110 - rh), robot)
+    im.paste(robot, (W - MARGIN - robot.width + 40, H - FOOT - 20 - rh), robot)
 
-    d.text((MARGIN, H - 150), "Handmade apps for curious minds", font=font("Karla-Medium.ttf", 30), fill=PURPLE)
-    footer(d, n, total, url)
+    d.text((MARGIN, H - FOOT - 50), "Handmade apps for curious minds", font=font("Karla-Medium.ttf", 30), fill=MUTED)
+    footer(d, n, total, deck["url"])
     return im
 
 
@@ -179,33 +177,38 @@ DECKS = {
     "better-weather": {
         "app": "Better Weather",
         "url": "shozbot.com/better-weather",
+        # iPhone Pro at 3x: 177px of status bar above the app, 102px of home
+        # indicator below it. Other phones differ; the cut is per deck.
+        "trim": (177, 102),
+        # `keep`: where a panel opens over the app, the fraction of the shot's
+        # height the panel reaches, measured off the screenshot. Below it the
+        # screen is dimmed app, which the slide is better off without.
         "slides": [
             {"kind": "cover",
              "title": "The whole forecast on one screen.",
-             "sub": "Then the rabbit holes.",
+             "sub": "Now, the next few hours, the week ahead, and the rain on its way \u2014 without scrolling. Then the rabbit holes.",
              "shot": "the main screen, straight after it loads"},
-            {"title": "Swipe through time.",
-             "sub": "48 hours back and 72 ahead. Seven days back and sixteen ahead. Yesterday is in there, so you can check whether it really was that bad.",
-             "shot": "the hourly strip, swiped back into yesterday"},
             {"title": "Tap the moon.",
-             "sub": "The real lunar surface, lit and tilted as it is tonight. Scrub it hour by hour through the week.",
+             "sub": "The real lunar surface, lit as it is right now. Scrub it hour by hour \u2014 then tap Find the Moon and the phone points you at it.",
              "shot": "the Moon panel, open"},
-            {"title": "Find the Moon.",
-             "sub": "Hold the phone flat and aim its top edge. Two cards say how far to turn and tilt, and the ring lights up when you are on it — above or below the horizon.",
-             "shot": "Find the Moon, with the ring lit"},
             {"title": "Daylight through the year.",
-             "sub": "A full year on one screen. The brighter band inside is the vitamin D window — the hours the sun is above 45°. For a good stretch of a Calgary winter it reads “none today”.",
-             "shot": "the Daylight panel, scrubbed to a winter day that says none today"},
-            {"title": "Where the sun is right now.",
-             "sub": "Under the daylight chart: the latitude the sun is directly overhead today, which way it is moving, and how high it climbs at noon where you are standing.",
-             "shot": "the Earth-tilt card under the Daylight panel"},
+             "sub": "A full year on one screen. The brighter band is the vitamin D window. On October 8th at 51\u00b0N it already reads \u201cnone today\u201d.",
+             "shot": "the Daylight panel, with the Earth-tilt card"},
+            {"title": "Tap an hour or a day.",
+             "sub": "That day\u2019s temperature and feels-like, a cursor that reads the exact hour, and the rain underneath.",
+             "shot": "the Conditions chart", "keep": 0.735},
+            {"title": "Wind and gusts, hour by hour.",
+             "sub": "Light to severe, arrows pointing the way it blows, and a readout for any hour you drag to.",
+             "shot": "the Wind & gusts chart", "keep": 0.52},
+            {"title": "Air quality, explained.",
+             "sub": "Canada\u2019s AQHI here, the US AQI elsewhere \u2014 where your reading sits on the scale, and the pollutants behind it.",
+             "shot": "the Air quality panel", "keep": 0.555},
             {"title": "Live radar you can rewind.",
-             "sub": "Animated precipitation, scrubbable back through the last few hours and forward into what is coming.",
+             "sub": "Animated precipitation over a real map. Drag back through the last few hours, or forward into what\u2019s coming.",
              "shot": "the radar map, mid-scrub"},
             {"kind": "close",
              "title": "Free. No ads. No account.",
-             "sub": "Add it to your home screen and it runs like an app — full screen, and it works offline from the last forecast.",
-             "path": "shozbot.com/better-weather"},
+             "sub": "Add it to your home screen and it runs like an app \u2014 full screen, and it works offline from the last forecast."},
         ],
     },
 }
@@ -222,12 +225,10 @@ def main():
     pages = []
     for i, spec in enumerate(deck["slides"], 1):
         kind = spec.get("kind", "feature")
-        if kind == "cover":
-            im = slide_cover(i, total, spec, shots, deck["url"], deck["app"])
-        elif kind == "close":
-            im = slide_close(i, total, spec, deck["url"], spec["path"])
+        if kind == "close":
+            im = slide_close(i, total, spec, deck)
         else:
-            im = slide_feature(i, total, spec, shots, deck["url"])
+            im = slide_feature(i, total, spec, shots, deck, cover=(kind == "cover"))
         im.save(out / f"slide-{i}.png", optimize=True)
         pages.append(im)
 
