@@ -138,7 +138,7 @@ def slide_feature(n, total, spec, shots, deck, cover=False):
 
     if cover:
         d.text((MARGIN, 56), deck["app"], font=font("JetBrainsMono-Medium.ttf", 26), fill=MUTED)
-        y = text_block(d, (MARGIN, 96), spec["title"], font("Karla-Medium.ttf", 76), INK, width, 84)
+        y = text_block(d, (MARGIN, 96), spec["title"], font("Karla-Medium.ttf", 58), INK, width, 66)  # 58 keeps the title on one line
         y = text_block(d, (MARGIN, y + 8), spec["sub"], font("Karla-Medium.ttf", 36), MUTED, width, 46)
     else:
         y = text_block(d, (MARGIN, 60), spec["title"], font("Karla-Medium.ttf", 62), INK, width, 70)
@@ -189,7 +189,7 @@ DECKS = {
         "slides": [
             {"kind": "cover", "file": "main.png",
              "title": "The whole forecast on one screen.",
-             "sub": "Summary, hourly and daily, with no scrolling down \u2014 everything scrolls sideways. Tap any hour or day for a chart, or drill into a summary line.",
+             "sub": "Summary, hourly and daily, with no scrolling down \u2014 everything scrolls sideways. Tap any hour or day for a chart, or the info icon for all the details.",
              "shot": "the main screen, straight after it loads"},
             {"file": "conditions.png", "keep": 0.735,
              "title": "Tap an hour or a day.",
@@ -197,11 +197,11 @@ DECKS = {
              "shot": "the Conditions chart"},
             {"file": "moon.png",
              "title": "Tap the moon.",
-             "sub": "The real lunar surface, lit and tilted for any hour you scrub to \u2014 here, three days back. Then tap Find the Moon and the phone points you at it.",
+             "sub": "The real lunar surface, lit and tilted for any hour you scrub to. Then tap Find the Moon and the phone points you at it.",
              "shot": "the Moon panel, open"},
             {"file": "daylight.png",
              "title": "Daylight through the year.",
-             "sub": "A full year on one screen. The brighter band is the vitamin D window. On October 8th at 51\u00b0N it already reads \u201cnone today\u201d.",
+             "sub": "A full year on one screen, with the clock changes marked. The brighter band is the vitamin D window \u2014 on October 8th at 51\u00b0N it already reads \u201cnone today\u201d.",
              "shot": "the Daylight panel, with the Earth-tilt card"},
             {"file": "wind.png", "keep": 0.52,
              "title": "Wind and gusts, hour by hour.",
