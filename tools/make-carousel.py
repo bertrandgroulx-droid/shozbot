@@ -146,7 +146,7 @@ def slide_feature(n, total, spec, shots, deck, cover=False):
 
     # The screenshot takes every pixel between the text and the footer.
     top = y + 26
-    ph = phone(shots / spec["file"], H - FOOT - 16 - top, spec["shot"], deck["trim"], spec.get("keep", 1.0))
+    ph = phone(shots / spec["file"], H - FOOT - 16 - top, spec["shot"], spec.get("trim", deck["trim"]), spec.get("keep", 1.0))
     im.paste(ph, ((W - ph.width) // 2, top), ph)
 
     footer(d, n, total, deck["url"])
@@ -211,9 +211,9 @@ DECKS = {
              "title": "Air quality, explained.",
              "sub": "Canada\u2019s AQHI here, the US AQI elsewhere \u2014 where your reading sits on the scale, and the pollutants behind it.",
              "shot": "the Air quality panel"},
-            {"file": "radar.png",
+            {"file": "radar.png", "trim": (177, 102 + 140),  # this shot carries a black strip under the tabs
              "title": "Live radar you can rewind.",
-             "sub": "Drag back through the last few hours, or forward into what\u2019s coming. Tap anywhere on the map to forecast that exact spot.",
+             "sub": "Drag back through the last few hours, or forward into what\u2019s coming. Tap anywhere on the map and drop a pin \u2014 the whole forecast moves to that exact spot.",
              "shot": "the radar map, with a tapped forecast spot"},
             {"kind": "close",
              "title": "Free. No ads. No account.",
