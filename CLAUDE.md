@@ -932,8 +932,12 @@ only one with a build step.
   the people it names. Icons live in `assets/apps/puzzling/` as SVG, plus
   `assets/apps/puzzling.svg` for the collection itself, unused so far. The
   install note names Puzzling too; all eight manifests declare `standalone`.
-  Still owed by the Puzzling repo: the canonical link and guarded redirect
-  pointing at `shozbot.com/puzzling/<game>/`, and the kit tag. The eight
+  The Puzzling repo did its part the same day, checked on the live page:
+  canonical link to `shozbot.com/puzzling/<game>/`, the guarded redirect
+  with the github.io hostname test and a `/puzzling-collection/` →
+  `/puzzling/` path swap, and the kit tag with `data-by=".top .name h1"
+  data-by-block`. Bertrand tapped through on his phone. The move is complete;
+  the games count as the tenth to seventeenth apps. The eight
   skills lines reuse "Quick recall", "Lateral thinking" and "Working under a
   clock" twice each — raised with that chat, not yet changed.
 - **The LinkedIn series runs every two weeks**, not weekly (2026-10-10). Order:
