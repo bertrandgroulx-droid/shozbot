@@ -432,7 +432,7 @@ Renamed 2026-09-25 at Bertrand's request. The shelf names **what it holds**
 rather than where to begin, so more technical apps can join Statterbrain on it.
 It is still the only shelf that is not phone-first.
 
-**The order is Everyday, Technical, Games** (2026-10-03, Bertrand's call).
+**The order is Everyday, Technical, Games, Puzzling** (Games before Puzzling since 2026-10-10; the first three since 2026-10-03, Bertrand's call).
 Technical used to be first. It moved because Better Weather is the app the
 launch post leads with, and the app a shared link lands people on should be the
 first thing they see — a reader who has to scroll past a desktop statistics
@@ -449,6 +449,7 @@ range lives on the page:
 | Technical | deep practice, made usable |
 | Everyday | small efficiencies · phone-first |
 | Games | a puzzle is exercise · phone-first |
+| Puzzling | a new puzzle every day, eight ways · phone-first |
 
 Bertrand wanted the range stated and the games framed as exercise rather than
 only fun. This is where that went, rather than a paragraph in the hero: the
@@ -922,11 +923,19 @@ only one with a build step.
   that case. Checked live: the collection page, two game folders, the shared
   stylesheet and the icons all resolve.
 
-  Mock-ups in `preview/puzzling-a.html` (a fourth shelf after Games) and
-  `preview/puzzling-b.html` (a group inside Games); icons already copied to
-  `assets/apps/puzzling/` plus `assets/apps/puzzling.svg` for the collection.
-  The eight skills lines reuse "Quick recall", "Lateral thinking" and "Working
-  under a clock" twice each — worth a pass once the layout is chosen.
+  **On the homepage since 2026-10-10 as a shelf of its own after Games**,
+  Bertrand's call between two mock-ups (the other put the eight inside Games;
+  both are gone now that the real page is the record). The shelf carries a
+  `.section-credit` paragraph under its heading naming the segment, the show
+  and Peter Brown, saying every clue is original and that Shozbot is not
+  affiliated with CBC — prose at reading size, because it has to be found by
+  the people it names. Icons live in `assets/apps/puzzling/` as SVG, plus
+  `assets/apps/puzzling.svg` for the collection itself, unused so far. The
+  install note names Puzzling too; all eight manifests declare `standalone`.
+  Still owed by the Puzzling repo: the canonical link and guarded redirect
+  pointing at `shozbot.com/puzzling/<game>/`, and the kit tag. The eight
+  skills lines reuse "Quick recall", "Lateral thinking" and "Working under a
+  clock" twice each — raised with that chat, not yet changed.
 - **The LinkedIn series runs every two weeks**, not weekly (2026-10-10). Order:
   Better Weather, Statterbrain, then Puzzling. **Statterbrain training videos
   on YouTube** are wanted in the week after 2026-10-10 — note for later, not
