@@ -45,6 +45,16 @@
       "source": "/would-you-rather",
       "destination": "/would-you-rather/",
       "permanent": false
+    },
+    {
+      "source": "/puzzling",
+      "destination": "/puzzling/",
+      "permanent": false
+    },
+    {
+      "source": "/puzzling/:game([a-z-]+)",
+      "destination": "/puzzling/:game/",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -119,6 +129,14 @@
     {
       "source": "/would-you-rather/:path*",
       "destination": "https://bertrandgroulx-droid.github.io/would-you-rather/:path*"
+    },
+    {
+      "source": "/puzzling/",
+      "destination": "https://bertrandgroulx-droid.github.io/puzzling-collection/"
+    },
+    {
+      "source": "/puzzling/:path*",
+      "destination": "https://bertrandgroulx-droid.github.io/puzzling-collection/:path*"
     }
   ],
   "headers": [
