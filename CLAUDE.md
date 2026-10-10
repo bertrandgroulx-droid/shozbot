@@ -53,6 +53,7 @@ wherever each app actually is.
 | `/fauxcabulary/` | `…github.io/fauxcabulary` | yes |
 | `/acronumbskull/` | `…github.io/acronumbskull` | yes |
 | `/would-you-rather/` | `…github.io/would-you-rather` | yes |
+| `/puzzling/` and `/puzzling/<game>/` | `…github.io/puzzling-collection` — one rewrite for the whole repo | yes |
 
 `/<app>` without the trailing slash redirects to `/<app>/`, so relative links
 inside each app resolve correctly.
@@ -912,6 +913,14 @@ only one with a build step.
   live at `shozbot.com/puzzling/<game>/`, `../shared/` resolves on its own, and
   the collection's home page comes free at `shozbot.com/puzzling/`. No packer,
   no `apps/` folder, one redirect and one rewrite instead of sixteen.
+  **Live since 2026-10-10**, Bertrand's call. One lesson from it: a game
+  folder with its trailing slash (`/puzzling/whittle/`) came back 404 under
+  the `:path*` catch-all alone — the slash was dropped on the way to GitHub
+  Pages, which answered with a redirect, which Vercel turned into a 404. An
+  explicit rule for `/puzzling/:dir/` keeps the slash, and a redirect sends
+  `/puzzling/whittle` to `/puzzling/whittle/` so Pages never gets to answer
+  that case. Checked live: the collection page, two game folders, the shared
+  stylesheet and the icons all resolve.
 
   Mock-ups in `preview/puzzling-a.html` (a fourth shelf after Games) and
   `preview/puzzling-b.html` (a group inside Games); icons already copied to
