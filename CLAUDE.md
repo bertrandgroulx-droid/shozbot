@@ -812,17 +812,11 @@ only one with a build step.
   **All nine apps are counted too**, through `kit/kit.js` rather than a
   snippet pasted into each. Paths separate them automatically, so
   `/mogo/` and `/word-ninja/` show up as distinct pages.
-- **The share preview has never been tested for real.** `assets/og.png` exists
-  and the meta tags are right, but nobody has pasted shozbot.com into a message
-  and looked at the card. Thirty seconds, and worth doing before the link is
-  sent to four thousand people.
-- **A payment card is attached to the Mapbox account.** Usage is at zero and a
-  phone weather app will not come near the free allowance, so this is a small
-  risk — but it is a real one, because with a card on file an overage bills
-  silently rather than the service stopping. Either set a usage alert in the
-  Mapbox account, or take the card off and let the free limit enforce itself
-  (the map would break rather than bill; `MAPBOX_TOKEN = ""` is the escape
-  hatch either way). Bertrand knows; not yet decided.
+- **The share preview works** — Bertrand pasted shozbot.com into a message on
+  2026-10-10 and the card showed. `assets/og.png` and the meta tags stand.
+- **Mapbox: usage alerts are set** (Bertrand, 2026-10-10), so the card on the
+  account is a known, watched risk rather than a silent one. `MAPBOX_TOKEN = ""`
+  stays the escape hatch if a bill ever threatens.
 - A new Statterbrain icon, built around a brain, replacing the robot it lent
   to the studio.
 - **LinkedIn content, once the site is live.** Bertrand wants to post about
@@ -872,7 +866,8 @@ only one with a build step.
   for a first post on a new topic and is why the plan moved to a weekly
   series: one app per Tuesday, a carousel of that app's own screens.
   `tools/make-carousel.py` builds each one; Better Weather's is done
-  (`assets/social/carousels/`, 2026-10-08).
+  (`assets/social/carousels/`, 2026-10-08) **and posted on 2026-10-10**.
+  Statterbrain's is next, two weeks on.
 
   **Three rules Bertrand set on the first cut, which hold for every deck.**
   The screen is the slide: title and one short line above, the screenshot
