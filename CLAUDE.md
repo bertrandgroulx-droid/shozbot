@@ -892,6 +892,36 @@ only one with a build step.
   Full-screen shots (the main screen, the Moon and Daylight panels that run
   to the bottom, the radar) stay whole. The status bar and home-indicator
   strip are trimmed off every shot — they are the phone, not the app.
+- **Puzzling: eight daily word games joining the site (in progress, 2026-10-10).**
+  Built in a separate chat, in one repo:
+  <https://github.com/bertrandgroulx-droid/puzzling-collection>, live at
+  `bertrandgroulx-droid.github.io/puzzling-collection/`, with its own home page
+  listing the eight games. The handoff note is a Claude Doc:
+  <https://claude.ai/code/artifact/5ed9fbbb-6631-4adb-a8c6-d5e9dd7d99ff>.
+  Bertrand's calls so far: one repo for the collection, all eight on the site,
+  the collection named **Puzzling** (a plain word; the show's name only ever
+  appears in the credit), and the credit **"inspired by That's Puzzling!"**
+  shown plainly — the handoff note's "never name the show" rule is overridden
+  by him, because getting the show's attention is the point. Puzzle master is
+  Peter Brown, host Piya Chattopadhyay, show *The Sunday Magazine* on CBC Radio.
+  No "Collection" suffix on shelf names.
+
+  The games load shared files from `../shared/`, which breaks under a
+  per-game rewrite. Recommended fix: serve the whole repo under **one prefix**,
+  `/puzzling/:path*` → `…github.io/puzzling-collection/:path*`, so the games
+  live at `shozbot.com/puzzling/<game>/`, `../shared/` resolves on its own, and
+  the collection's home page comes free at `shozbot.com/puzzling/`. No packer,
+  no `apps/` folder, one redirect and one rewrite instead of sixteen.
+
+  Mock-ups in `preview/puzzling-a.html` (a fourth shelf after Games) and
+  `preview/puzzling-b.html` (a group inside Games); icons already copied to
+  `assets/apps/puzzling/` plus `assets/apps/puzzling.svg` for the collection.
+  The eight skills lines reuse "Quick recall", "Lateral thinking" and "Working
+  under a clock" twice each — worth a pass once the layout is chosen.
+- **The LinkedIn series runs every two weeks**, not weekly (2026-10-10). Order:
+  Better Weather, Statterbrain, then Puzzling. **Statterbrain training videos
+  on YouTube** are wanted in the week after 2026-10-10 — note for later, not
+  started.
 - **A custom wordmark, later.** JetBrains Mono at -0.02em is what ships, and
   Bertrand is happy with it for now, but he wants to come back to a properly
   kerned or custom-drawn `shozbot` at some point. Raise it, don't act on it.

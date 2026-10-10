@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#12141c"/>
+  <g transform="translate(92.16 92.16) scale(3.2768)">
+    <rect x="8.5" y="8.5" width="17" height="17" rx="2.2" fill="#5aa9ff"/>
+    <rect x="30.5" y="8.5" width="17" height="17" rx="2.2" fill="#5aa9ff"/>
+    <rect x="52.5" y="8.5" width="17" height="17" rx="2.2" fill="#5aa9ff"/>
+    <rect x="74.5" y="8.5" width="17" height="17" rx="2.2" fill="#5aa9ff"/>
+    <rect x="8.5" y="30.5" width="17" height="17" rx="2.2" fill="#5aa9ff"/>
+    <rect x="30.5" y="30.5" width="17" height="17" rx="2.2" fill="#f2f2f4"/>
+    <rect x="52.5" y="30.5" width="17" height="17" rx="2.2" fill="#5aa9ff"/>
+    <rect x="74.5" y="30.5" width="17" height="17" rx="2.2" fill="#5aa9ff"/>
+    <rect x="8.5" y="52.5" width="17" height="17" rx="2.2" fill="#5aa9ff"/>
+    <rect x="30.5" y="52.5" width="17" height="17" rx="2.2" fill="#5aa9ff"/>
+    <rect x="52.5" y="52.5" width="17" height="17" rx="2.2" fill="#5aa9ff"/>
+    <rect x="74.5" y="52.5" width="17" height="17" rx="2.2" fill="#f2f2f4"/>
+    <rect x="8.5" y="74.5" width="17" height="17" rx="2.2" fill="#f2f2f4"/>
+    <rect x="30.5" y="74.5" width="17" height="17" rx="2.2" fill="#5aa9ff"/>
+    <rect x="52.5" y="74.5" width="17" height="17" rx="2.2" fill="#5aa9ff"/>
+    <rect x="74.5" y="74.5" width="17" height="17" rx="2.2" fill="#5aa9ff"/>
+  </g>
+</svg>
