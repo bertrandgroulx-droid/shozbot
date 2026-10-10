@@ -135,6 +135,10 @@
       "destination": "https://bertrandgroulx-droid.github.io/puzzling-collection/"
     },
     {
+      "source": "/puzzling/:dir([a-z-]+)/",
+      "destination": "https://bertrandgroulx-droid.github.io/puzzling-collection/:dir/"
+    },
+    {
       "source": "/puzzling/:path*",
       "destination": "https://bertrandgroulx-droid.github.io/puzzling-collection/:path*"
     }
