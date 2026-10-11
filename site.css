@@ -280,10 +280,12 @@ a { color: var(--mohawk); }
 
 /* A line of prose under a shelf heading, for the one shelf that owes someone
    a credit. Muted like the note, but a full sentence at reading size: it has
-   to be found by the people it names. */
+   to be found by the people it names. It runs the width of the shelf rule
+   above it rather than stopping at reading width — at 64ch it sat in the left
+   half of a desktop page and looked cramped (Bertrand, 2026-10-11); as two
+   lines under a full-width rule it reads as part of the shelf. */
 .section-credit {
   margin: -4px 0 22px;
-  max-width: 64ch;
   font-size: .95rem;
   line-height: 1.55;
   color: var(--muted);
