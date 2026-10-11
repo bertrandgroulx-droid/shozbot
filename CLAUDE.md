@@ -153,7 +153,7 @@ Set in `site.css` under `:root`, sampled from the robot itself:
 | `--mohawk-soft` | `#efe9f7` | badge background |
 | `--wood` / `--wood-light` | `#8a7457` / `#c8a87a` | the head and body blocks |
 | `--resin-orange/yellow/blue/red` | `#f08a18` `#ffd23f` `#2d54cd` `#8b1d1e` | hands, feet, chest stripe |
-| `--paper` / `--ink` | `#faf7f2` / `#241f1a` | page and text |
+| `--paper` / `--ink` | `#f4f5f7` / `#1a1b1e` | page and text — **cool neutral since 2026-10-11**, see below |
 
 The mascot photographs live in `assets/photos/`. The cut-outs in `assets/` were
 made from them with `rembg` (the `isnet-general-use` model, alpha matting on),
@@ -170,9 +170,23 @@ and to the right of the mohawk. It is low-alpha, so it reads as a pale smear
 rather than an obvious rectangle, and it is easy to miss. The fix was to clear
 the alpha right of the mohawk's own solid edge for every row above the head.
 
-Purple, wood and paper carry the design; the resin colours are accents only.
+Purple and the robot carry the design; the resin colours are accents only.
 There is a dark-mode block right below the light tokens — change a colour in
 both places.
+
+**The page went cool and neutral on 2026-10-11.** It launched on a warm
+off-white (`#faf7f2`) with text, grey and hairlines all warmed to match, sampled
+to sit with the robot's wood. Bertrand's verdict after three weeks: "too taupe
+and yellow", "feels old". Four options were put on the real homepage with a
+switcher (`preview/palette.html`, still there): as it was, plain white, neutral
+off-white, and cool light grey. He chose **cool light grey**: page `#f4f5f7`,
+cards white, ink `#1a1b1e`, muted `#656a73`, hairlines `#e2e4e9`, shadows tinted
+cool. Plain white was passed over because the white cards vanished into it. The
+same values went into `make-social.py`, `make-banner.py` and `make-carousel.py`,
+and the share image and all five banners were regenerated; the posted Better
+Weather deck was left as it is, and the next deck picks the new values up.
+Dark mode was already neutral and did not change. `--wood` and `--wood-light`
+are no longer used anywhere on the site; they stay as tokens for the record.
 
 Wordmark: **JetBrains Mono Bold, lowercase `shozbot`** — Bertrand's pick
 (option B1), tracked at `letter-spacing: -0.02em` (his pick K2). Casing is set

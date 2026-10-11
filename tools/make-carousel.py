@@ -32,10 +32,10 @@ ROOT = Path(__file__).resolve().parent.parent
 FONTS = ROOT / "tools" / "fonts"
 
 W, H = 1080, 1350
-PAPER = (250, 247, 242)
-INK = (36, 31, 26)
-MUTED = (109, 99, 88)
-LINE = (230, 222, 210)
+PAPER = (244, 245, 247)   # site --paper, cool neutral since 2026-10-11
+INK = (26, 27, 30)
+MUTED = (101, 106, 115)
+LINE = (226, 228, 233)
 PLACEHOLDER = (236, 232, 224)
 
 MARGIN = 72

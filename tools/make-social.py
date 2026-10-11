@@ -17,10 +17,10 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parent.parent
 FONTS = ROOT / "tools" / "fonts"          # static TTFs, see README there
 
-PAPER = (250, 247, 242)
-INK = (36, 31, 26)
+PAPER = (244, 245, 247)   # site --paper, cool neutral since 2026-10-11
+INK = (26, 27, 30)
 PURPLE = (108, 79, 163)
-MUTED = (109, 99, 88)
+MUTED = (101, 106, 115)
 
 
 def tracked(draw, xy, text, font, fill, track):

@@ -1,7 +1,8 @@
 /* ==========================================================================
    Shozbot studio site
-   Palette is sampled from the robot itself: mohawk purple and white, the
-   wood of its head and body, and the resin of its hands and feet.
+   Accents are sampled from the robot itself: mohawk purple and white, the
+   wood of its head and body, and the resin of its hands and feet. The page
+   surfaces are cool and neutral so the robot is the warm thing on them.
    ========================================================================== */
 
 @font-face {
@@ -33,17 +34,21 @@
   --resin-blue:    #2d54cd;   /* right foot */
   --resin-red:     #8b1d1e;   /* the stripe across the chest */
 
-  /* --- surfaces and text --- */
-  --paper:         #faf7f2;
+  /* --- surfaces and text ---
+     Cool and neutral since 2026-10-11 (Bertrand: the warm paper "feels old").
+     The page is a faint cool grey so the white cards stand off it; text and
+     hairlines are neutral rather than warmed. The warmth now lives only in
+     the robot and the accents. */
+  --paper:         #f4f5f7;
   --card:          #ffffff;
-  --ink:           #241f1a;
-  --muted:         #6d6358;
-  --line:          #e6ded2;
+  --ink:           #1a1b1e;
+  --muted:         #656a73;
+  --line:          #e2e4e9;
 
-  --shadow:        0 1px 2px rgba(36, 31, 26, .05),
-                   0 8px 24px -12px rgba(36, 31, 26, .18);
-  --shadow-lift:   0 2px 4px rgba(36, 31, 26, .06),
-                   0 16px 32px -14px rgba(36, 31, 26, .28);
+  --shadow:        0 1px 2px rgba(20, 24, 40, .05),
+                   0 8px 24px -12px rgba(20, 24, 40, .18);
+  --shadow-lift:   0 2px 4px rgba(20, 24, 40, .06),
+                   0 16px 32px -14px rgba(20, 24, 40, .28);
 
   --radius:        14px;
   --measure:       62ch;
