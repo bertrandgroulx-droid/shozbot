@@ -389,6 +389,13 @@ Per-game decisions worth knowing before touching any of them:
   finished old daily were migrated into kit records — a finished 4×4 Easy with
   its full score, other sizes as "Solved" without one. Today's grid changed on
   deploy day.
+  **The finished grid is shown before the score** (Bertrand, the same day): a
+  solve leaves the square on screen with a **See your score** button where
+  Hint, Shuffle and Clear were; the results carry **See the grid** beside Play
+  it again; and a played day whose grid is still saved reopens on the grid,
+  not the results (only a migrated day with no grid goes straight to them).
+  Word Square alone does this, because the finished square is the satisfying
+  thing there in a way a list of ten words is not.
 - **Word Ninja**'s daily is Slow; Fast is a random choice. `max` is null, so
   the share reads `Score 229`. The verdict is the end reason ("The clock ran
   out."). Old `wn-daily:slow:*` records were migrated (every one found); fast
