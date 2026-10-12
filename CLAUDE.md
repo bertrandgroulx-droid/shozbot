@@ -327,6 +327,86 @@ Caught by a test that fakes `display-mode: standalone` and asserts the bar is
 gone *and* the GoatCounter tag is still there. Keep that shape: decide about the
 bar, then count regardless.
 
+### The daily-puzzle kit — `kit/daily.js`, carried as a copy by five games
+
+Added 2026-10-12, Bertrand's call: **Letter Drop, Fauxcabulary and Acronumbskull
+got a daily puzzle, and all five daily games (those three plus Word Square and
+Word Ninja, which already had one) present it the way the Puzzling games do.**
+Would You Rather is the one game left out, deliberately: it has no answer and
+no score, so a daily question is not a challenge.
+
+**What "the way Puzzling does it" means**, and what every one of the five now
+does: opens straight into today's puzzle, or today's results if already played;
+a line under the name reading **Daily No. 285 · Mon, Oct 12** with **Past
+puzzles** and **Random puzzles** beside it (on a random puzzle: **Today's
+puzzle** and **Past puzzles**); one puzzle per day, the same for everyone,
+numbered by the day of the year, at the game's default settings — other sizes,
+levels and speeds are Random puzzles; results in one order — score large,
+verdict, streak (`4 days in a row`, only from 2), the saved line, the game's own
+recap, then **Play random puzzles · Share · Past puzzles · Play it again**;
+the **first finished score is kept** and replays never overwrite it; a share
+text of the shape `Fauxcabulary No. 285 · Oct 12` / `7/10 🟩🟩⬜…` / the
+address; Past puzzles listing the previous 100 days with the kept score; URL
+state `?daily=YYYY-MM-DD`, `?past`, `?practice`. Each game keeps its own look —
+the consistency is flow and vocabulary, not skin.
+
+**The logic lives in one file, `kit/daily.js`**, with no DOM and no styling:
+day numbering, a seed per day, first-score-kept records, the streak, the
+standard wording, the share text. Node tests in `kit/test/`. **Each game
+carries its own byte-identical copy** (`shozbot-daily.js`; Letter Drop's in
+`src/` and inlined by its build) so a game works with shozbot.com down and its
+tests run offline — the same reasoning as Puzzling's per-game shell. Change the
+canonical copy, then copy it into all five; the copies must stay identical
+(`cmp` them). The storage shape, `<game>:daily:<iso>` → `{score, max, results,
+recap, at}`, is the one the Puzzling collection page reads for "Played today",
+so a studio-wide "played today" marker is possible later.
+
+Per-game decisions worth knowing before touching any of them:
+
+- **Fauxcabulary and Acronumbskull** draw the day's ten from all three levels
+  mixed, keep their own six-tier rank line as the verdict (the kit's generic
+  verdict is unused), and keep per-level bests for Random puzzles. They differ
+  in one place: Acronumbskull's rules are a How to play panel reached from a
+  link in the daily line that opens once on a first visit; Fauxcabulary's stay
+  in a fold-out box under the cards. Acronumbskull ranks its deck by a hash so
+  that adding a word to the bank only changes the days that word wins; in
+  Fauxcabulary adding or removing a word changes every day's deck from that
+  deploy on. Both repos' old test suites had been broken since the
+  2026-09-22 redirect (they grabbed the first inline script, now the redirect)
+  and were repaired in the same pass.
+- **Letter Drop** scores out of the deal's own ceiling (`15 / 18`), draws the
+  day's word from the Tricky pool, saves the day only when the run is closed
+  (won, gave up, struck out, or a perfect run revealed — a dead end is not
+  closed, because undo is the designed way out), disables undo once saved,
+  treats a hinted daily as practice (not saved, not shared), hides the level
+  slider during the daily, and uses pushState so the back button works between
+  a past day, the list and today. Rebuilding its word list reshuffles every
+  day's word: it has no written schedule.
+- **Word Square**'s daily is 4×4 Easy; the other three settings are Random
+  puzzles. Score = tray letters placed without a hint (`9 / 10` after one
+  hint). The bank is shuffled once per year from a seed and the day number
+  walks it, so no grid repeats inside 200 days. The old `ws-streak` and every
+  finished old daily were migrated into kit records — a finished 4×4 Easy with
+  its full score, other sizes as "Solved" without one. Today's grid changed on
+  deploy day.
+- **Word Ninja**'s daily is Slow; Fast is a random choice. `max` is null, so
+  the share reads `Score 229`. The verdict is the end reason ("The clock ran
+  out."). Old `wn-daily:slow:*` records were migrated (every one found); fast
+  dailies folded into the Fast random best. Today's letters changed on deploy
+  day because the seed changed.
+
+**What the kit should do next**, raised by every worker and not yet done — do
+these together and recopy all five: `shareText` should join a multi-line grid
+with a newline (two games strip the space it adds); `savedLine` for practice
+says "Random puzzle scores are not saved", untrue for the four games that keep
+a random best (each writes around it); `verdict` for `max === null` is a saved
+line, not a verdict; `share` has no textarea fallback; `label` should offer the
+bold day number as HTML; `create` should accept `location`/`navigator` like it
+accepts `storage`/`now`, for tests; a `remove(key)`; an optional `at` on
+`save` for migrations; and the header should say that `recap` is the game's own
+and that a game wanting stable history should write a schedule as Puzzling
+does.
+
 ### What the kit had to learn about the apps
 
 Three things that were wrong in the first cut and only showed up by rendering it
@@ -652,13 +732,17 @@ state, found by reading each repo (Phases 3 and 4 fix the unprefixed ones):
 |---|---|---|
 | Better Weather | `bw-recents`, `bw-units` | `betterweather:` |
 | Mogo | none — see below | `mogo:` |
-| Fauxcabulary | `fauxcabulary.bests` | `fauxcabulary:` |
-| Acronumbskull | `acronumbskull.bests` | `acronumbskull:` |
-| Word Square, Word Ninja, Letter Drop | keys are built at runtime — read the code | `wordsquare:` `wordninja:` `letterdrop:` |
+| Fauxcabulary | **done 2026-10-12**: `fauxcabulary:` (bests, level, voice, seen, `daily:<iso>`), old `fauxcabulary.*` migrated once and removed | `fauxcabulary:` |
+| Acronumbskull | **done 2026-10-12**: `acronumbskull:` likewise | `acronumbskull:` |
+| Word Square | **done 2026-10-12**: `wordsquare:` (`daily:<iso>`, size, mode, help-seen, `p:<id>`), old `ws-*` migrated and removed | `wordsquare:` |
+| Word Ninja | **done 2026-10-12**: `wordninja:` (`daily:<iso>`, best, speed, help-seen), old `wn-*` migrated and removed | `wordninja:` |
+| Letter Drop | **done 2026-10-12**: `letterdrop:` (`daily:<iso>`, level, seen), old `letterdrop.*` migrated and removed | `letterdrop:` |
 | Statterbrain | none found in `src/` | `statterbrain:` |
 | Would You Rather | none — see below | `wouldyourather:` |
 
-Migrate existing keys when prefixing, so nobody loses a high score.
+Migrate existing keys when prefixing, so nobody loses a high score. The five
+games did it the same way: copy each old key once, never over an existing
+prefixed one, then delete the old key.
 
 Mogo and Would You Rather are the exceptions, for the same reason. Mogo used to
 store `mogoSound` and `mogoVoice`; Would You Rather stored `wyr-voice`. The
