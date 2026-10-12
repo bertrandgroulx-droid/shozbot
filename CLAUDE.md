@@ -392,8 +392,14 @@ Per-game decisions worth knowing before touching any of them:
   **The finished grid is shown before the score** (Bertrand, the same day): a
   solve leaves the square on screen with a **See your score** button where
   Hint, Shuffle and Clear were; the results carry **See the grid** beside Play
-  it again; and a played day whose grid is still saved reopens on the grid,
-  not the results (only a migrated day with no grid goes straight to them).
+  it again; and a played day reopens on the grid it was played on, not the
+  results. The record carries the finished grid (`recap.cells`) since
+  2026-10-12, so a past day comes back whatever the draw does later; a day
+  migrated from the old game is rebuilt from its `recap.words` (an order of n
+  words whose columns are all words too); a day with neither, solved at
+  another size before scores were kept, goes straight to the results with
+  See the grid hidden. Found by Bertrand the same day: a past day showed its
+  score, and See the grid showed an empty square.
   Word Square alone does this, because the finished square is the satisfying
   thing there in a way a list of ten words is not.
 - **Word Ninja**'s daily is Slow; Fast is a random choice. `max` is null, so
