@@ -612,6 +612,13 @@ the next. Acronumbskull lost "Judging plausibility" in the same pass rather
 than Vocabulary, which it never had: Fauxcabulary keeps that one, so the two
 sibling guess-which-is-real games now read differently instead of echoing.
 
+**Five of the six descriptions end "A new … every day"** (2026-10-14,
+Bertrand's ask: the homepage should say the games have daily puzzles). It is
+said per card, in the description's own voice ("A new grid every day", "Ten
+new ones every day"), rather than in the shelf note, because Would You Rather
+has no daily and the note frames the whole shelf. Not a badge, for the reason
+below.
+
 **They have to differ, or they are noise.** Six cards reading the same two
 words would be skipped by everyone. Word Square deduces, Letter Drop sequences,
 Word Ninja is the only one with a clock and a moving target, and Would You
