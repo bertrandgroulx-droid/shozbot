@@ -971,6 +971,17 @@ only one with a build step.
   Worth knowing before adding a sixth size: at 700px tall the robot is already
   at 616px, so a much taller banner will hit it.
 
+  **A YouTube banner was added on 2026-10-14**, `youtube-banner-2560x1440.png`,
+  from the same tool, for the Shozbot channel Bertrand is setting up for
+  Statterbrain's training videos. YouTube shows a different crop of one
+  2560×1440 image on every screen — the whole thing on a TV, a 2560×423 strip
+  on a laptop, only the middle 1546×423 on a phone — so everything is composed
+  inside that central safe area at the LinkedIn profile banner's proportions,
+  the rest is plain paper, and there is no purple rule because on a TV it
+  would cut across the middle of the picture. The profile picture is the
+  existing 1200px square icon. The channel's description and the set-up steps
+  are in the chat of that date; nothing about them lives in the repo.
+
   The writing itself is still to do.
 
   **The launch post went out 2026-10-06 and reached little**, which is normal

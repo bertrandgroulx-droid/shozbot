@@ -11,6 +11,15 @@ differently:
   assets/social/shozbot-banner-1536x768.png    a 2:1 image, asked for by size
   assets/social/shozbot-banner-1512x256.png    a 5.9:1 strip, asked for by size
   assets/social/shozbot-banner-4200x700.png    a 6:1 strip, asked for by size
+  assets/social/youtube-banner-2560x1440.png   the YouTube channel banner
+
+The YouTube one is a different problem again: YouTube takes a 2560x1440 image
+and shows a different crop of it on every screen — the whole thing on a TV, a
+2560x423 strip across a laptop, and only the middle 1546x423 on a phone. So
+everything that matters is composed inside that central 1546x423 "safe area",
+at the same proportions as the LinkedIn profile banner, and the rest of the
+canvas is plain paper. There is no purple rule: on a TV it would cut across
+the middle of the picture.
 
 The two LinkedIn ones leave the bottom-left corner empty on purpose. LinkedIn drops the profile
 picture (or the page logo) over that corner, so anything put there is hidden
@@ -50,13 +59,16 @@ def tracked(draw, xy, text, font, fill, track):
 
 
 def banner(path, size, *, rule, robot_h, robot_pad, robot_bottom, text_x,
-           mark_px, tag_px, url_px, wordmark_y, tag_y, url_y):
+           mark_px, tag_px, url_px, wordmark_y, tag_y, url_y, canvas=None):
+    """Compose one banner. With `canvas`, the composition is pasted centred on
+    a larger plain canvas of that size, for a slot that crops to its middle."""
     w, h = size
     im = Image.new("RGB", size, PAPER)
     d = ImageDraw.Draw(im)
 
     # The purple rule along the top, as on the share image.
-    d.rectangle([0, 0, w, rule], fill=PURPLE)
+    if rule > 0:
+        d.rectangle([0, 0, w, rule], fill=PURPLE)
 
     robot = Image.open(ROOT / "assets/robot.png").convert("RGBA")
     # The cut-out is 766x900. Asking for more than that stretches a photograph
@@ -81,6 +93,11 @@ def banner(path, size, *, rule, robot_h, robot_pad, robot_bottom, text_x,
            font=ImageFont.truetype(str(FONTS / "Karla-Medium.ttf"), tag_px), fill=PURPLE)
     d.text((text_x + 3, url_y), "shozbot.com",
            font=ImageFont.truetype(str(FONTS / "JetBrainsMono-Medium.ttf"), url_px), fill=MUTED)
+
+    if canvas:
+        full = Image.new("RGB", canvas, PAPER)
+        full.paste(im, ((canvas[0] - w) // 2, (canvas[1] - h) // 2))
+        im = full
 
     im.save(path, optimize=True)
     print(path.relative_to(ROOT), im.size)
@@ -123,6 +140,16 @@ def main():
            rule=18, robot_h=616, robot_pad=300, robot_bottom=34, text_x=380,
            mark_px=180, tag_px=60, url_px=38,
            wordmark_y=175, tag_y=405, url_y=495)
+
+    # YouTube. Composed inside the 1546x423 the phone shows, on the 2560x1440
+    # YouTube asks for. Nothing overlaps it, so the type starts near the left
+    # of the safe area and the robot stands at its right. Two-step verification
+    # is not the only thing YouTube is strict about: a banner under 2048x1152
+    # is refused outright, so the canvas size is not negotiable.
+    banner(out / "youtube-banner-2560x1440.png", (1546, 423),
+           rule=0, robot_h=372, robot_pad=90, robot_bottom=24, text_x=110,
+           mark_px=110, tag_px=38, url_px=24,
+           wordmark_y=108, tag_y=250, url_y=318, canvas=(2560, 1440))
 
     # A 2:1 image at the size Bertrand asked for. Nothing overlaps it, so it is
     # balanced for its own sake: type left, robot right, both given the room the
