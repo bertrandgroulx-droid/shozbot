@@ -391,6 +391,18 @@ a { color: var(--mohawk); }
   color: var(--mohawk);
 }
 
+/* "Daily" beside a game's name: the same pill as Statterbrain's "Best on
+   desktop", sized down for an ordinary card's title (Bertrand, 2026-10-19:
+   the homepage should show which games are daily). Thirteen cards carry it,
+   the five daily Games and all eight Puzzling games; Would You Rather has no
+   daily and does not. */
+.badge--daily {
+  margin-left: 6px;
+  padding: 2px 8px;
+  font-size: .62rem;
+  vertical-align: 2px;
+}
+
 /* The featured card sits on its own and runs full width. */
 .card--feature {
   grid-template-columns: 72px 1fr;

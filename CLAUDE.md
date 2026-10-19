@@ -612,6 +612,15 @@ the next. Acronumbskull lost "Judging plausibility" in the same pass rather
 than Vocabulary, which it never had: Fauxcabulary keeps that one, so the two
 sibling guess-which-is-real games now read differently instead of echoing.
 
+**Thirteen cards wear a "Daily" pill beside the name** (2026-10-19, Bertrand's
+pick from three options: the pill, a live "Played today" line read from the
+games' saved scores, or a calendar glyph with today's number). It is
+Statterbrain's "Best on desktop" pill sized down (`.badge--daily`), on the
+five daily Games and all eight Puzzling games; Would You Rather has none. The
+"Played today" line is the natural follow-up and is not built. The sentences
+below still stand, so the fact is said twice on those five cards; Bertrand
+asked for each separately and has not asked to drop either.
+
 **Five of the six descriptions end "A new … every day"** (2026-10-14,
 Bertrand's ask: the homepage should say the games have daily puzzles). It is
 said per card, in the description's own voice ("A new grid every day", "Ten
