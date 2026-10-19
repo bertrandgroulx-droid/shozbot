@@ -420,6 +420,45 @@ accepts `storage`/`now`, for tests; a `remove(key)`; an optional `at` on
 and that a game wanting stable history should write a schedule as Puzzling
 does.
 
+### The share icon on every phone app (2026-10-19)
+
+Bertrand's ask, after Better Weather got one in another chat: every phone app
+carries the same small share icon — Better Weather's upload-arrow glyph, an
+18px drawing in a 34×34 round hit area, muted at rest. A tap opens the share
+sheet on a phone (`navigator.share({ title, url })`), copies the link with a
+"Link copied" toast on a laptop, or shows the link itself in the toast where
+neither exists. The address is always built from the page's canonical link,
+never `location.href`, because the same file is served from github.io and
+saved progress lives per address.
+
+**The link is a deep link only for a specific day's puzzle** (Bertrand's rule,
+which removed the need for random-puzzle seeds): a daily game showing a day's
+puzzle, in play or on its results, shares `?daily=YYYY-MM-DD` with the title
+"<Game> · Daily No. N"; a random puzzle, the Past puzzles list and anything
+else share the plain address. Letter Drop keeps its existing `?word=` for a
+random puzzle since it costs nothing. Mogo shares `?country=<ISO code>` when a
+country is on screen — the code is decoded from the flag emoji, since the data
+has no code field — and opening such a link shows that country, then clears
+the query from the address so a later spin is not undone by a reload. Would
+You Rather shares its plain address and still stores nothing.
+
+**Placement: left of How to play**, Bertrand's choice. Letter Drop (the button
+row), Word Square and Word Ninja (the `?` top right, same size and centre),
+Acronumbskull (the How to play link in the daily line). Fauxcabulary had its
+rules in a fold-out under the cards with no header link; its rules moved into
+a dialog like Acronumbskull's, reached from a How to play link in the daily
+line, with the icon left of it — so the two siblings now match, except that
+Acronumbskull opens its rules once on a first visit and Fauxcabulary does not.
+Mogo and Would You Rather have no help button, so the icon sits at the right
+end of the title row. Word Square's top bar has no room below 365px wide, so
+there the same button moves to the end of the Past puzzles row. Each game's
+results screen keeps its own Share button for the score text; this is a second,
+different share.
+
+The eight Puzzling games got a note with the same rules; their shell can do it
+once for all eight. Better Weather's button was built in the other chat that
+now edits that app; this checkout of it is behind.
+
 ### What the kit had to learn about the apps
 
 Three things that were wrong in the first cut and only showed up by rendering it
