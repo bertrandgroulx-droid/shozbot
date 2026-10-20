@@ -1112,6 +1112,17 @@ only one with a build step.
   the games count as the tenth to seventeenth apps. The eight
   skills lines reuse "Quick recall", "Lateral thinking" and "Working under a
   clock" twice each — raised with that chat, not yet changed.
+
+  **The collection page is linked from the heading row** (2026-10-20).
+  Bertrand found that `shozbot.com/puzzling/` was live but nothing on the
+  homepage reached it: every card goes straight to its game. A quiet
+  **See the collection** link (`.section-link`) sits at the far end of the
+  Puzzling heading row, after the rule, via `order`. It is a link beside the
+  heading rather than the heading itself, so the four headings stay the same
+  kind of thing; the other three shelves have no page of their own and get
+  no link. Below 640px the row becomes a grid and the link drops to a line of
+  its own under the heading, because on the row it squeezed the note into a
+  four-line column. Measured at 320, 375, 390 and 1280px, light and dark.
 - **The LinkedIn series runs every two weeks**, not weekly (2026-10-10). Order:
   Better Weather, Statterbrain, then Puzzling. **Statterbrain training videos
   on YouTube** are wanted in the week after 2026-10-10 — note for later, not
