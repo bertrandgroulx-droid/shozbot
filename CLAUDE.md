@@ -578,7 +578,7 @@ Renamed 2026-09-25 at Bertrand's request. The shelf names **what it holds**
 rather than where to begin, so more technical apps can join Statterbrain on it.
 It is still the only shelf that is not phone-first.
 
-**The order is Everyday, Technical, Games, Puzzling** (Games before Puzzling since 2026-10-10; the first three since 2026-10-03, Bertrand's call).
+**The order is Everyday, Technical, Puzzling, Games** (Puzzling before Games since 2026-10-20, Bertrand's call — the eight daily games are the newer, bigger thing and he wants them seen first; Games sat before Puzzling from 2026-10-10 to then; the first two since 2026-10-03). The install note names the shelves in the same order.
 Technical used to be first. It moved because Better Weather is the app the
 launch post leads with, and the app a shared link lands people on should be the
 first thing they see — a reader who has to scroll past a desktop statistics
@@ -1095,7 +1095,7 @@ only one with a build step.
   that case. Checked live: the collection page, two game folders, the shared
   stylesheet and the icons all resolve.
 
-  **On the homepage since 2026-10-10 as a shelf of its own after Games**,
+  **On the homepage since 2026-10-10 as a shelf of its own** (after Games until 2026-10-20, before it since),
   Bertrand's call between two mock-ups (the other put the eight inside Games;
   both are gone now that the real page is the record). The shelf carries a
   `.section-credit` paragraph under its heading naming the segment, the show
