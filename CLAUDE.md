@@ -1123,6 +1123,17 @@ only one with a build step.
   no link. Below 640px the row becomes a grid and the link drops to a line of
   its own under the heading, because on the row it squeezed the note into a
   four-line column. Measured at 320, 375, 390 and 1280px, light and dark.
+
+  **The collection page carries the same eight skills lines** (Puzzling chat,
+  2026-10-20, after a note from here), word for word, and the Tumble
+  description was brought into step on this side ("An anagram game: …").
+  Two things that chat reported back, so nobody "fixes" either: its skills
+  line is in its muted grey, **bold**, not its accent blue — bold is what
+  separates it from the description there, where the homepage's line is
+  regular weight and leans on colour instead, which is why `.card-skills`
+  stays `--mohawk` (the muted try is documented above); and at 375px its How
+  to play pill is a touch smaller than the studio's share-icon spec so the
+  longest game names hold one line beside the icon.
 - **The LinkedIn series runs every two weeks**, not weekly (2026-10-10). Order:
   Better Weather, Statterbrain, then Puzzling. **Statterbrain training videos
   on YouTube** are wanted in the week after 2026-10-10 — note for later, not
