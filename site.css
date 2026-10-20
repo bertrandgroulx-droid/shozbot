@@ -305,6 +305,37 @@ a { color: var(--mohawk); }
   background: var(--line);
 }
 
+/* A quiet link at the far end of a shelf's heading row, for a shelf that has
+   a page of its own: Puzzling's collection page lists the eight games with
+   "Played today" marks, and until this nothing on the homepage reached it
+   (Bertrand, 2026-10-20). A link beside the heading rather than the heading
+   itself, so the four headings stay the same kind of thing. `order` puts it
+   after the ::after rule, which is always last in the DOM. */
+.section-link {
+  order: 1;
+  font-size: .82rem;
+  color: var(--mohawk);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--mohawk) 45%, transparent);
+  white-space: nowrap;
+}
+.section-link:hover, .section-link:focus-visible { text-decoration-color: currentColor; }
+
+/* On a phone the row has no room for a fourth thing: the link squeezed the
+   note into a four-line column beside the heading. Below 640px the row becomes
+   a grid that keeps heading, note and rule exactly as the other shelves have
+   them, and drops the link onto a line of its own underneath, at the left. */
+@media (max-width: 640px) {
+  .section-head:has(.section-link) {
+    display: grid;
+    grid-template-columns: auto minmax(0, max-content) 1fr;
+    row-gap: 6px;
+  }
+  .section-head:has(.section-link)::after { grid-column: 3; align-self: center; }
+  .section-link { grid-column: 1 / -1; justify-self: start; }
+}
+
 /* ---------- app cards ------------------------------------------------- */
 .grid {
   display: grid;
