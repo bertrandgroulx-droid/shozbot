@@ -1134,6 +1134,14 @@ only one with a build step.
   stays `--mohawk` (the muted try is documented above); and at 375px its How
   to play pill is a touch smaller than the studio's share-icon spec so the
   longest game names hold one line beside the icon.
+
+  **The Puzzling games put every clue on a warm paper card** (that chat,
+  2026-10-24, Bertrand's pick from mock-ups): light `#faf5ec` with labels in
+  `#7a5a2e`, dark `#26211a` with `#d9b98a`. It is a surface tint so the clue
+  stands apart from the rest of the screen, not a new accent — blue still
+  means "act here" there. Nothing on the studio side uses or matches it, and
+  nothing should: those warm values are the games' own, not the studio's
+  cool-neutral palette.
 - **The LinkedIn series runs every two weeks**, not weekly (2026-10-10). Order:
   Better Weather, Statterbrain, then Puzzling. **Statterbrain training videos
   on YouTube** are wanted in the week after 2026-10-10 — note for later, not
