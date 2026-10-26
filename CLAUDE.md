@@ -1160,10 +1160,12 @@ only one with a build step.
   list went live on 2026-10-26: <https://youtu.be/cep125AmpuI>,
   <https://youtu.be/0BxgGw-tURg>, <https://youtu.be/Ae8B_SFNbFs>,
   <https://youtu.be/5KNv8aWO0qU>), and the homepage
-  card says "Watch the videos" but still points at the tour, because no
-  playlist address exists yet. When Bertrand sends the channel's Statterbrain playlist link, the card
-  link moves to it and the Welcome line gains a "see all" link (`PLAYLIST`,
-  per the comment in links.ts).
+  card's "Watch the videos" goes to the channel's **Statterbrain playlist**,
+  <https://www.youtube.com/playlist?list=PLDAvDnVIwSSU>, all six in order
+  (`PLAYLIST` in links.ts; the Welcome line ends "or play all six in a row").
+  The playlist id is shorter than most and is correct: Bertrand's screenshot
+  of the loaded page settled it. A seventh video is one line in `VIDEOS`
+  plus adding it to the playlist on YouTube; the homepage needs nothing.
 - **A custom wordmark, later.** JetBrains Mono at -0.02em is what ships, and
   Bertrand is happy with it for now, but he wants to come back to a properly
   kerned or custom-drawn `shozbot` at some point. Raise it, don't act on it.
