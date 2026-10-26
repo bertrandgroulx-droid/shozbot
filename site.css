@@ -505,6 +505,41 @@ a { color: var(--mohawk); }
 }
 .card-aside a:hover { color: var(--mohawk); }
 
+/* The one call to action on a card: a small filled pill with a play glyph,
+   for the Statterbrain videos (Bertrand, 2026-10-26: the plain text link was
+   "kind of bland"). Mohawk fill, paper text, so it is the only solid purple
+   on the page and reads as the thing to press. It sits inside .card-aside so
+   the rule above lifts it over the card's stretched link. display:flex on a
+   block of its own rather than inline, so it never shares a line with the
+   credit's last words. */
+/* Qualified with .card-aside too, because `.card-aside a { color: inherit }`
+   outranks a lone class and turned the label the credit's grey on purple. */
+.card-cta, .card-aside .card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 6px 12px 6px 10px;
+  border-radius: 999px;
+  background: var(--mohawk);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: .78rem;
+  letter-spacing: .01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.card-cta svg { width: 14px; height: 14px; fill: currentColor; }
+.card-aside .card-cta:hover, .card-aside .card-cta:focus-visible { color: var(--paper); background: var(--mohawk-deep); }
+.card--feature .card-aside .card-cta { position: relative; }
+.card-cta-note {
+  display: block;
+  margin-top: 6px;
+  font-size: .78rem;
+  color: var(--muted);
+}
+
 /* In its narrow column the credit broke "Type-Well" at the hyphen, which reads
    as a typo. Line breaking treats an existing hyphen as a break opportunity,
    and no hyphens property changes that — the fragment has to be held together. */

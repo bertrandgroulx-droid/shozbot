@@ -1164,7 +1164,15 @@ only one with a build step.
   <https://www.youtube.com/playlist?list=PLDAvDnVIwSSU>, all six in order
   (`PLAYLIST` in links.ts; the Welcome line ends "or play all six in a row").
   The playlist id is shorter than most and is correct: Bertrand's screenshot
-  of the loaded page settled it. A seventh video is one line in `VIDEOS`
+  of the loaded page settled it. **Both links became buttons the same day**
+  (Bertrand: the text links were "kind of bland"): on the homepage a filled
+  mohawk pill with a play glyph, `.card-cta`, under the credit with a muted
+  "Six short tours, one per tool" line — the only solid purple on the page,
+  which is what makes it read as the thing to press; `.card-aside a { color:
+  inherit }` outranks a lone class, so its colour rule is qualified with
+  `.card-aside`. On the Welcome page, a `btn btn--primary` in Statterbrain's
+  own blue, which there means "act here", with the per-video names kept as a
+  small line beneath. A seventh video is one line in `VIDEOS`
   plus adding it to the playlist on YouTube; the homepage needs nothing.
 - **A custom wordmark, later.** JetBrains Mono at -0.02em is what ships, and
   Bertrand is happy with it for now, but he wants to come back to a properly
