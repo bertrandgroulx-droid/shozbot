@@ -1143,9 +1143,18 @@ only one with a build step.
   nothing should: those warm values are the games' own, not the studio's
   cool-neutral palette.
 - **The LinkedIn series runs every two weeks**, not weekly (2026-10-10). Order:
-  Better Weather, Statterbrain, then Puzzling. **Statterbrain training videos
-  on YouTube** are wanted in the week after 2026-10-10 — note for later, not
-  started.
+  Better Weather, Statterbrain, then Puzzling.
+- **Statterbrain videos on YouTube: the first is live** (2026-10-26),
+  <https://youtu.be/6wJHXD5RzAc>, the five-minute tour from the "Shozbot on
+  YouTube" doc (setup, recording with the Xbox Game Bar, the six-video list,
+  two scripts). It is linked, never embedded — an embedded player sets
+  YouTube's cookies and the homepage promises none — from two places: the
+  Statterbrain card's credit line on the homepage, on its own line under the
+  SAGA Wisdom credit (lifted above the card's stretched link like the course
+  link, by the existing `.card-aside a` rule), and Statterbrain's Welcome page
+  under Learn more (`VIDEO` in `src/lib/links.ts`). When a second video
+  exists, both links move to the channel's Statterbrain playlist and the label
+  becomes "Watch the videos".
 - **A custom wordmark, later.** JetBrains Mono at -0.02em is what ships, and
   Bertrand is happy with it for now, but he wants to come back to a properly
   kerned or custom-drawn `shozbot` at some point. Raise it, don't act on it.
