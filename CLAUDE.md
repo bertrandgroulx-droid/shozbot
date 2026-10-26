@@ -1155,9 +1155,10 @@ only one with a build step.
   under Learn more (`VIDEOS` in `src/lib/links.ts`). **The second, Probit
   Analysis, went live the same day** (<https://youtu.be/sIrYckw3wUc>): the
   Welcome page now names each video on one line ("Watch on YouTube: the
-  five-minute tour · Probit Analysis"), and the homepage card says "Watch the
-  videos" but still points at the tour, because no playlist address exists
-  yet. When Bertrand sends the channel's Statterbrain playlist link, the card
+  five-minute tour · Probit Analysis · Multivariate Analysis" — the third,
+  <https://youtu.be/cep125AmpuI>, followed the same day), and the homepage
+  card says "Watch the videos" but still points at the tour, because no
+  playlist address exists yet. When Bertrand sends the channel's Statterbrain playlist link, the card
   link moves to it and the Welcome line gains a "see all" link (`PLAYLIST`,
   per the comment in links.ts).
 - **A custom wordmark, later.** JetBrains Mono at -0.02em is what ships, and
