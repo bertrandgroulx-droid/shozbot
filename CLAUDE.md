@@ -1145,8 +1145,9 @@ only one with a build step.
 - **The LinkedIn series runs every two weeks**, not weekly (2026-10-10). Order:
   Better Weather, Statterbrain, then Puzzling.
 - **Statterbrain videos on YouTube: the first is live** (2026-10-26),
-  <https://youtu.be/6wJHXD5RzAc>, the five-minute tour from the "Shozbot on
-  YouTube" doc (setup, recording with the Xbox Game Bar, the six-video list,
+  <https://youtu.be/6wJHXD5RzAc>, "Statterbrain Overview" (2:25, not the
+  five minutes the doc's script planned — Bertrand's correction when the site
+  called it a five-minute tour), from the "Shozbot on YouTube" doc (setup, recording with the Xbox Game Bar, the six-video list,
   two scripts). It is linked, never embedded — an embedded player sets
   YouTube's cookies and the homepage promises none — from two places: the
   Statterbrain card's credit line on the homepage, on its own line under the
@@ -1154,8 +1155,8 @@ only one with a build step.
   link, by the existing `.card-aside a` rule), and Statterbrain's Welcome page
   under Learn more (`VIDEOS` in `src/lib/links.ts`). **The second, Probit
   Analysis, went live the same day** (<https://youtu.be/sIrYckw3wUc>): the
-  Welcome page now names each video on one line ("Watch on YouTube: the
-  five-minute tour · Probit Analysis · Multivariate Analysis · Type-well
+  Welcome page now names each video on one line ("Or pick one: Overview ·
+  Probit Analysis · Multivariate Analysis · Type-well
   Curve · Sequential Accumulation · Estimator Tool" — all six from the doc's
   list went live on 2026-10-26: <https://youtu.be/cep125AmpuI>,
   <https://youtu.be/0BxgGw-tURg>, <https://youtu.be/Ae8B_SFNbFs>,
