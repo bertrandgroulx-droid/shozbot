@@ -2,11 +2,13 @@
 """Build a LinkedIn carousel (a PDF, one page per slide) for one app.
 
     python3 tools/make-carousel.py better-weather SHOTS_DIR OUT_DIR
+    python3 tools/make-carousel.py statterbrain assets/social/carousels/statterbrain OUT_DIR
 
 LinkedIn's "carousel" is a document post: upload a PDF and each page becomes
 a swipeable slide. 1080x1350 (4:5 portrait) is used because every slide here
 is built around a phone screenshot, and portrait gives the shot room while
-taking the most feed height a post can.
+taking the most feed height a post can. A desktop app's deck sets "size" to a
+square instead: a landscape shot on a portrait slide leaves half of it empty.
 
 SHOTS_DIR holds the screenshots, named by what they show (main.png, moon.png,
 radar.png ...) and referenced by that name in the spec below — so reordering
@@ -31,7 +33,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parent.parent
 FONTS = ROOT / "tools" / "fonts"
 
-W, H = 1080, 1350
+W, H = 1080, 1350   # the default, 4:5 around a phone shot; a deck may set "size"
 PAPER = (244, 245, 247)   # site --paper, cool neutral since 2026-10-11
 INK = (26, 27, 30)
 MUTED = (101, 106, 115)
@@ -86,7 +88,7 @@ def rounded(im, radius):
     return out
 
 
-def phone(shot_path, height, label, trim, keep=1.0, max_width=W - 2 * MARGIN):
+def phone(shot_path, height, label, trim, keep=1.0, max_width=None, crop=None):
     """A screenshot fitted to `height`, corners rounded, hairline border.
 
     `trim` = (top, bottom) pixels cut from the raw shot: the status bar with
@@ -97,8 +99,15 @@ def phone(shot_path, height, label, trim, keep=1.0, max_width=W - 2 * MARGIN):
     No drawn bezel: a fake device frame is exactly the kind of stylising the
     brand avoids, and the rounded corners plus hairline already say "a phone".
     """
+    if max_width is None:
+        max_width = W - 2 * MARGIN
     if shot_path and shot_path.exists():
         im = Image.open(shot_path).convert("RGB")
+        # `crop` = (left, top, right, bottom) in the shot's own pixels, applied
+        # first: a desktop app's shot carries its sidebar, which every slide
+        # would repeat, so the tool slides keep only the page to its right.
+        if crop:
+            im = im.crop(crop)
         # `keep` < 1 cuts the shot off at that fraction of its height: a panel
         # that opens over the app leaves the bottom half of the screen dimmed
         # and empty, and cropping to the panel lets the chart fill the slide.
@@ -107,7 +116,8 @@ def phone(shot_path, height, label, trim, keep=1.0, max_width=W - 2 * MARGIN):
         scale = min(height / im.height, max_width / im.width)
         im = im.resize((round(im.width * scale), round(im.height * scale)), Image.LANCZOS)
     else:
-        im = Image.new("RGB", (round(height * 1290 / 2517), height), PLACEHOLDER)
+        aspect = 2280 / 1800 if W == H else 1290 / 2517   # a desktop page, or a phone
+        im = Image.new("RGB", (min(round(height * aspect), max_width), height), PLACEHOLDER)
         d = ImageDraw.Draw(im)
         f = font("JetBrainsMono-Medium.ttf", 26)
         lines = ["screenshot", "goes here", ""] + wrap(d, label, f, im.width - 60)
@@ -146,7 +156,8 @@ def slide_feature(n, total, spec, shots, deck, cover=False):
 
     # The screenshot takes every pixel between the text and the footer.
     top = y + 26
-    ph = phone(shots / spec["file"], H - FOOT - 16 - top, spec["shot"], spec.get("trim", deck["trim"]), spec.get("keep", 1.0))
+    ph = phone(shots / spec["file"], H - FOOT - 16 - top, spec["shot"], spec.get("trim", deck["trim"]), spec.get("keep", 1.0),
+               crop=spec.get("crop", deck.get("crop") if not cover else None))
     im.paste(ph, ((W - ph.width) // 2, top), ph)
 
     footer(d, n, total, deck["url"])
@@ -159,16 +170,18 @@ def slide_close(n, total, spec, deck):
 
     # The text runs the full width: the robot stands bottom-right and the
     # two paragraphs finish well above him, so nothing has to clear him.
-    width = W - 2 * MARGIN
-    f_sub = font("Karla-Medium.ttf", 46)
-    y = text_block(d, (MARGIN, 100), spec["title"], font("Karla-Medium.ttf", 80), INK, width, 90)
-    for para in spec["sub"]:
-        y = text_block(d, (MARGIN, y + 28), para, f_sub, MUTED, width, 60)
-    tracked(d, (MARGIN, y + 52), deck["url"], font("JetBrainsMono-Bold.ttf", 40), INK, -40 * 0.02)
-
     robot = Image.open(ROOT / "assets/robot.png").convert("RGBA")
-    rh = 500
+    rh = deck.get("robot_height", 500)
     robot = robot.resize((round(robot.width * rh / robot.height), rh), Image.LANCZOS)
+
+    # On a square slide there is no room above the robot for the whole text,
+    # so the paragraphs stop short of him instead: a narrower column.
+    width = W - 2 * MARGIN - (robot.width - 20 if W == H else 0)
+    f_sub = font("Karla-Medium.ttf", 46 if W < H else 38)
+    y = text_block(d, (MARGIN, 100 if W < H else 72), spec["title"], font("Karla-Medium.ttf", 80 if W < H else 64), INK, W - 2 * MARGIN, 90 if W < H else 74)
+    for para in spec["sub"]:
+        y = text_block(d, (MARGIN, y + 28), para, f_sub, MUTED, width, 60 if W < H else 50)
+    tracked(d, (MARGIN, y + 52), deck["url"], font("JetBrainsMono-Bold.ttf", 40), INK, -40 * 0.02)
     im.paste(robot, (W - MARGIN - robot.width + 40, H - FOOT - 20 - rh), robot)
 
     d.text((MARGIN, H - FOOT - 50), "Handmade apps for curious minds", font=font("Karla-Medium.ttf", 30), fill=MUTED)
@@ -221,6 +234,51 @@ DECKS = {
                      "Forecast by Open-Meteo, radar by RainViewer. No keys, no tracking, no sign-in \u2014 and nothing to buy, ever."]},
         ],
     },
+    "statterbrain": {
+        "app": "Statterbrain",
+        "url": "shozbot.com/statterbrain",
+        # A desktop app: landscape shots, so the slide is square rather than
+        # 4:5, and the robot on the close is smaller to leave the text room.
+        "size": (1080, 1080),
+        "robot_height": 420,
+        # The shots are the app itself at 1440x900, captured at 2x from the
+        # built app with its own example datasets (the oil and gas set the
+        # course works through), so there is no status bar to trim. The tool
+        # slides drop the sidebar (432px wide at 2x, measured off the shot);
+        # the cover keeps it.
+        "trim": (0, 0),
+        "crop": (440, 0, 2880, 1800),
+        "slides": [
+            {"kind": "cover", "file": "welcome.png",
+             "title": "Five statistics tools for well data, in your browser.",
+             "sub": "Probit plots, multivariate analysis, type-well curves, sequential accumulation and a sanity check for estimates. Bring a CSV \u2014 your data never leaves your computer.",
+             "shot": "the Welcome page"},
+            {"file": "probit-analysis.png",
+             "title": "Is it lognormal?",
+             "sub": "A cumulative probability plot from any column, on the axis that draws it straight. Group by any other column to see what pulls the wells apart.",
+             "shot": "Probit Analysis \u2014 Plot, grouped"},
+            {"file": "multivariate-analysis.png",
+             "title": "What drives the result?",
+             "sub": "Every input ranked by how cleanly it separates the best wells from the rest. Feature importance and a correlation matrix on the next tabs.",
+             "shot": "Multivariate Analysis \u2014 Parallel Coordinates"},
+            {"file": "type-well-curve.png", "keep": 0.845,  # cut at the legend; the values table below it is not the slide
+             "title": "The average well, month by month.",
+             "sub": "A type-well curve from real production: condensed, aligned and averaged, by area or operator, with each month\u2019s P10, P50 and P90.",
+             "shot": "Type-well Curve \u2014 Plot, grouped by Area"},
+            {"file": "sequential-accumulation.png",
+             "title": "Is the program settling?",
+             "sub": "Wells in the order they were drilled. The running average against the trumpet the type mean implies, so you can see whether the program is on its curve.",
+             "shot": "Sequential Accumulation \u2014 Plot"},
+            {"file": "estimator-tool.png",
+             "title": "A sanity check for any estimate.",
+             "sub": "Enter a low and a high. It shows the 1-in-100 extremes those two imply, so you can ask whether the true value could really reach them.",
+             "shot": "Estimator Tool, with a low and a high entered"},
+            {"kind": "close",
+             "title": "Free. No account. Nothing leaves your computer.",
+             "sub": ["Built for the Type-Well Curve Fundamentals course at SAGA Wisdom, and useful well beyond it. Save a session as a file and pick it up where you left off, or hand it to a colleague.",
+                     "Six short videos, one per tool, on the Shozbot YouTube channel. Start with the Overview."]},
+        ],
+    },
 }
 
 
@@ -228,6 +286,8 @@ def main():
     if len(sys.argv) != 4 or sys.argv[1] not in DECKS:
         raise SystemExit(f"usage: make-carousel.py {{{'|'.join(DECKS)}}} SHOTS_DIR OUT_DIR")
     deck = DECKS[sys.argv[1]]
+    global W, H
+    W, H = deck.get("size", (W, H))
     shots, out = Path(sys.argv[2]), Path(sys.argv[3])
     out.mkdir(parents=True, exist_ok=True)
 

@@ -1044,7 +1044,18 @@ only one with a build step.
   series: one app per Tuesday, a carousel of that app's own screens.
   `tools/make-carousel.py` builds each one; Better Weather's is done
   (`assets/social/carousels/`, 2026-10-08) **and posted on 2026-10-10**.
-  Statterbrain's is next, two weeks on.
+  **Statterbrain's is built** (2026-10-26, `statterbrain-carousel.pdf`, seven
+  slides: cover on the Welcome page, one per tool, close), not yet posted.
+  Two things differ from the Better Weather deck, both because it is a
+  desktop app: the slides are **square** (the deck sets `size`; a landscape
+  shot on a 4:5 slide left half of it empty), and **the screenshots were
+  captured here**, not on Bertrand's phone — the built app at 1440×900, 2×,
+  loading its own shipped example datasets, so nothing is fabricated the way
+  a forecast from fixture data would be. The tool slides crop the sidebar off
+  (`crop`, 432px at 2×, measured off the shot); the cover keeps it. The
+  close's robot is smaller (`robot_height`) and the text stops short of him.
+  Pillow in this container only imports under `python3.12`; the default
+  `python3` is 3.11 without it.
 
   **Three rules Bertrand set on the first cut, which hold for every deck.**
   The screen is the slide: title and one short line above, the screenshot
