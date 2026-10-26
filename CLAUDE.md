@@ -1055,7 +1055,13 @@ only one with a build step.
   (`crop`, 432px at 2×, measured off the shot); the cover keeps it. The
   close's robot is smaller (`robot_height`) and the text stops short of him.
   Pillow in this container only imports under `python3.12`; the default
-  `python3` is 3.11 without it.
+  `python3` is 3.11 without it. **The copy is the tool names and what each
+  computes** (Bertrand, same day, on a first cut with question-style titles
+  like "Is it lognormal?": "make it feel a little more technical … consistent
+  with it being a training technical tool"). Titles are "Probit Analysis",
+  "Sequential Accumulation" and so on; the lines beneath name the quantities
+  — R², P10:P90 ratio, separation, the trumpet envelope — rather than
+  selling. Karla has no η glyph, so "eta squared" is spelled out.
 
   **Three rules Bertrand set on the first cut, which hold for every deck.**
   The screen is the slide: title and one short line above, the screenshot
