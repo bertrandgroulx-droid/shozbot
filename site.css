@@ -552,7 +552,10 @@ a { color: var(--mohawk); }
     grid-row: 1;
     align-self: center;
     margin: 0 0 0 36px;
-    max-width: 17ch;
+    /* 24ch, not 17: the column is sized by this, and the Watch the videos pill
+       is wider than 17ch of the credit's type, so at 17ch it poked out past
+       the card's edge (Bertrand's screenshot, 2026-10-26). */
+    max-width: 24ch;
     text-align: right;
   }
 }
