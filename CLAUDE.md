@@ -1156,10 +1156,10 @@ only one with a build step.
   Analysis, went live the same day** (<https://youtu.be/sIrYckw3wUc>): the
   Welcome page now names each video on one line ("Watch on YouTube: the
   five-minute tour · Probit Analysis · Multivariate Analysis · Type-well
-  Curve · Sequential Accumulation" — the third, <https://youtu.be/cep125AmpuI>,
-  fourth, <https://youtu.be/0BxgGw-tURg>, and fifth,
-  <https://youtu.be/Ae8B_SFNbFs>, followed the same day; the Estimator Tool
-  is the one of the six still to record), and the homepage
+  Curve · Sequential Accumulation · Estimator Tool" — all six from the doc's
+  list went live on 2026-10-26: <https://youtu.be/cep125AmpuI>,
+  <https://youtu.be/0BxgGw-tURg>, <https://youtu.be/Ae8B_SFNbFs>,
+  <https://youtu.be/5KNv8aWO0qU>), and the homepage
   card says "Watch the videos" but still points at the tour, because no
   playlist address exists yet. When Bertrand sends the channel's Statterbrain playlist link, the card
   link moves to it and the Welcome line gains a "see all" link (`PLAYLIST`,
