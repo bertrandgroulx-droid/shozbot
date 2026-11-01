@@ -595,7 +595,7 @@ range lives on the page:
 | Technical | deep practice, made usable |
 | Everyday | small efficiencies · phone-first |
 | Games | a puzzle is exercise · phone-first |
-| Puzzling | a new puzzle every day, eight ways · phone-first |
+| Puzzling | a new puzzle every day, nine ways · phone-first |
 
 Bertrand wanted the range stated and the games framed as exercise rather than
 only fun. This is where that went, rather than a paragraph in the hero: the
@@ -1151,6 +1151,23 @@ only one with a build step.
   stays `--mohawk` (the muted try is documented above); and at 375px its How
   to play pill is a touch smaller than the studio's share-icon spec so the
   longest game names hold one line beside the icon.
+
+  **Snowball, the ninth Puzzling game, joined on 2026-11-01** (the Puzzling
+  chat's handoff doc; found by re-reading it at Bertrand's prompt). Live at
+  `shozbot.com/puzzling/snowball/`, the card sits between Whittle and Tumble
+  as the collection page orders it: "Start with three letters and add one at
+  a time to match three clues, so the word grows." Skills line "Growing words
+  · Spotting the gap", on no other card. Its icon is Whittle's mirror, copied
+  to `assets/apps/puzzling/snowball.svg`; it takes the Daily pill and a
+  sitemap line, and every "eight" on the homepage (the meta description, the
+  shelf note, the comments) became nine. For the credit table: its origin is
+  the show's Add Three segment. The games are now the tenth to eighteenth
+  apps. The same doc also records, with nothing for the studio to do: a game's
+  name in its header now goes to the collection page (2026-10-24), results
+  lead with "Next game" and each manifest's scope is the whole collection
+  (2026-10-31). The doc's own checklist still marks the studio's 10 October
+  steps "To do" and its skills table still carries three pairs no page uses;
+  both are stale, not instructions.
 
   **The Puzzling games put every clue on a warm paper card** (that chat,
   2026-10-24, Bertrand's pick from mock-ups): light `#faf5ec` with labels in
