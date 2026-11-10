@@ -1169,6 +1169,19 @@ only one with a build step.
   steps "To do" and its skills table still carries three pairs no page uses;
   both are stale, not instructions.
 
+  **A share image for the collection page lives here** (2026-11-10, Bertrand:
+  "make the puzzling page shareable"). `shozbot.com/puzzling/` had a canonical
+  link and a description but no share icon and no Open Graph tags, so a
+  pasted link showed no card. Both fixes are in the Puzzling repo (a note went
+  to that chat: the icon at the right end of the title row, the tag set the
+  homepage carries), but the picture is served from this one so that side
+  needs only the tags: `assets/og-puzzling.png`, 1200×630, the studio's paper
+  and type with the nine game icons in a row, drawn by rendering
+  `tools/og-puzzling.html` in Chromium at 1200×630 (the icons are SVG and
+  this container has no cairosvg, so the browser is the rasteriser; serve the
+  repo root and screenshot that page to redraw it, e.g. after a tenth game).
+  The studio's own `assets/og.png` is unchanged.
+
   **The Puzzling games put every clue on a warm paper card** (that chat,
   2026-10-24, Bertrand's pick from mock-ups): light `#faf5ec` with labels in
   `#7a5a2e`, dark `#26211a` with `#d9b98a`. It is a surface tint so the clue
