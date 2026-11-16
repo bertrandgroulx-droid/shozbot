@@ -336,7 +336,7 @@ DECKS = {
             {"kind": "close",
              "title": "Free. No ads. No sign-up.",
              "sub": ["Inspired by That\u2019s Puzzling! on CBC Radio\u2019s The Sunday Magazine, where puzzle master Peter Brown sets the games. Every clue and answer here is original, and Shozbot is not affiliated with CBC.",
-                     "Add any game to your home screen and it runs like an app. A puzzle that makes you work is exercise."]},
+                     "Add any game, or the whole collection, to your home screen and it runs like an app. A puzzle that makes you work is exercise."]},
         ],
     },
 }
