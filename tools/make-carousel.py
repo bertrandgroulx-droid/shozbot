@@ -88,7 +88,7 @@ def rounded(im, radius):
     return out
 
 
-def phone(shot_path, height, label, trim, keep=1.0, max_width=None, crop=None):
+def phone(shot_path, height, label, trim, keep=1.0, max_width=None, crop=None, plain=False):
     """A screenshot fitted to `height`, corners rounded, hairline border.
 
     `trim` = (top, bottom) pixels cut from the raw shot: the status bar with
@@ -125,6 +125,10 @@ def phone(shot_path, height, label, trim, keep=1.0, max_width=None, crop=None):
         for ln in lines:
             d.text(((im.width - d.textlength(ln, font=f)) / 2, y), ln, font=f, fill=MUTED)
             y += 40
+    if plain:
+        # Not a screenshot of a device: a drawn cover (the Puzzling icon grid)
+        # that already sits on white, so no corners and no hairline.
+        return im.convert("RGBA")
     r = round(height * 0.045)
     im = rounded(im, r)
     ImageDraw.Draw(im).rounded_rectangle([0, 0, im.width - 1, im.height - 1], r, outline=LINE, width=3)
@@ -157,7 +161,7 @@ def slide_feature(n, total, spec, shots, deck, cover=False):
     # The screenshot takes every pixel between the text and the footer.
     top = y + 26
     ph = phone(shots / spec["file"], H - FOOT - 16 - top, spec["shot"], spec.get("trim", deck["trim"]), spec.get("keep", 1.0),
-               crop=spec.get("crop", deck.get("crop") if not cover else None))
+               crop=spec.get("crop", deck.get("crop") if not cover else None), plain=spec.get("plain", False))
     im.paste(ph, ((W - ph.width) // 2, top), ph)
 
     footer(d, n, total, deck["url"])
@@ -277,6 +281,62 @@ DECKS = {
              "title": "A free teaching tool for type-well curve work.",
              "sub": ["Companion to the Type-Well Curve Fundamentals course at SAGA Wisdom. Sessions save as files you own. No account, no upload: the data never leaves your computer.",
                      "Six short videos, one per tool, on the Shozbot YouTube channel."]},
+        ],
+    },
+    "puzzling": {
+        "app": "Puzzling",
+        "url": "shozbot.com/puzzling",
+        # Bertrand's iPhone at 3x (1290x2796): 177px of status bar, 102px of
+        # home indicator. The games end well above the bottom on most screens,
+        # so `keep` cuts each shot just under its last control (measured) and
+        # the screen fills the slide instead of carrying a third of blank page.
+        "trim": (177, 102),
+        "robot_height": 500,
+        "slides": [
+            {"kind": "cover", "file": "cover.png", "plain": True, "trim": (0, 0),
+             "title": "Nine daily word games for your phone.",
+             "sub": "A new puzzle in each one every day, the same for everyone, and the last hundred days to catch up on. Free, no ads, no sign-up.",
+             "shot": "the nine icons"},
+            {"file": "common-thread.png", "keep": 0.82,
+             "title": "Common Thread",
+             "sub": "Three words, and one missing word that pairs with every one of them.",
+             "shot": "Common Thread, a puzzle solved"},
+            {"file": "whittle.png", "keep": 0.70,
+             "title": "Whittle",
+             "sub": "Take one letter away at a time to match three clues before the clock runs out.",
+             "shot": "Whittle, mid-puzzle"},
+            {"file": "snowball.png", "keep": 0.985,
+             "title": "Snowball",
+             "sub": "Start with three letters and add one at a time to match three clues, so the word grows.",
+             "shot": "Snowball, mid-puzzle"},
+            {"file": "tumble.png", "keep": 0.92,
+             "title": "Tumble",
+             "sub": "An anagram game: rearrange the letters to fit the clue, then find a bonus word in the same letters.",
+             "shot": "Tumble, first word solved"},
+            {"file": "stowaway.png", "keep": 0.85,
+             "title": "Stowaway",
+             "sub": "Two clues, two words: the second is the first with one letter smuggled in.",
+             "shot": "Stowaway, both words typed"},
+            {"file": "soundalike.png", "keep": 0.95,
+             "title": "Soundalike",
+             "sub": "Two clues, two words that sound the same but are spelled differently.",
+             "shot": "Soundalike, both words typed"},
+            {"file": "switcheroo.png", "keep": 0.965,
+             "title": "Switcheroo",
+             "sub": "Change one letter at a time to climb a three-step word ladder.",
+             "shot": "Switcheroo, one rung climbed"},
+            {"file": "three-of-a-kind.png", "keep": 0.95,
+             "title": "Three of a Kind",
+             "sub": "Three words have something in common. Spot what it is.",
+             "shot": "Three of a Kind, choices showing"},
+            {"file": "splice.png", "keep": 0.87,
+             "title": "Splice",
+             "sub": "Two clues, two words, blended into one where they overlap.",
+             "shot": "Splice, an answer typed"},
+            {"kind": "close",
+             "title": "Free. No ads. No sign-up.",
+             "sub": ["Inspired by That\u2019s Puzzling! on CBC Radio\u2019s The Sunday Magazine, where puzzle master Peter Brown sets the games. Every clue and answer here is original, and Shozbot is not affiliated with CBC.",
+                     "Add any game to your home screen and it runs like an app. A puzzle that makes you work is exercise."]},
         ],
     },
 }

@@ -1063,6 +1063,21 @@ only one with a build step.
   — R², P10:P90 ratio, separation, the trumpet envelope — rather than
   selling. Karla has no η glyph, so "eta squared" is spelled out.
 
+  **Puzzling's is built** (2026-11-16, `puzzling-carousel.pdf`, eleven
+  slides: a cover of the nine icons in a 3×3 grid, one slide per game in the
+  collection page's order, a close carrying the CBC credit line). Back to
+  4:5 and Bertrand's own phone shots (1290×2796, so the trim is 177/102),
+  one per game, random puzzles so no day's answer is given away. Each shot
+  is cut under its last control with `keep`, measured by scanning for the
+  last non-white row, because most games end well above the bottom of the
+  screen. The cover is not a screenshot: `tools/cover-puzzling.html` rendered
+  in Chromium at 936×1000 (2×), and a `plain` flag on the slide skips the
+  rounded corners and hairline a phone shot gets. The post opens with a
+  Common Thread clue from the game's own list, MASTER · MOUTH · MEAL, answer
+  withheld so the comments supply it; no tags on Peter Brown or Piya
+  Chattopadhyay — the email to the show is the first contact, and a tag in a
+  reply is fine once either of them engages.
+
   **Three rules Bertrand set on the first cut, which hold for every deck.**
   The screen is the slide: title and one short line above, the screenshot
   taking everything else. No purple anywhere on a slide — "that looks ugly",
