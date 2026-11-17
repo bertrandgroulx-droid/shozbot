@@ -295,7 +295,7 @@ DECKS = {
         "slides": [
             {"kind": "cover", "file": "cover.png", "plain": True, "trim": (0, 0),
              "title": "Nine word games to exercise your brain.",
-             "sub": "A new puzzle every day. Free, no ads, no sign-up. Everyone gets the same puzzle.",
+             "sub": "A new puzzle every day. Free, no ads, no sign-up.",
              "shot": "the nine icons"},
             {"file": "common-thread.png", "keep": 0.82,
              "title": "Common Thread",
