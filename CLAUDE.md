@@ -1067,17 +1067,20 @@ only one with a build step.
   slides: a cover of the nine icons in a 3×3 grid, one slide per game in the
   collection page's order, a close carrying the CBC credit line). Back to
   4:5, one shot per game, random puzzles so no day's answer is given away.
-  **The shots were recaptured here on 2026-11-17** (Bertrand's ask, after
-  the Puzzling chat shipped the ladder for Whittle, Snowball and Switcheroo
-  that same morning — his phone shot of Whittle had read as "SING means a
-  wrongdoing"): `tools/capture-puzzling.mjs` opens each game at iPhone 14
-  Pro Max size (430×932 at 3×, the same width as his phone shots), timer
-  off, first-visit card dismissed, plays it to its moment by reading the
-  answer from the game's own puzzle list, and screenshots the full page;
-  the shots are then cut 32px under the last non-white row, so the deck
-  needs no `trim` and no `keep`. The games are static pages with no outside
-  data, so a capture here shows exactly what a phone shows, unlike a
-  weather forecast. Rerun both tools after any game changes its screen. The cover is not a screenshot: `tools/cover-puzzling.html` rendered
+  **The shots are a mix since 2026-11-17.** The Puzzling chat shipped the
+  ladder for Whittle, Snowball and Switcheroo that morning, and all nine were
+  recaptured here by `tools/capture-puzzling.mjs` (each game at iPhone 14 Pro
+  Max size, 430×932 at 3×, timer off, first-visit card dismissed, played to
+  its moment by reading the answer from the game's own puzzle list, then cut
+  32px under the last non-white row, so those shots take `trim (0, 0)` and no
+  `keep`). Bertrand then chose to **keep his own phone shots for Whittle,
+  Stowaway, Soundalike, Switcheroo and Three of a Kind** and take the captures
+  for Common Thread, Snowball, Tumble and Splice; the deck spec carries both
+  kinds. His Whittle shot is of the layout before the ladder, so it no longer
+  matches the live game; he was told and kept it. The close ends "A puzzle
+  that makes your brain work is exercise." (his wording, same day). The games
+  are static pages with no outside data, so a capture here shows exactly what
+  a phone shows, unlike a weather forecast. The cover is not a screenshot: `tools/cover-puzzling.html` rendered
   in Chromium at 936×1000 (2×), and a `plain` flag on the slide skips the
   rounded corners and hairline a phone shot gets. The post opens with a
   Common Thread clue from the game's own list, MASTER · MOUTH · MEAL, answer

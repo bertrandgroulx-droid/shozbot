@@ -286,59 +286,60 @@ DECKS = {
     "puzzling": {
         "app": "Puzzling",
         "url": "shozbot.com/puzzling",
-        # Captured here (2026-11-17) with Playwright at iPhone 14 Pro Max size,
-        # 430x932 at 3x, the same 1290px width as Bertrand's own phone shots:
-        # random puzzles, timer off, the first-visit card dismissed, each game
-        # played to its moment by tools/capture-puzzling.mjs. No status bar to
-        # trim, and each shot is already cut 32px under its last control, so
-        # the screen fills the slide without a `keep`.
-        "trim": (0, 0),
+        # Two kinds of shot. Bertrand's own iPhone shots at 3x (1290x2796):
+        # 177px of status bar and 102px of home indicator to trim, and `keep`
+        # cutting each just under its last control (measured) because the
+        # games end well above the bottom of the screen. And four captured
+        # here on 2026-11-17 by tools/capture-puzzling.mjs after the ladder
+        # redesign (Common Thread, Snowball, Tumble, Splice): no status bar,
+        # already cut under the last control, so trim (0, 0) and no keep.
+        "trim": (177, 102),
         "robot_height": 500,
         "slides": [
             {"kind": "cover", "file": "cover.png", "plain": True, "trim": (0, 0),
              "title": "Nine word games to exercise your brain.",
              "sub": "A new puzzle every day. Free, no ads, no sign-up.",
              "shot": "the nine icons"},
-            {"file": "common-thread.png",
+            {"file": "common-thread.png", "trim": (0, 0),
              "title": "Common Thread",
              "sub": "Three words, and one missing word that pairs with every one of them.",
              "shot": "Common Thread, a puzzle solved"},
-            {"file": "whittle.png",
+            {"file": "whittle.png", "keep": 0.70,
              "title": "Whittle",
              "sub": "Take one letter away at a time to match three clues before the clock runs out.",
              "shot": "Whittle, mid-puzzle"},
-            {"file": "snowball.png",
+            {"file": "snowball.png", "trim": (0, 0),
              "title": "Snowball",
              "sub": "Start with three letters and add one at a time to match three clues, so the word grows.",
              "shot": "Snowball, mid-puzzle"},
-            {"file": "tumble.png",
+            {"file": "tumble.png", "trim": (0, 0),
              "title": "Tumble",
              "sub": "An anagram game: rearrange the letters to fit the clue, then find a bonus word in the same letters.",
              "shot": "Tumble, first word solved"},
-            {"file": "stowaway.png",
+            {"file": "stowaway.png", "keep": 0.85,
              "title": "Stowaway",
              "sub": "Two clues, two words: the second is the first with one letter smuggled in.",
              "shot": "Stowaway, both words typed"},
-            {"file": "soundalike.png",
+            {"file": "soundalike.png", "keep": 0.95,
              "title": "Soundalike",
              "sub": "Two clues, two words that sound the same but are spelled differently.",
              "shot": "Soundalike, both words typed"},
-            {"file": "switcheroo.png",
+            {"file": "switcheroo.png", "keep": 0.965,
              "title": "Switcheroo",
              "sub": "Change one letter at a time to climb a three-step word ladder.",
              "shot": "Switcheroo, one rung climbed"},
-            {"file": "three-of-a-kind.png",
+            {"file": "three-of-a-kind.png", "keep": 0.95,
              "title": "Three of a Kind",
              "sub": "Three words have something in common. Spot what it is.",
              "shot": "Three of a Kind, choices showing"},
-            {"file": "splice.png",
+            {"file": "splice.png", "trim": (0, 0),
              "title": "Splice",
              "sub": "Two clues, two words, blended into one where they overlap.",
              "shot": "Splice, an answer typed"},
             {"kind": "close",
              "title": "Free. No ads. No sign-up.",
              "sub": ["Inspired by That\u2019s Puzzling! on CBC Radio\u2019s The Sunday Magazine, where puzzle master Peter Brown sets the games. Every clue and answer here is original, and Shozbot is not affiliated with CBC.",
-                     "Add any game, or the whole collection, to your home screen and it runs like an app. A puzzle that makes you work is exercise."]},
+                     "Add any game, or the whole collection, to your home screen and it runs like an app. A puzzle that makes your brain work is exercise."]},
         ],
     },
 }
