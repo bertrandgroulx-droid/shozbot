@@ -291,7 +291,7 @@ DECKS = {
         # cutting each just under its last control (measured) because the
         # games end well above the bottom of the screen. And four captured
         # here on 2026-11-17 by tools/capture-puzzling.mjs after the ladder
-        # redesign (Common Thread, Snowball, Tumble, Splice): no status bar,
+        # redesign (Common Thread, Whittle, Snowball, Tumble, Splice): no status bar,
         # already cut under the last control, so trim (0, 0) and no keep.
         "trim": (177, 102),
         "robot_height": 500,
@@ -304,7 +304,7 @@ DECKS = {
              "title": "Common Thread",
              "sub": "Three words, and one missing word that pairs with every one of them.",
              "shot": "Common Thread, a puzzle solved"},
-            {"file": "whittle.png", "keep": 0.70,
+            {"file": "whittle.png", "trim": (0, 0),
              "title": "Whittle",
              "sub": "Take one letter away at a time to match three clues before the clock runs out.",
              "shot": "Whittle, mid-puzzle"},

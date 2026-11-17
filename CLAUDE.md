@@ -1073,11 +1073,11 @@ only one with a build step.
   Max size, 430×932 at 3×, timer off, first-visit card dismissed, played to
   its moment by reading the answer from the game's own puzzle list, then cut
   32px under the last non-white row, so those shots take `trim (0, 0)` and no
-  `keep`). Bertrand then chose to **keep his own phone shots for Whittle,
-  Stowaway, Soundalike, Switcheroo and Three of a Kind** and take the captures
-  for Common Thread, Snowball, Tumble and Splice; the deck spec carries both
-  kinds. His Whittle shot is of the layout before the ladder, so it no longer
-  matches the live game; he was told and kept it. The close ends "A puzzle
+  `keep`). Bertrand then chose to **keep his own phone shots for Stowaway,
+  Soundalike, Switcheroo and Three of a Kind** and take the captures for
+  Common Thread, Whittle, Snowball, Tumble and Splice; the deck spec carries
+  both kinds. (His Switcheroo shot is of the layout before the ladder, so it
+  no longer matches the live game; his call.) The close ends "A puzzle
   that makes your brain work is exercise." (his wording, same day). The games
   are static pages with no outside data, so a capture here shows exactly what
   a phone shows, unlike a weather forecast. The cover is not a screenshot: `tools/cover-puzzling.html` rendered
