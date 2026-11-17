@@ -1066,11 +1066,18 @@ only one with a build step.
   **Puzzling's is built** (2026-11-16, `puzzling-carousel.pdf`, eleven
   slides: a cover of the nine icons in a 3×3 grid, one slide per game in the
   collection page's order, a close carrying the CBC credit line). Back to
-  4:5 and Bertrand's own phone shots (1290×2796, so the trim is 177/102),
-  one per game, random puzzles so no day's answer is given away. Each shot
-  is cut under its last control with `keep`, measured by scanning for the
-  last non-white row, because most games end well above the bottom of the
-  screen. The cover is not a screenshot: `tools/cover-puzzling.html` rendered
+  4:5, one shot per game, random puzzles so no day's answer is given away.
+  **The shots were recaptured here on 2026-11-17** (Bertrand's ask, after
+  the Puzzling chat shipped the ladder for Whittle, Snowball and Switcheroo
+  that same morning — his phone shot of Whittle had read as "SING means a
+  wrongdoing"): `tools/capture-puzzling.mjs` opens each game at iPhone 14
+  Pro Max size (430×932 at 3×, the same width as his phone shots), timer
+  off, first-visit card dismissed, plays it to its moment by reading the
+  answer from the game's own puzzle list, and screenshots the full page;
+  the shots are then cut 32px under the last non-white row, so the deck
+  needs no `trim` and no `keep`. The games are static pages with no outside
+  data, so a capture here shows exactly what a phone shows, unlike a
+  weather forecast. Rerun both tools after any game changes its screen. The cover is not a screenshot: `tools/cover-puzzling.html` rendered
   in Chromium at 936×1000 (2×), and a `plain` flag on the slide skips the
   rounded corners and hairline a phone shot gets. The post opens with a
   Common Thread clue from the game's own list, MASTER · MOUTH · MEAL, answer
