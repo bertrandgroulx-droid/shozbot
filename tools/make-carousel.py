@@ -294,8 +294,8 @@ DECKS = {
         "robot_height": 500,
         "slides": [
             {"kind": "cover", "file": "cover.png", "plain": True, "trim": (0, 0),
-             "title": "Nine daily word games for your phone.",
-             "sub": "A new puzzle in each one every day, the same for everyone, and the last hundred days to catch up on. Free, no ads, no sign-up.",
+             "title": "Nine word games to get your brain going.",
+             "sub": "Ten minutes with your coffee. A new puzzle in every game, every day, and everyone gets the same one, so you can compare notes. Free, no ads, no sign-up.",
              "shot": "the nine icons"},
             {"file": "common-thread.png", "keep": 0.82,
              "title": "Common Thread",
