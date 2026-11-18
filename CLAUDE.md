@@ -1073,9 +1073,9 @@ only one with a build step.
   Max size, 430×932 at 3×, timer off, first-visit card dismissed, played to
   its moment by reading the answer from the game's own puzzle list, then cut
   32px under the last non-white row, so those shots take `trim (0, 0)` and no
-  `keep`). Bertrand then chose to **keep his own phone shots for Stowaway,
+  `keep`). Bertrand then chose to **keep his own phone shots for Common Thread, Stowaway,
   Soundalike, Switcheroo and Three of a Kind** and take the captures for
-  Common Thread, Whittle, Snowball, Tumble and Splice; the deck spec carries
+  Whittle, Snowball, Tumble and Splice; the deck spec carries
   both kinds. (His Switcheroo shot is of the layout before the ladder, so it
   no longer matches the live game; his call.) The close ends "A puzzle
   that makes your brain work is exercise." (his wording, same day). The games
