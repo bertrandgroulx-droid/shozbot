@@ -1086,7 +1086,15 @@ only one with a build step.
   Common Thread clue from the game's own list, MASTER · MOUTH · MEAL, answer
   withheld so the comments supply it; no tags on Peter Brown or Piya
   Chattopadhyay — the email to the show is the first contact, and a tag in a
-  reply is fine once either of them engages.
+  reply is fine once either of them engages. **Bertrand's final text
+  (2026-11-18)** opens "Let's start with a puzzle.", puts "Got it? Put your
+  answer in the comments." right under the three words, then "Puzzling is a
+  collection of nine daily word games for your phone. Free, no ads, no
+  sign-up, and they run from your home screen like an app.", the CBC credit,
+  "A puzzle that makes your brain work is exercise. Fifteen minutes of
+  recall and deduction during your morning coffee.", and the address last.
+  The posting steps are in his Word document "Puzzling on LinkedIn" (sent in
+  chat, not in the repo).
 
   **Three rules Bertrand set on the first cut, which hold for every deck.**
   The screen is the slide: title and one short line above, the screenshot
